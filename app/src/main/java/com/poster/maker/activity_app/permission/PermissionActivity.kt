@@ -44,6 +44,11 @@
         override fun setViewBinding() = ActivityPermissionBinding.inflate(LayoutInflater.from(this))
 
         override fun initView() {
+            binding.actionBar.tvStart.apply {
+                setText(R.string.permission)
+                visible()
+            }
+
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
                 binding.btnStorage.visible()
                 binding.btnNotification.gone()
@@ -57,7 +62,7 @@
 
         override fun initText() {
             binding.actionBar.tvCenter.select()
-            setGradientTextHeightColor(binding.tvContinue, "#C4561B".toColorInt(), "#C4561B".toColorInt())
+            setGradientTextHeightColor(binding.tvContinue, "#FFFFFF".toColorInt(), "#FFFFFF".toColorInt())
             val textRes =
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) R.string.to_access_13 else R.string.to_access
 
