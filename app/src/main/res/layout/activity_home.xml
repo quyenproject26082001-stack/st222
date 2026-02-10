@@ -29,7 +29,7 @@
         android:id="@+id/titleHome"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:src="@drawable/img_home_title"
+        android:src="@drawable/img_app_name"
         app:layout_constraintDimensionRatio="360:120"
         app:layout_constraintTop_toBottomOf="@id/layoutActionBar" />
 
@@ -79,7 +79,7 @@
                         android:id="@+id/tv0"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/kurale_regular"
+                        android:fontFamily="@font/joan_regular"
                         android:gravity="center"
                         android:text="@string/bountyFilter"
                         android:textColor="@color/white"
@@ -112,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_home_1" />
+                    android:src="@drawable/img_home_0" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -129,7 +129,7 @@
                         android:id="@+id/tv1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/kurale_regular"
+                        android:fontFamily="@font/joan_regular"
                         android:gravity="center"
                         android:text="@string/posterwantedmaker"
                         android:textColor="@color/white"
@@ -159,7 +159,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_home_2" />
+                    android:src="@drawable/img_home_0" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -177,7 +177,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
-                        android:fontFamily="@font/kurale_regular"
+                        android:fontFamily="@font/joan_regular"
                         android:gravity="center"
                         android:text="@string/posterwantedtemplates"
                         android:textColor="@color/white"
@@ -226,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
-                        android:fontFamily="@font/kurale_regular"
+                        android:fontFamily="@font/joan_regular"
                         android:gravity="center"
                         android:text="@string/my_creation"
                         android:textColor="@color/white"
@@ -275,7 +275,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
-                        android:fontFamily="@font/kurale_regular"
+                        android:fontFamily="@font/joan_regular"
                         android:gravity="center"
                         android:text="@string/old_west"
                         android:textColor="@color/white"
