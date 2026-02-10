@@ -1,0 +1,127 @@
+<resources>
+    <string name="app_name">Wanted Poster Creator: Filter</string>
+    <string name="go_to_setting_message">The app needs this permission</string>
+    <string name="settings">Settings</string>
+    <string name="this_action_can_contain_ads">This action can contain ads</string>
+    <string name="not_select_lang">Please select a language</string>
+    <string name="next">Next</string>
+    <string name="language">Language</string>
+
+    <string name="title_1">Become a real pirate</string>
+    <string name="title_2">Surreal pirate style</string>
+    <string name="title_3">Create a wanted poster with a huge bounty</string>
+
+    <string name="permission">Permission</string>
+    <string name="storage">Storage</string>
+    <string name="continue_per">Continue</string>
+    <string name="notification">Notification</string>
+    <string name="granted_notification">Notification permission granted</string>
+    <string name="granted_storage">Storage permission granted</string>
+    <string name="allow">Allow</string>
+    <string name="to_access">to access photos on your device</string>
+    <string name="to_access_13">to access notification on your device</string>
+    <string name="no_designs_yet">You don’t have any poster</string>
+
+    <string name="rate_us">Rate Us</string>
+    <string name="share_app">Share App</string>
+    <string name="privacy_policy"><![CDATA[Privacy & Policy]]></string>
+
+    <string name="zero_star_title">Do you like the app?</string>
+    <string name="zero_star">I need your love</string>
+
+    <string name="one_star_title">Little buddy made me cry</string>
+    <string name="one_star">I will cry all day</string>
+
+    <string name="two_star_title">I’m a little sad</string>
+    <string name="two_star">I will not eat rice today</string>
+
+    <string name="three_star_title">Great job little buddy</string>
+    <string name="three_star">I know you won\'t let me be sad</string>
+
+    <string name="four_star_title">You are so handsome</string>
+    <string name="four_star">The prince is so handsome</string>
+
+    <string name="five_star_title">I love you so much</string>
+    <string name="five_star">let\'s get married</string>
+
+    <string name="rate_us_0">You have not rated it yet!</string>
+    <string name="rate">Rate</string>
+    <string name="exit">Exit</string>
+    <string name="have_rated">Thank you for rate our app</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
+    <string name="download">Download</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="wait_a_minute">Wait a few second...</string>
+    <string name="reset">Reset</string>
+    <string name="download_success">Download successful to the Wanted Poster Creator: Filter album</string>
+    <string name="please_check_your_internet">Please check your internet</string>
+    <string name="please_select_an_image">Please select an image</string>
+    <string name="error">Error</string>
+
+    <string name="an_error_occurred">An error occurred, please try again later.</string>
+    <string name="image_has_been_saved_successfully">Image has been saved successfully!</string>
+    <string name="save">Save</string>
+    <string name="are_you_sure_want_to_delete_this_item">Are you sure want to delete this item?</string>
+    <string name="downloading">Downloading...</string>
+    <string name="successfully">Successfully</string>
+    <string name="download_failed_please_try_again_later">Download failed, please try again later!</string>
+    <string name="save_failed_please_try_again">Save failed, please try again!</string>
+    <string name="delete_failed_please_try_again">Delete failed, please try again!</string>
+    <string name="my_creation">My Creation</string>
+    <string name="delete_your_customize">Delete your customize</string>
+    <string name="are_you_sure_you_want_to_delete_the_image">Are you sure you want to delete the image?</string>
+    <string name="haven_t_saved_it_yet_do_you_want_to_exit">Haven’t saved it yet, do you want to exit?</string>
+    <string name="change_your_whole_design_are_you_sure">Do you want to reset all?</string>
+    <string name="character_maker">Poster Wanted \nMaker</string>
+    <string name="no_item_here">No Item Here</string>
+    <string name="import_">Import</string>
+    <string name="templates">Templates</string>
+    <string name="posterwantedtemplates">Poster Wanted\nTemplates</string>
+    <string name="posterwantedmaker">Poster Wanted\nMaker</string>
+    <string name="bounty">Bounty</string>
+    <string name="photo_filter">Photo Filter</string>
+    <string name="poster_shadow">Poster Shadow</string>
+    <string name="sepia">Sepia</string>
+    <string name="saturate">Saturate</string>
+    <string name="hue_rotate">Hue Rotate</string>
+    <string name="grayscale">Grayscale</string>
+    <string name="contrast">Contrast</string>
+    <string name="brightness">Brightness</string>
+    <string name="blur">Blur</string>
+    <string name="shadow">Shadow</string>
+
+    <string name="wanted_poster_maker">Poster Maker</string>
+    <string name="my_design">My Design</string>
+    <string name="delete_design_confirmation">Are you sure want to delete this design?</string>
+    <string name="design_deleted">Design deleted</string>
+    <string name="delete_failed">Delete failed</string>
+    <string name="cancel">Cancel</string>
+    <string name="poster_templates">Poster Templates</string>
+    <string name="default_name">Pirate</string>
+    <string name="default_bounty">1,000,000</string>
+    <string name="reset_to_default_values">Reset to default values?</string>
+    <string name="please_import_a_photo_first">Please import a photo first</string>
+    <string name="failed_to_load_image">Failed to load image</string>
+    <string name="background_removed_success">Background removed successfully</string>
+    <string name="failed_to_remove_background">Failed to remove background</string>
+    <string name="error_message">An error occurred</string>
+    <string name="position_y">Position Y</string>
+    <string name="spacing">Spacing</string>
+    <string name="input">Input</string>
+    <string name="size">Size</string>
+    <string name="weight">Weight</string>
+    <string name="position_x">Position X</string>
+    <string name="name">Name</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_bounty">Enter bounty</string>
+    <string name="edit">Edit</string>
+    <string name="vui_l_ng_nh_p_t_n_tr_c_khi_l_u">Please enter a name before save</string>
+    <string name="bountyFilter">Bounty \nFilter</string>    <string name="play">Play</string>
+    <string name="old_west">Old West \nOutlaws</string>
+    <string name="old_west_outlwaw">Old West OutLwaw</string>
+    <string name="camera_permission_is_required">Camera permission is required</string>
+    <string name="my_wanted">My Wanted</string>
+    <string name="saved_to_my_design">Saved to My Design!</string>
+</resources>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Template 1: Classic Western - hasName=true -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPosterContent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:background="@android:color/transparent"
+    android:clipToPadding="false">
+
+
+    <!-- Template Shadow Layer: No aspect ratio, just follows parent bounds with negative margins -->
+    <ImageView
+        android:id="@+id/imgTemplateShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="-50dp"
+        android:layout_marginEnd="-50dp"
+        android:layout_marginBottom="-50dp"
+        android:padding="50dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:layerType="hardware"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Template Background -->
+    <ImageView
+        android:id="@+id/imgTemplate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/template"
+        tools:src="@drawable/template_1_preview"
+        app:layout_constraintDimensionRatio="H,3:4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+    <!-- Avatar Shadow Layer: LARGER than avatar to show blur around edges -->
+    <ImageView
+        android:id="@+id/imgAvatarShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:layerType="hardware"
+        android:clipToPadding="false"
+        app:layout_constraintWidth_percent="0.55"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Avatar Image: photoLeft=0.12, photoTop=0.28, photoRight=0.88, photoBottom=0.62 -->
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/avatar"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.44" />
+
+    <!-- Name Text: namePositionY=0.68, nameColor=#3D3D3D, nameSize=28sp -->
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="NAME HERE"
+        android:textColor="#3D3D3D"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:maxLines="1"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="@id/guidline"
+        app:layout_constraintEnd_toEndOf="@id/guidline1"
+        app:layout_constraintVertical_bias="0.722" />
+
+    <!-- Bounty Text: bountyPositionY=0.92, bountyColor=#3D3D3D, bountySize=32sp -->
+    <TextView
+        android:id="@+id/tvBounty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="$2,000,000"
+        android:gravity="center"
+        app:layout_constraintWidth_percent="0.8"
+        android:textColor="#3D3D3D"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.975" />
+
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/guidline"
+        app:layout_constraintGuide_percent="0.215"
+        />
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/guidline1"
+        app:layout_constraintGuide_percent="0.775"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

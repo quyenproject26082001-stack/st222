@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF4E6"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header with title and current font -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/kurale_regular"
+            android:text="Fonts"
+            android:textColor="#C4561B"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCurrentFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/kurale_regular"
+            android:text="Old Town"
+            android:textColor="#C4561B"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/imgCollapse"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_down"
+            android:rotation="180"
+            app:tint="#C4561B" />
+    </LinearLayout>
+
+    <!-- Font List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFontList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never" />
+
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="orange_F6">#F68300</color>
+    <color name="purple_F0">#F091F5</color>
+    <color name="app">#C4561B</color>
+    <color name="shimmer_placeholder">#E0E0E0</color>
+    <color name="lightTransparent">#50000000</color>
+
+    <color name="native_bg_ad">#6618231A</color>
+    <color name="native_bg_btn">#BD1313</color>
+    <color name="color_app">#BD1313</color>
+    <color name="native_bg">#66DFDCDC</color>
+    <color name="colorPrimary">#BD1313</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="native_text_color_btn">#FFFFFF</color>
+    <color name="native_text_color">#FF000000</color>
+    <!--quyen-->
+    <color name="native_text_body">#FFFFFF</color>
+    <color name="native_text_title">#FFFFFF</color>
+    <color name="native_collap_btn_bg">#C4561B</color>
+
+    <!--quyen-->
+
+</resources>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    tools:context="poster.maker.activity_app.mycreation.ViewCreationActivity"
+    android:layout_height="match_parent">
+
+    <!-- Background -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_bg_language" />
+
+    <!-- Action Bar -->
+    <FrameLayout
+        android:id="@+id/layoutActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/actionBar"
+            layout="@layout/layout_actionbar" />
+    </FrameLayout>
+
+    <!-- Poster Image -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:cardCornerRadius="8dp"
+        app:strokeColor="#C4561B"
+        app:strokeWidth="2dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/rowImportEdit"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/btnEdit"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/kurale_regular"
+            android:text="@string/edit"
+            android:textColor="#C4561B"
+            android:textSize="20sp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Import & Edit Row -->
+    <ImageView
+        android:id="@+id/imgPoster"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="294:388"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnEdit"
+        app:layout_constraintTop_toBottomOf="@id/layoutActionBar" />
+
+    <LinearLayout
+        android:id="@+id/rowImportEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="0.5dp"
+        android:weightSum="2"
+        app:layout_goneMarginBottom="200dp"
+        app:layout_constraintBottom_toTopOf="@id/nativeDetail"
+        tools:layout_editor_absoluteX="16dp">
+
+        <!-- Import Button -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnShare"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="8dp"
+            app:strokeColor="#C4561B"
+            app:strokeWidth="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/kurale_regular"
+                android:text="@string/share"
+                android:textColor="#C4561B"
+                android:textSize="20sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Edit Button -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnDownload"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="8dp"
+            app:strokeColor="#C4561B"
+            app:strokeWidth="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/kurale_regular"
+                android:text="@string/download"
+                android:textColor="#C4561B"
+                android:textSize="20sp" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+
+
+
+    <FrameLayout
+        android:id="@+id/nativeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <include layout="@layout/ads_shimmer_big" />
+    </FrameLayout>
+
+    <!-- Native Ad Bottom -->
+    <FrameLayout
+        android:id="@+id/nativeCollapDetailDesgin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

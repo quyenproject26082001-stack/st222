@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Template 15: Dark frame with pins - hasName=false, cream text on dark -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPosterContent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- Template Shadow Layer: No aspect ratio, just follows parent bounds with negative margins -->
+    <ImageView
+        android:id="@+id/imgTemplateShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="-50dp"
+        android:layout_marginEnd="-50dp"
+        android:layout_marginBottom="-50dp"
+        android:padding="50dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:layerType="hardware"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgTemplate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/template"
+        android:layout_margin="15dp"
+
+        tools:src="@drawable/template_15_preview"
+        app:layout_constraintDimensionRatio="H,3:4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Avatar Shadow Layer: LARGER than avatar (0.84x0.61 vs 0.69x0.483) -->
+    <ImageView
+        android:id="@+id/imgAvatarShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:layerType="hardware"
+        android:clipToPadding="false"
+        app:layout_constraintWidth_percent="0.691"
+        app:layout_constraintHeight_percent="0.505"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Avatar: photoLeft=0.12, photoTop=0.18, photoRight=0.88, photoBottom=0.72 -->
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/avatar"
+        app:layout_constraintWidth_percent="0.641"
+        app:layout_constraintHeight_percent="0.455"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.44" />
+
+    <!-- Name - HIDDEN -->
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="NAME HERE"
+        android:textColor="#F5F5DC"
+        android:textSize="24sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="8sp"
+        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeStepGranularity="1sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.65" />
+
+    <!-- Bounty: bountyPositionY=0.82, bountyColor=#F5F5DC (cream for dark bg), bountySize=32sp -->
+    <TextView
+        android:id="@+id/tvBounty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="$ 100,000"
+        android:textColor="#F5F5DC"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.82" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

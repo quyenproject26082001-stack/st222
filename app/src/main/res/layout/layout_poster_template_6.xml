@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Template 6: One Piece / Marine style - hasName=true, Berry prefix -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPosterContent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- Template Shadow Layer: No aspect ratio, just follows parent bounds with negative margins -->
+    <ImageView
+        android:id="@+id/imgTemplateShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="-50dp"
+        android:layout_marginEnd="-50dp"
+        android:layout_marginBottom="-50dp"
+        android:padding="50dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:layerType="hardware"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgTemplate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/template"
+        android:layout_margin="15dp"
+
+        tools:src="@drawable/template_6_preview"
+        app:layout_constraintDimensionRatio="H,3:4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Avatar Shadow Layer: LARGER than avatar (0.76x0.52 vs 0.6x0.4) -->
+    <ImageView
+        android:id="@+id/imgAvatarShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:layerType="hardware"
+        android:clipToPadding="false"
+        app:layout_constraintWidth_percent="0.65"
+        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Avatar: photoLeft=0.15, photoTop=0.18, photoRight=0.85, photoBottom=0.68 -->
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/avatar"
+        app:layout_constraintWidth_percent="0.6"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.37" />
+
+    <!-- Name: namePositionY=0.76, nameColor=#000000, nameSize=24sp -->
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="NAME HERE"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:maxLines="1"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="@id/guidline"
+        app:layout_constraintEnd_toEndOf="@id/guidline1"
+        app:layout_constraintVertical_bias="0.77" />
+
+    <!-- Bounty: bountyPositionY=0.84, prefix=Berry, suffix=-, bountySize=20sp -->
+    <TextView
+        android:id="@+id/tvBounty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="&#x20bf;330,000,000-"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="@id/guideBountyStart"
+        app:layout_constraintVertical_bias="0.90" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideBountyStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/guidline"
+        app:layout_constraintGuide_percent="0.11"
+        />
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/guidline1"
+        app:layout_constraintGuide_percent="0.89"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

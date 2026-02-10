@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_id" translatable="false"></string>
+
+    <!-- Splash -->
+    <string name="inter_splash" translatable="false"></string>
+
+    <!-- Language -->
+    <string name="native_language" translatable="false"></string>
+
+    <!-- Intro -->
+    <string name="native_intro" translatable="false"></string>
+
+    <!-- Permission -->
+    <string name="native_per" translatable="false"></string>
+    <string name="inter_per" translatable="false"></string>
+
+    <!-- Home -->
+    <string name="native_cl_home" translatable="false"></string>
+    <string name="native_collap_fillter" translatable="false"></string>
+    <string name="native_cl_fillter_success" translatable="false"></string>
+
+
+    <!-- oldwest -->
+    <string name="native_cl_Old_West_detail" translatable="false"></string>
+    <string name="native_cl_Old_West" translatable="false"></string>
+
+    <!-- poster maker -->
+    <string name="native_collap_poster" translatable="false"></string>
+
+    <!-- poster maker/template -->
+    <string name="native_template" translatable="false"></string>
+
+    <!-- edit -->
+    <string name="native_collap_edit" translatable="false"></string>
+
+    <!-- Successful -->
+    <string name="native_collap_creation" translatable="false"></string>
+
+    <!-- Poster Templates -->
+    <string name="native_collap_listTemplate" translatable="false"></string>
+
+
+    <string name="native_detail" translatable="false"></string>
+
+    <string name="native_collap_editFilter" translatable="false"></string>
+
+
+    <!-- My desgin -->
+    <string name="native_collap_myDesgin" translatable="false"></string>
+    <string name="native_myDesgin" translatable="false"></string>
+
+    <!-- Common -->
+    <string name="inter_all" translatable="false"></string>
+    <string name="native_all" translatable="false"></string>
+    <string name="open_resume" translatable="false"></string>
+</resources>

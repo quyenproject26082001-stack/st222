@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Template 14: Modern with stars - hasName=true -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPosterContent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- Template Shadow Layer: No aspect ratio, just follows parent bounds with negative margins -->
+    <ImageView
+        android:id="@+id/imgTemplateShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="-50dp"
+        android:layout_marginEnd="-50dp"
+        android:layout_marginBottom="-50dp"
+        android:padding="50dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:layerType="hardware"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgTemplate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/template"
+        android:layout_margin="15dp"
+
+        tools:src="@drawable/template_14_preview"
+        app:layout_constraintDimensionRatio="H,3:4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Avatar Shadow Layer: LARGER than avatar (0.58x0.48 vs 0.46x0.37) -->
+    <ImageView
+        android:id="@+id/imgAvatarShadow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:layerType="hardware"
+        android:clipToPadding="false"
+        app:layout_constraintWidth_percent="0.51"
+        app:layout_constraintHeight_percent="0.41"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Avatar: photoLeft=0.15, photoTop=0.18, photoRight=0.85, photoBottom=0.58 -->
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/avatar"
+
+        app:layout_constraintWidth_percent="0.46"
+        app:layout_constraintHeight_percent="0.36"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.43" />
+
+    <!-- Name: namePositionY=0.64, nameColor=#3D3D3D, nameSize=26sp -->
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="NAME HERE"
+        android:textColor="#3D3D3D"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:maxLines="1"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="@id/guidline"
+        app:layout_constraintEnd_toEndOf="@id/guidline1"
+        app:layout_constraintVertical_bias="0.71" />
+
+    <!-- Bounty: bountyPositionY=0.92, bountySize=24sp -->
+    <TextView
+        android:id="@+id/tvBounty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="$ 2,000,000"
+        android:textColor="#3D3D3D"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/imgTemplate"
+        app:layout_constraintBottom_toBottomOf="@id/imgTemplate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/guidline"
+        app:layout_constraintGuide_percent="0.1"
+        />
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/guidline1"
+        app:layout_constraintGuide_percent="0.9"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

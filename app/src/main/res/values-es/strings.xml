@@ -1,0 +1,129 @@
+<resources>
+    <string name="app_name">Wanted Poster Creator: Filter</string>
+    <string name="go_to_setting_message">La aplicación necesita este permiso</string>
+    <string name="settings">Configuración</string>
+    <string name="this_action_can_contain_ads">Esta acción puede contener anuncios</string>
+    <string name="not_select_lang">Por favor, seleccione un idioma</string>
+    <string name="next">Siguiente</string>
+    <string name="language">Idioma</string>
+
+    <string name="title_1">Conviértete en un verdadero pirata</string>
+    <string name="title_2">Estilo pirata surrealista</string>
+    <string name="title_3">Crea un cartel de buscado con recompensa</string>
+
+    <string name="permission">Permiso</string>
+    <string name="storage">Almacenamiento</string>
+    <string name="continue_per">Continuar</string>
+    <string name="notification">Notificación</string>
+    <string name="granted_notification">Permiso de notificación concedido</string>
+    <string name="granted_storage">Permiso de almacenamiento concedido</string>
+    <string name="allow">Permitir</string>
+    <string name="to_access">para acceder a fotos en tu dispositivo</string>
+    <string name="to_access_13">para acceder a notificaciones en tu dispositivo</string>
+    <string name="no_designs_yet">No tienes ningún cartel</string>
+
+    <string name="rate_us">Califícanos</string>
+    <string name="share_app">Compartir App</string>
+    <string name="privacy_policy"><![CDATA[Privacidad y Política]]></string>
+
+    <string name="zero_star_title">¿Te gusta la aplicación?</string>
+    <string name="zero_star">Necesito tu amor</string>
+
+    <string name="one_star_title">Amiguito me hizo llorar</string>
+    <string name="one_star">Lloraré todo el día</string>
+
+    <string name="two_star_title">Estoy un poco triste</string>
+    <string name="two_star">No comeré arroz hoy</string>
+
+    <string name="three_star_title">Buen trabajo amiguito</string>
+    <string name="three_star">Sabía que no me dejarías triste</string>
+
+    <string name="four_star_title">Eres muy guapo</string>
+    <string name="four_star">El príncipe es muy guapo</string>
+
+    <string name="five_star_title">Te quiero mucho</string>
+    <string name="five_star">casémonos</string>
+
+    <string name="rate_us_0">¡Aún no has calificado!</string>
+    <string name="rate">Calificar</string>
+    <string name="exit">Salir</string>
+    <string name="have_rated">Gracias por calificar nuestra app</string>
+    <string name="share">Compartir</string>
+    <string name="delete">Eliminar</string>
+    <string name="download">Descargar</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="wait_a_minute">Espera unos segundos...</string>
+    <string name="reset">Restablecer</string>
+    <string name="download_success">Descarga exitosa al álbum Wanted Poster Creator: Filter</string>
+    <string name="please_check_your_internet">Por favor, verifica tu conexión a internet</string>
+    <string name="please_select_an_image">Por favor, selecciona una imagen</string>
+    <string name="error">Error</string>
+
+    <string name="an_error_occurred">Ocurrió un error, por favor intenta de nuevo más tarde.</string>
+    <string name="image_has_been_saved_successfully">¡Imagen guardada exitosamente!</string>
+    <string name="save">Guardar</string>
+    <string name="are_you_sure_want_to_delete_this_item">¿Estás seguro de que quieres eliminar este elemento?</string>
+    <string name="downloading">Descargando...</string>
+    <string name="successfully">Exitoso</string>
+    <string name="download_failed_please_try_again_later">Descarga fallida, ¡por favor intenta de nuevo más tarde!</string>
+    <string name="save_failed_please_try_again">Error al guardar, ¡por favor intenta de nuevo!</string>
+    <string name="delete_failed_please_try_again">Error al eliminar, ¡por favor intenta de nuevo!</string>
+    <string name="my_creation">Mi Creación</string>
+    <string name="delete_your_customize">Eliminar tu personalización</string>
+    <string name="are_you_sure_you_want_to_delete_the_image">¿Estás seguro de que quieres eliminar la imagen?</string>
+    <string name="haven_t_saved_it_yet_do_you_want_to_exit">Aún no has guardado, ¿quieres salir?</string>
+    <string name="change_your_whole_design_are_you_sure">¿Quieres restablecer todo?</string>
+    <string name="character_maker">Creador de Cartel\nde Búsqueda</string>
+    <string name="no_item_here">No Hay Elementos Aquí</string>
+    <string name="import_">Importar</string>
+    <string name="templates">Plantillas</string>
+    <string name="posterwantedtemplates">Plantillas de Cartel\nde Búsqueda</string>
+    <string name="posterwantedmaker">Creador de Cartel\nde Búsqueda</string>
+    <string name="bounty">Recompensa</string>
+    <string name="photo_filter">Filtro de Foto</string>
+    <string name="poster_shadow">Sombra del Cartel</string>
+    <string name="sepia">Sepia</string>
+    <string name="saturate">Saturación</string>
+    <string name="hue_rotate">Rotación de Tono</string>
+    <string name="grayscale">Escala de Grises</string>
+    <string name="contrast">Contraste</string>
+    <string name="brightness">Brillo</string>
+    <string name="blur">Desenfoque</string>
+    <string name="shadow">Sombra</string>
+
+    <string name="wanted_poster_maker">Creador de Cartel</string>
+    <string name="my_design">Mi Diseño</string>
+    <string name="delete_design_confirmation">¿Estás seguro de que quieres eliminar este diseño?</string>
+    <string name="design_deleted">Diseño eliminado</string>
+    <string name="delete_failed">Error al eliminar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="poster_templates">Plantillas de Cartel</string>
+    <string name="default_name">Pirata</string>
+    <string name="default_bounty">1.000.000</string>
+    <string name="reset_to_default_values">¿Restablecer a valores predeterminados?</string>
+    <string name="please_import_a_photo_first">Por favor, importa una foto primero</string>
+    <string name="failed_to_load_image">Error al cargar imagen</string>
+    <string name="background_removed_success">Fondo eliminado exitosamente</string>
+    <string name="failed_to_remove_background">Error al eliminar fondo</string>
+    <string name="error_message">Ocurrió un error</string>
+    <string name="position_y">Posición Y</string>
+    <string name="spacing">Espaciado</string>
+    <string name="input">Entrada</string>
+    <string name="size">Tamaño</string>
+    <string name="weight">Peso</string>
+    <string name="position_x">Posición X</string>
+    <string name="name">Nombre</string>
+    <string name="enter_name">Ingresa el nombre</string>
+    <string name="enter_bounty">Ingresa la recompensa</string>
+    <string name="edit">Editar</string>
+    <string name="vui_l_ng_nh_p_t_n_tr_c_khi_l_u">Por favor, ingresa un nombre antes de guardar</string>
+    <string name="bountyFilter">Filtro de \nRecompensa</string>
+    <string name="play">Jugar</string>
+    <string name="old_west">Viejo Oeste \nForajidos</string>
+    <string name="old_west_outlwaw">Viejo Oeste Forajidos</string>
+    <string name="camera_permission_is_required">Se requiere permiso de la cámara</string>
+    <string name="my_wanted">Mi Wanted</string>
+    <string name="saved_to_my_design">¡Guardado en Mis Diseños!</string>
+
+</resources>

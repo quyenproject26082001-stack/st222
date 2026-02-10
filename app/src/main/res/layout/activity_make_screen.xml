@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:context=".activity_app.makescreen.MakeScreenActivity">
+
+    <!-- Background -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_bg_makescreen" />
+
+    <!-- Simple ScrollView -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="0.5dp"
+        android:paddingHorizontal="16dp"
+        android:clipChildren="false"
+        android:scrollbars="none"
+        android:clipToPadding="true"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutActionBar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <!-- Poster Preview Card - Container for dynamic template layouts -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPosterPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:layout_marginTop="6dp"
+                android:clipToPadding="false"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp">
+
+                <!-- Container to inflate template layouts dynamically -->
+                <FrameLayout
+                    android:id="@+id/containerPoster"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:clipChildren="false"
+                    android:clipToPadding="false" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Templates Button -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvTemplates"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:cardBackgroundColor="@android:color/transparent"
+            android:layout_marginTop="8dp"
+               >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_template_makescreen"
+                    android:padding="12dp">
+
+                    <poster.maker.core.custom.text.DoubleStrokeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kurale_regular"
+                        android:text="@string/templates"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:outerStrokeWidth="1dp"
+                        app:outerStrokeColor="#000000"
+                        android:textSize="30sp" />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Import & Edit Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp"
+                android:weightSum="2">
+
+                <!-- Import Button -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvImport"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    app:strokeColor="#C4561B"
+                    app:strokeWidth="2dp"
+                    android:layout_marginEnd="4dp"
+                    app:cardCornerRadius="8dp"
+                   >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/kurale_regular"
+                        android:text="@string/import_"
+                        android:textColor="#C4561B"
+                        android:textSize="20sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Edit Button -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    app:strokeColor="#C4561B"
+                    app:strokeWidth="2dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    app:cardCornerRadius="8dp"
+                  >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/kurale_regular"
+                        android:text="@string/edit"
+                        android:textColor="#C4561B"
+                        android:textSize="18sp" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <!-- Action Bar -->
+    <FrameLayout
+        android:id="@+id/layoutActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/actionBar"
+            layout="@layout/layout_actionbar" />
+    </FrameLayout>
+    <!-- Native Ad -->
+    <FrameLayout
+        android:id="@+id/nativeClPoster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
