@@ -28,6 +28,7 @@ class PhotoFilterActivity : BaseActivity<ActivityPhotoFilterBinding>() {
 
     // Template views
     private var imgTemplate: ImageView? = null
+    private var imgTemplateShadow: ImageView? = null
     private var imgAvatar: ImageView? = null
     private var imgAvatarShadow: ImageView? = null
     private var tvName: TextView? = null
@@ -112,16 +113,37 @@ class PhotoFilterActivity : BaseActivity<ActivityPhotoFilterBinding>() {
         val posterView = layoutInflater.inflate(layoutResId, binding.containerPoster, true)
 
         imgTemplate = posterView.findViewById(R.id.imgTemplate)
+        imgTemplateShadow = posterView.findViewById(R.id.imgTemplateShadow)
         imgAvatar = posterView.findViewById(R.id.imgAvatar)
         imgAvatarShadow = posterView.findViewById(R.id.imgAvatarShadow)
         tvName = posterView.findViewById(R.id.tvName)
         tvBounty = posterView.findViewById(R.id.tvBounty)
+
+        // Setup autoSize for tvName
+        tvName?.apply {
+            maxLines = 1
+            val config = viewModel.getConfig()
+            androidx.core.widget.TextViewCompat.setAutoSizeTextTypeWithDefaults(
+                this,
+                androidx.core.widget.TextViewCompat.AUTO_SIZE_TEXT_TYPE_NONE
+            )
+            androidx.core.widget.TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
+                this,
+                6,
+                config.nameSize.toInt(),
+                1,
+                android.util.TypedValue.COMPLEX_UNIT_SP
+            )
+        }
 
         // Load template background
         loadTemplateBackground()
 
         // Load avatar image
         loadAvatarImage()
+
+        // Apply poster shadow
+        applyPosterShadow(viewModel.posterShadow.value)
 
         // Apply current Name and Bounty from ViewModel
         applyTextStyling()
@@ -444,6 +466,55 @@ class PhotoFilterActivity : BaseActivity<ActivityPhotoFilterBinding>() {
         }
     }
 
+    private fun applyPosterShadow(shadowValue: Float) {
+        val shadowView = imgTemplateShadow ?: return
+
+        if (shadowValue <= 0) {
+            shadowView.visibility = View.GONE
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                shadowView.setRenderEffect(null)
+            }
+            return
+        }
+
+        shadowView.visibility = View.VISIBLE
+
+        val shadowRadius = shadowValue / 100f * 15f
+        val shadowAlpha = shadowValue / 100f * 0.9f
+
+        val templateId = viewModel.selectedTemplate.value
+        val templatePath = AssetHelper.getTemplateItemPath(templateId)
+
+        Glide.with(this)
+            .load(templatePath)
+            .transform(ShadowTransformation(shadowRadius, shadowAlpha))
+            .into(shadowView)
+
+        val viewAlpha = (shadowValue / 100f).coerceIn(0f, 1f)
+        shadowView.alpha = viewAlpha
+
+        val offsetX = shadowValue / 100f * 5f
+        val offsetY = shadowValue / 100f * 5f
+        shadowView.translationX = offsetX
+        shadowView.translationY = offsetY
+
+        val scale = 1f + (shadowValue / 100f * 0.03f)
+        shadowView.scaleX = scale
+        shadowView.scaleY = scale
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            val additionalBlur = shadowValue / 100f * 10f
+            if (additionalBlur > 0) {
+                val blurEffect = android.graphics.RenderEffect.createBlurEffect(
+                    additionalBlur, additionalBlur, android.graphics.Shader.TileMode.CLAMP
+                )
+                shadowView.setRenderEffect(blurEffect)
+            } else {
+                shadowView.setRenderEffect(null)
+            }
+        }
+    }
+
     private fun getCurrentImageModel(): Any {
         return viewModel.selectedImageUri.value ?: R.drawable.avatar
     }
@@ -457,6 +528,7 @@ class PhotoFilterActivity : BaseActivity<ActivityPhotoFilterBinding>() {
         // Apply NAME values
         tvName?.text = viewModel.nameText.value
         tvName?.letterSpacing = viewModel.nameSpacing.value
+        tvName?.visibility = if (config.hasName) View.VISIBLE else View.GONE
         try {
             tvName?.setTextColor(android.graphics.Color.parseColor(config.nameColor))
         } catch (e: Exception) {

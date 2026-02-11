@@ -593,10 +593,18 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
         }
 
         // Apply blur using Glide
+        val blur = viewModel.filterBlur.value
         val currentUri = viewModel.selectedImageUri.value
         if (currentUri != null) {
-            val blur = viewModel.filterBlur.value
             reloadImageWithBlur(currentUri, blur)
+        } else if (blur > 0) {
+            val blurRadius = (blur / 100f * 25f).toInt().coerceAtLeast(1)
+            imgAvatar?.let {
+                Glide.with(this)
+                    .load(R.drawable.avatar)
+                    .transform(CenterCrop(), BlurTransformation(blurRadius, 3))
+                    .into(it)
+            }
         }
     }
 
@@ -670,16 +678,14 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
 
         val effectiveShadowValue = 35f + (shadowValue / 100f * 65f)
 
-        val currentUri = viewModel.selectedImageUri.value
-        if (currentUri != null) {
-            val shadowRadius = effectiveShadowValue / 100f * 15f
-            val shadowAlpha = effectiveShadowValue / 100f * 0.9f
+        val model: Any = viewModel.selectedImageUri.value ?: R.drawable.avatar
+        val shadowRadius = effectiveShadowValue / 100f * 15f
+        val shadowAlpha = effectiveShadowValue / 100f * 0.9f
 
-            Glide.with(this)
-                .load(currentUri)
-                .transform(CenterCrop(), ShadowTransformation(shadowRadius, shadowAlpha))
-                .into(shadowView)
-        }
+        Glide.with(this)
+            .load(model)
+            .transform(CenterCrop(), ShadowTransformation(shadowRadius, shadowAlpha))
+            .into(shadowView)
 
         val viewAlpha = (effectiveShadowValue / 100f).coerceIn(0f, 1f)
         shadowView.alpha = viewAlpha
