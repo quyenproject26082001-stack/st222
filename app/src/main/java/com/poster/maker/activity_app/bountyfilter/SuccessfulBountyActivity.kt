@@ -169,9 +169,13 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
                 }
             }
 
-            btnEdit.setOnSingleClick {
-               showInterAll {openEditSticker() }
+            actionBar.btnActionBarNextToRight.visible()
+
+            actionBar.btnActionBarNextToRight.setOnSingleClick {
+                showInterAll {openEditSticker() }
             }
+
+
 
             btnDownload.setOnSingleClick {
                 downloadImage()
@@ -181,7 +185,7 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
                 shareImage()
             }
 
-            actionBar.btnActionBarRightText.setOnSingleClick {
+            actionBar.btnActionBarRight.setOnSingleClick {
                showInterAll { saveToMyDesign() }
             }
         }
@@ -192,7 +196,7 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
             tvCenter.text = getString(R.string.bountyFilter)
             btnActionBarLeft.setImageResource(R.drawable.ic_home)
             btnActionBarLeft.visible()
-            btnActionBarRightText.visible()
+            btnActionBarRight.visible()
             tvRightText.select()
             updateActionBarIcons()
         }
@@ -201,9 +205,9 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
     private fun updateActionBarIcons() {
         binding.actionBar.apply {
             if (hasStickers) {
-                btnActionBarRightText.visible()
+                btnActionBarRight.visible()
             } else {
-                btnActionBarRightText.visible()
+                btnActionBarRight.visible()
             }
         }
     }
@@ -280,11 +284,11 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
 //        initNativeCollab()
 //    }
 
-    fun initNativeCollab() {
-        Admob.getInstance().loadNativeCollap(this,
-            getString(R.string.native_cl_fillter_success),
-            binding.nativeCollapSSBounty)
-    }
+//    fun initNativeCollab() {
+//        Admob.getInstance().loadNativeCollap(this,
+//            getString(R.string.native_cl_fillter_success),
+//            binding.nativeCollapSSBounty)
+//    }
     private fun openEditSticker() {
         // Show loading immediately for better UX
         // (Optional: Add a progress indicator here)

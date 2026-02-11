@@ -53,7 +53,9 @@
                 android:id="@+id/btnBountyFilter"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="328:128"
+                android:layout_marginHorizontal="16dp"
+
+                app:layout_constraintDimensionRatio="300:182"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -64,16 +66,13 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/img_home_0" />
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.7" />
+
 
                     <poster.maker.core.custom.text.DoubleStrokeTextView
                         android:id="@+id/tv0"
@@ -81,6 +80,8 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/joan_regular"
                         android:gravity="center"
+                        style="@style/single_marquee"
+                        android:layout_gravity="center"
                         android:text="@string/bountyFilter"
                         android:textColor="@color/white"
                         android:textSize="28sp"
@@ -88,13 +89,10 @@
                         app:outerStrokeWidth="1.5dp" />
 
 
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
 
 
-                </LinearLayout>
+
+                </FrameLayout>
             </FrameLayout>
 
             <!--btnCreate-->
@@ -103,7 +101,9 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintDimensionRatio="328:128"
+                android:layout_marginHorizontal="16dp"
+
+                app:layout_constraintDimensionRatio="300:182"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnBountyFilter">
@@ -150,7 +150,8 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintDimensionRatio="328:128"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintDimensionRatio="300:182"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnCreate">
@@ -198,17 +199,18 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintDimensionRatio="160:128"
+                app:layout_constraintDimensionRatio="156:42"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/glCenter"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="0dp"
                 app:layout_constraintTop_toBottomOf="@id/BtnPosterWantedTemplate">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_home_4" />
+                    android:src="@drawable/img_home_3" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -230,9 +232,8 @@
                         android:gravity="center"
                         android:text="@string/my_creation"
                         android:textColor="@color/white"
-                        android:textSize="24sp"
-                        app:outerStrokeColor="#000000"
-                        app:outerStrokeWidth="1dp" />
+                        android:textSize="16sp"
+                      />
 
                     <Space
                         android:layout_width="0dp"
@@ -247,9 +248,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintDimensionRatio="160:128"
+                app:layout_constraintDimensionRatio="156:42"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="@id/glCenter"
-                android:layout_marginStart="4dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/BtnPosterWantedTemplate">
 
@@ -275,14 +277,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
+                        style="@style/single_marquee"
                         android:fontFamily="@font/joan_regular"
                         android:gravity="center"
                         android:text="@string/old_west"
                         android:textColor="@color/white"
-                        android:textSize="24sp"
+                        android:textSize="16sp"
                         android:maxLines="2"
-                        app:outerStrokeColor="#000000"
-                        app:outerStrokeWidth="1dp" />
+                        />
 
                     <Space
                         android:layout_width="0dp"

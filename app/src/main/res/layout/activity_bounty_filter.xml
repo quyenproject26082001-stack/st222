@@ -85,14 +85,14 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:layout_constraintTop_toBottomOf="@id/imgPlay"
-        android:background="@drawable/ic_play"
+        android:background="@drawable/img_home_3"
         android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="102dp"
         android:text="@string/play"
         android:gravity="center"
-        android:fontFamily="@font/kurale_regular"
+        android:fontFamily="@font/joan_regular"
         android:textSize="20sp"
-        android:textColor="#C4561B"/>
+        android:textColor="#FFFFFF"/>
 
     <!-- White flash overlay for camera capture effect -->
     <View
@@ -115,16 +115,16 @@
             layout="@layout/layout_actionbar" />
     </FrameLayout>
 
-    <!-- nativeClHome -->
-    <FrameLayout
-        android:id="@+id/nativeClBounty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <include layout="@layout/ads_shimmer_collap_native" />
+<!--    &lt;!&ndash; nativeClHome &ndash;&gt;-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/nativeClBounty"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
+<!--        <include layout="@layout/ads_shimmer_collap_native" />-->
 
-    </FrameLayout>
+<!--    </FrameLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

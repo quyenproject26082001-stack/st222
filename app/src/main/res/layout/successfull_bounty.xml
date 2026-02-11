@@ -26,7 +26,8 @@
                 android:id="@+id/containerBounty"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginHorizontal="33dp"
                 app:layout_constraintDimensionRatio="328:480"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,42 +86,21 @@
             <!--        android:focusable="false"/>-->
 
             <!-- Import Button -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnEdit"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                app:cardCornerRadius="8dp"
-                app:layout_constraintTop_toBottomOf="@id/containerBounty"
-                app:strokeColor="#C4561B"
-                app:strokeWidth="2dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/kurale_regular"
-                    android:text="@string/edit"
-                    android:textColor="#C4561B"
-                    android:textSize="20sp" />
-            </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:id="@+id/btnDownload"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="16dp"
-                app:cardCornerRadius="8dp"
+                android:background="@drawable/img_home_3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/glcenter"
-                app:layout_constraintTop_toBottomOf="@id/btnEdit"
-                app:strokeColor="#C4561B"
-                app:strokeWidth="2dp">
+                app:layout_constraintTop_toBottomOf="@id/containerBounty"
+               >
 
 
                 <TextView
@@ -128,42 +108,41 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="16dp"
-                    android:fontFamily="@font/kurale_regular"
+                    android:fontFamily="@font/joan_regular"
                     android:gravity="center"
                     android:text="@string/download"
-                    android:textColor="#C4561B"
+                    android:textColor="#FFFFFF"
                     android:textSize="20sp" />
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:id="@+id/btnShare"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="4dp"
-                app:cardCornerRadius="8dp"
+                android:background="@drawable/img_home_3"
                 app:layout_constraintEnd_toEndOf="@id/glcenter"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnEdit"
-                app:strokeColor="#C4561B"
-                app:strokeWidth="2dp">
+                app:layout_constraintTop_toBottomOf="@id/containerBounty"
+               >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/kurale_regular"
+                    android:fontFamily="@font/joan_regular"
                     android:gravity="center"
                     android:paddingBottom="0dp"
                     android:text="@string/share"
-                    android:textColor="#C4561B"
+                    android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="@id/glcenter"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/btnEdit" />
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/glcenter"
@@ -196,27 +175,27 @@
     </FrameLayout>
 
 
-    <!-- nativeClHome -->
-    <FrameLayout
-        android:id="@+id/nativeClBountySuccess"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+<!--    &lt;!&ndash; nativeClHome &ndash;&gt;-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/nativeClBountySuccess"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
 
-    </FrameLayout>
+<!--    </FrameLayout>-->
 
-    <!-- Native Collapsible Ad - Bottom -->
-    <FrameLayout
-        android:id="@+id/nativeCollapSSBounty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+<!--    &lt;!&ndash; Native Collapsible Ad - Bottom &ndash;&gt;-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/nativeCollapSSBounty"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
 
-        <include layout="@layout/ads_shimmer_collap_native" />
-    </FrameLayout>
+<!--        <include layout="@layout/ads_shimmer_collap_native" />-->
+<!--    </FrameLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
