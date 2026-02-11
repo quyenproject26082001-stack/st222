@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:cardCornerRadius="8dp"
-        app:strokeColor="#C4561B"
+        app:strokeColor="#FFFFFF"
         app:strokeWidth="2dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/rowImportEdit"
@@ -43,9 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/kurale_regular"
+            android:fontFamily="@font/joan_regular"
             android:text="@string/edit"
-            android:textColor="#C4561B"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </com.google.android.material.card.MaterialCardView>
 
@@ -55,7 +55,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="294:388"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="10dp"
         android:scaleType="fitCenter"
@@ -74,77 +74,76 @@
         android:paddingBottom="0.5dp"
         android:weightSum="2"
         app:layout_goneMarginBottom="200dp"
-        app:layout_constraintBottom_toTopOf="@id/nativeDetail"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp">
 
         <!-- Import Button -->
-        <com.google.android.material.card.MaterialCardView
+        <FrameLayout
             android:id="@+id/btnShare"
             android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="4dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            app:cardCornerRadius="8dp"
-            app:strokeColor="#C4561B"
-            app:strokeWidth="2dp">
+          android:background="@drawable/img_home_3"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/kurale_regular"
+                android:fontFamily="@font/joan_regular"
                 android:text="@string/share"
-                android:textColor="#C4561B"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp" />
-        </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
 
         <!-- Edit Button -->
-        <com.google.android.material.card.MaterialCardView
+        <FrameLayout
             android:id="@+id/btnDownload"
             android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="4dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            app:cardCornerRadius="8dp"
-            app:strokeColor="#C4561B"
-            app:strokeWidth="2dp">
+           android:background="@drawable/img_home_3"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/kurale_regular"
+                android:fontFamily="@font/joan_regular"
                 android:text="@string/download"
-                android:textColor="#C4561B"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp" />
-        </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
     </LinearLayout>
 
 
 
 
-    <FrameLayout
-        android:id="@+id/nativeDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
+<!--    <FrameLayout-->
+<!--        android:id="@+id/nativeDetail"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="7dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        >-->
 
-        <include layout="@layout/ads_shimmer_big" />
-    </FrameLayout>
+<!--        <include layout="@layout/ads_shimmer_big" />-->
+<!--    </FrameLayout>-->
 
-    <!-- Native Ad Bottom -->
-    <FrameLayout
-        android:id="@+id/nativeCollapDetailDesgin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+<!--    &lt;!&ndash; Native Ad Bottom &ndash;&gt;-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/nativeCollapDetailDesgin"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
 
-    </FrameLayout>
+<!--    </FrameLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

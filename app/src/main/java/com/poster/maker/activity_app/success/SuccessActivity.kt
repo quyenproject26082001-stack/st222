@@ -31,7 +31,9 @@ import java.io.File
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.lvt.ads.callback.InterCallback
 import com.lvt.ads.util.Admob
+import poster.maker.activity_app.mycreation.MyCreationActivity
 import poster.maker.core.extensions.showInterAll
+import kotlin.jvm.java
 
 //quyen
 
@@ -97,7 +99,10 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
 
         savedImagePath?.let { path ->
             val file = File(path)
-            android.util.Log.d("SuccessActivity", "File exists: ${file.exists()}, size: ${file.length()}")
+            android.util.Log.d(
+                "SuccessActivity",
+                "File exists: ${file.exists()}, size: ${file.length()}"
+            )
             Glide.with(this)
                 .load(file)
                 .into(binding.imgPoster)
@@ -109,12 +114,21 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
     override fun initActionBar() {
         binding.actionBar.apply {
             // Left button - Home
-            btnActionBarLeft.setImageResource(R.drawable.ic_home)
+            btnActionBarLeft.setImageResource(R.drawable.ic_back)
             btnActionBarLeft.visible()
+            btnActionBarRight.visible()
+            btnActionBarRight.setImageResource(R.drawable.ic_home)
+
+            btnActionBarNextToRight.apply {
+                visible()
+                setImageResource(R.drawable.ic_share)
+
+            }
+
 
             // Hide other elements
             tvCenter.gone()
-            btnActionBarRight.gone()
+            btnActionBarRight.visible()
             btnActionBarRightText.gone()
             btnActionBarReset.gone()
             cvLogo.gone()
@@ -125,17 +139,26 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
         binding.apply {
             // Home button
             //quyen
-            actionBar.btnActionBarLeft.setOnSingleClick {
-                showInterAll {
-                        goToHome()
+            actionBar.apply {
+                btnActionBarLeft.setOnSingleClick {
+                    showInterAll {
+                        finish()
                     }
-
+                }
+                btnActionBarRight.setOnSingleClick {
+                    goToHome()
+                }
+                btnActionBarNextToRight.setOnSingleClick(2000) {
+                    shareImage()
+                }
             }
             //quyen
 
             // Share button
             btnShare.setOnSingleClick(2000) {
-                shareImage()
+                val intent = android.content.Intent(this@SuccessActivity, MyCreationActivity::class.java)
+
+                startActivity(intent)
             }
 
             // Download button
@@ -222,6 +245,7 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
+
                             HandleState.FAIL -> {
                                 Toast.makeText(
                                     this@SuccessActivity,
@@ -229,6 +253,7 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
+
                             else -> {}
                         }
                     }

@@ -18,13 +18,31 @@
             android:id="@+id/imgRenderedPoster"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:layerType="hardware"
+            app:layout_constraintWidth_percent="0.95"
+            app:layout_constraintHeight_percent="0.975"
+            android:layout_marginHorizontal="10dp"
+            tools:src="@drawable/template_1_preview"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="3:4"
+            />
+
+
+        <ImageView
+            android:id="@+id/imgFramePoster"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            android:layerType="hardware"
+            android:background="@drawable/frame_item"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="156:225"
             />
 
         <com.facebook.shimmer.ShimmerFrameLayout
@@ -35,10 +53,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="3:4"
+            app:layout_constraintDimensionRatio="156:225"
             app:shimmer_duration="1500"
             app:shimmer_auto_start="true"
             app:shimmer_base_alpha="1"
+            tools:visibility="gone"
             app:shimmer_highlight_alpha="0.8"
             app:shimmer_shape="linear"
             app:shimmer_direction="left_to_right"

@@ -33,8 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="294:388"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="0dp"
         android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toTopOf="@id/rowImportEdit"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,46 +54,44 @@
         tools:layout_editor_absoluteX="16dp">
 
         <!-- Import Button -->
-        <com.google.android.material.card.MaterialCardView
+        <FrameLayout
             android:id="@+id/btnShare"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            app:cardCornerRadius="8dp"
-            app:strokeColor="#C4561B"
-            app:strokeWidth="2dp">
+            android:background="@drawable/img_home_3"
+        >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/kurale_regular"
+                android:fontFamily="@font/joan_regular"
                 android:text="@string/share"
-                android:textColor="#C4561B"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp" />
-        </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
 
         <!-- Edit Button -->
-        <com.google.android.material.card.MaterialCardView
+        <FrameLayout
             android:id="@+id/btnDownload"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            app:cardCornerRadius="8dp"
-            app:strokeColor="#C4561B"
-            app:strokeWidth="2dp">
+            android:background="@drawable/img_home_3"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/kurale_regular"
+                android:fontFamily="@font/joan_regular"
                 android:text="@string/download"
-                android:textColor="#C4561B"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp" />
-        </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
     </LinearLayout>
 
     <!-- Native Ad -->

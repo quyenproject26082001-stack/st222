@@ -87,9 +87,9 @@ class ViewCreationActivity : BaseActivity<ActivityViewBinding>() {
         }
 
         if (isMyDesign) {
-            binding.btnEdit.visible()
+            binding.actionBar.btnActionBarNextToRight.visible()
         } else {
-            binding.btnEdit.gone()
+            binding.actionBar.btnActionBarNextToRight.gone()
         }
     }
 
@@ -151,7 +151,7 @@ class ViewCreationActivity : BaseActivity<ActivityViewBinding>() {
                     downloadImage()
                 }
             }
-            btnEdit.setOnSingleClick {
+            actionBar.btnActionBarNextToRight.setOnSingleClick {
                 openEditSticker()
             }
         }

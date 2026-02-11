@@ -9,6 +9,8 @@ import poster.maker.databinding.ActivityMyCreationBinding
 import java.io.File
 //quyen
 import com.lvt.ads.util.Admob
+import poster.maker.activity_app.main.MainActivity
+
 //quyen
 
 class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
@@ -68,6 +70,7 @@ class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
                     tabMyDesign.isSelected = true
                     tabMyWanted.isSelected = false
                 }
+
                 TabType.MY_WANTED -> {
                     tabMyDesign.isSelected = false
                     tabMyWanted.isSelected = true
@@ -116,9 +119,17 @@ class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
     override fun viewListener() {
         binding.actionBar.apply {
             btnActionBarLeft.setOnSingleClick {
-                finishAfterTransition()
+                goToHome()
             }
         }
+    }
+
+    private fun goToHome() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
     }
 
     override fun dataObservable() {
@@ -139,7 +150,7 @@ class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
 
     override fun onRestart() {
         super.onRestart()
-      //  Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_collap_myDesgin), binding.nativeCollapMyDesgin)
+        //  Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_collap_myDesgin), binding.nativeCollapMyDesgin)
 
     }
     //quyen
