@@ -1,0 +1,459 @@
+package poster.maker.activity_app.bountyedit
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import kotlinx.coroutines.launch
+import poster.maker.R
+import poster.maker.core.base.BaseActivity
+import poster.maker.core.extensions.*
+import poster.maker.core.helper.AssetHelper
+import poster.maker.core.viewmodel.PosterEditorSharedViewModel
+import poster.maker.data.local.entity.FontItem
+import poster.maker.data.local.entity.FontSelectorAdapter
+import poster.maker.databinding.ActivityBountyEditBinding
+
+/**
+ * Bounty Edit Activity
+ * Allows editing of bounty text, font, size, weight, spacing, and position
+ */
+class BountyEditActivity : BaseActivity<ActivityBountyEditBinding>() {
+
+    private val viewModel = PosterEditorSharedViewModel.getInstance()
+
+    // Template views
+    private var imgTemplate: ImageView? = null
+    private var tvName: TextView? = null
+    private var tvBounty: TextView? = null
+
+    // Snapshot to restore on cancel
+    private var originalBountyText: String = ""
+    private var originalBountyFont: String = ""
+    private var originalBountySize: Float = 0f
+    private var originalBountyWeight: Float = 0f
+    private var originalBountySpacing: Float = 0f
+    private var originalBountyPositionX: Float = 0f
+    private var originalBountyPositionY: Float = 0f
+
+    // Font adapter
+    private var bountyFontAdapter: FontSelectorAdapter? = null
+
+    // Font list
+    private val fontList = listOf(
+        FontItem("Roboto Bold", R.font.roboto_bold),
+        FontItem("Roboto Medium", R.font.roboto_medium),
+        FontItem("Roboto Regular", R.font.roboto_regular),
+        FontItem("Londrina Solid", R.font.londrina_solid_regular),
+        FontItem("Montserrat Bold", R.font.montserrat_bold),
+        FontItem("Montserrat Medium", R.font.montserrat_medium),
+        FontItem("Script Elegant 1", R.font.script_elegant_01),
+        FontItem("Script Elegant 2", R.font.script_elegant_02),
+        FontItem("Handwriting 1", R.font.script_handwriting_01),
+        FontItem("Script Casual", R.font.script_casual),
+        FontItem("Brush Style", R.font.brush_01),
+        FontItem("Horror Style 1", R.font.display_horror_02),
+        FontItem("Horror Style 2", R.font.display_horror_04),
+        FontItem("Halloween", R.font.display_halloween),
+        FontItem("Gothic", R.font.display_gothic_01),
+        FontItem("Horror Style 5", R.font.display_horror_11),
+        FontItem("Creative 1", R.font.display_creative_01),
+        FontItem("Rounded", R.font.display_rounded),
+        FontItem("Serif Classic", R.font.serif_02),
+        FontItem("Signature", R.font.serif_signature),
+        FontItem("Display Cultural Style", R.font.display_cultural),
+        FontItem("Display Festive Style", R.font.display_festive),
+        FontItem("Tream Style", R.font.treamd),
+        FontItem("Ocean Style", R.font.ocen),
+    )
+
+    override fun setViewBinding(): ActivityBountyEditBinding {
+        return ActivityBountyEditBinding.inflate(LayoutInflater.from(this))
+    }
+
+    override fun initView() {
+        // Sync latest name values from Intent (defensive against stale ViewModel)
+        val intentData = intent
+        if (intentData != null) {
+            intentData.getStringExtra(EXTRA_NAME_TEXT)?.let { nameText ->
+                if (nameText.isNotBlank() && nameText != viewModel.nameText.value) {
+                    viewModel.setNameText(nameText)
+                }
+            }
+            intentData.getStringExtra(EXTRA_NAME_FONT)?.let { nameFont ->
+                if (nameFont.isNotBlank() && nameFont != viewModel.nameFont.value) {
+                    viewModel.setNameFont(nameFont)
+                }
+            }
+            if (intentData.hasExtra(EXTRA_NAME_SPACING)) {
+                val spacing = intentData.getFloatExtra(EXTRA_NAME_SPACING, viewModel.nameSpacing.value)
+                if (spacing != viewModel.nameSpacing.value) {
+                    viewModel.setNameSpacing(spacing)
+                }
+            }
+        }
+
+        // Save original values for cancel
+        originalBountyText = viewModel.bountyText.value
+        originalBountyFont = viewModel.bountyFont.value
+        originalBountySize = viewModel.bountySize.value
+        originalBountyWeight = viewModel.bountyWeight.value
+        originalBountySpacing = viewModel.bountySpacing.value
+        originalBountyPositionX = viewModel.bountyPositionX.value
+        originalBountyPositionY = viewModel.bountyPositionY.value
+
+        // Inflate template layout
+        inflateTemplateLayout(viewModel.selectedTemplate.value)
+
+        // Setup controls
+        binding.edtBounty.setText(viewModel.bountyText.value)
+        setupFontSelector()
+        setupSeekBars()
+        setupEditText()
+    }
+
+    override fun initActionBar() {
+        binding.actionBar.apply {
+            btnActionBarLeft.setImageResource(R.drawable.ic_back)
+            btnActionBarLeft.visible()
+            btnActionBarRight.setImageResource(R.drawable.ic_tick)
+            btnActionBarRight.visible()
+            tvCenter.text = strings(R.string.bounty)
+            tvCenter.visible()
+            tvCenter.isSelected = true
+            tvRightText.gone()
+            btnActionBarReset.gone()
+        }
+    }
+
+    override fun viewListener() {
+        binding.actionBar.apply {
+            // Back button - Cancel changes
+            btnActionBarLeft.setOnSingleClick {
+                handleCancel()
+            }
+
+            // Tick button - Confirm changes
+            btnActionBarRight.setOnSingleClick {
+                handleConfirm()
+            }
+        }
+    }
+
+    override fun dataObservable() {
+        // Observe bounty text changes
+        lifecycleScope.launch {
+            viewModel.bountyText.collect { text ->
+                tvBounty?.text = text
+            }
+        }
+
+        // Observe name text changes (keep preview in sync with latest edited name)
+        lifecycleScope.launch {
+            viewModel.nameText.collect { text ->
+                tvName?.text = text
+                val config = viewModel.getConfig()
+                tvName?.visibility = if (config.hasName) View.VISIBLE else View.GONE
+            }
+        }
+    }
+
+    /**
+     * Inflate template layout
+     */
+    private fun inflateTemplateLayout(templateId: Int) {
+        binding.containerPoster.removeAllViews()
+
+        val layoutResId = getTemplateLayoutResId(templateId)
+        val posterView = layoutInflater.inflate(layoutResId, binding.containerPoster, true)
+
+        imgTemplate = posterView.findViewById(R.id.imgTemplate)
+        tvName = posterView.findViewById(R.id.tvName)
+        tvBounty = posterView.findViewById(R.id.tvBounty)
+
+        // Load template background
+        loadTemplateBackground()
+
+        // Apply current styling
+        applyCurrentStyling()
+    }
+
+    /**
+     * Get layout resource ID for template
+     */
+    private fun getTemplateLayoutResId(templateId: Int): Int {
+        return when (templateId) {
+            1 -> R.layout.layout_poster_template_1
+            2 -> R.layout.layout_poster_template_2
+            3 -> R.layout.layout_poster_template_3
+            4 -> R.layout.layout_poster_template_4
+            5 -> R.layout.layout_poster_template_5
+            6 -> R.layout.layout_poster_template_6
+            7 -> R.layout.layout_poster_template_7
+            8 -> R.layout.layout_poster_template_8
+            9 -> R.layout.layout_poster_template_9
+            10 -> R.layout.layout_poster_template_10
+            11 -> R.layout.layout_poster_template_11
+            12 -> R.layout.layout_poster_template_12
+            13 -> R.layout.layout_poster_template_13
+            14 -> R.layout.layout_poster_template_14
+            15 -> R.layout.layout_poster_template_15
+            16 -> R.layout.layout_poster_template_16
+            else -> R.layout.layout_poster_template_1
+        }
+    }
+
+    /**
+     * Load template background
+     */
+    private fun loadTemplateBackground() {
+        val templateId = viewModel.selectedTemplate.value
+        val templatePath = AssetHelper.getTemplateItemPath(templateId)
+
+        imgTemplate?.let { imageView ->
+            Glide.with(this)
+                .load(templatePath)
+                .error(R.drawable.template)
+                .into(imageView)
+        }
+    }
+
+    /**
+     * Apply current styling from ViewModel
+     */
+    private fun applyCurrentStyling() {
+        val config = viewModel.getConfig()
+
+        // Apply NAME values from ViewModel
+        tvName?.text = viewModel.nameText.value
+        tvName?.letterSpacing = viewModel.nameSpacing.value
+        tvName?.visibility = if (config.hasName) View.VISIBLE else View.GONE
+        try {
+            tvName?.setTextColor(android.graphics.Color.parseColor(config.nameColor))
+        } catch (e: Exception) {
+            tvName?.setTextColor(android.graphics.Color.BLACK)
+        }
+        val nameFontName = viewModel.nameFont.value
+        val nameFontResId = mapFontNameToResource(nameFontName)
+        if (nameFontResId != null) {
+            val nameTypeface = androidx.core.content.res.ResourcesCompat.getFont(this, nameFontResId)
+            tvName?.typeface = nameTypeface
+        }
+
+        // Apply BOUNTY values from ViewModel
+        tvBounty?.text = viewModel.bountyText.value
+        try {
+            tvBounty?.setTextColor(android.graphics.Color.parseColor(config.bountyColor))
+        } catch (e: Exception) {
+            tvBounty?.setTextColor(android.graphics.Color.BLACK)
+        }
+        val fontName = viewModel.bountyFont.value
+        val fontResId = mapFontNameToResource(fontName)
+        if (fontResId != null) {
+            val typeface = androidx.core.content.res.ResourcesCompat.getFont(this, fontResId)
+            tvBounty?.typeface = typeface
+        }
+        tvBounty?.textSize = viewModel.bountySize.value
+        tvBounty?.letterSpacing = viewModel.bountySpacing.value
+        tvBounty?.translationX = viewModel.bountyPositionX.value
+        tvBounty?.translationY = viewModel.bountyPositionY.value
+    }
+
+    /**
+     * Setup font selector
+     */
+    private fun setupFontSelector() {
+        val savedFontName = viewModel.bountyFont.value
+        val selectedIndex = fontList.indexOfFirst { it.name == savedFontName }.takeIf { it >= 0 } ?: 0
+        val initialFont = fontList[selectedIndex]
+
+        binding.tvCurrentNameFontBounty.text = initialFont.name
+        binding.tvCurrentNameFontBounty.isSelected = true
+        val initialTypeface = androidx.core.content.res.ResourcesCompat.getFont(this, initialFont.fontResId)
+        tvBounty?.typeface = initialTypeface
+        binding.tvCurrentNameFontBounty.typeface = initialTypeface
+
+        bountyFontAdapter = FontSelectorAdapter(fontList, selectedIndex) { fontItem, _ ->
+            binding.tvCurrentNameFontBounty.text = fontItem.name
+            val typeface = androidx.core.content.res.ResourcesCompat.getFont(this, fontItem.fontResId)
+            tvBounty?.typeface = typeface
+            binding.tvCurrentNameFontBounty.typeface = typeface
+            viewModel.setBountyFont(fontItem.name)
+
+            binding.rvFontBountyList.visibility = View.GONE
+            binding.imgFontBountyArrow.rotation = 0f
+        }
+
+        binding.rvFontBountyList.apply {
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@BountyEditActivity)
+            adapter = bountyFontAdapter
+            isNestedScrollingEnabled = false
+        }
+
+        binding.layoutFontBountySelector.setOnClickListener {
+            if (binding.rvFontBountyList.visibility == View.GONE) {
+                binding.rvFontBountyList.visibility = View.VISIBLE
+                binding.imgFontBountyArrow.rotation = 180f
+            } else {
+                binding.rvFontBountyList.visibility = View.GONE
+                binding.imgFontBountyArrow.rotation = 0f
+            }
+        }
+    }
+
+    /**
+     * Setup all SeekBars
+     */
+    private fun setupSeekBars() {
+        // Bounty Size
+        val sizeProgress = ((viewModel.bountySize.value - 12f) / 48f * 100f).toInt()
+        binding.seekBarBountySize.progress = sizeProgress
+        binding.seekBarBountySize.onProgressChanged { progress ->
+            val size = 12f + (progress / 100f) * 48f
+            tvBounty?.textSize = size
+            viewModel.setBountySize(size)
+        }
+
+        // Bounty Weight (not used visually but kept for data)
+        binding.seekBarBountyWeight.progress = viewModel.bountyWeight.value.toInt()
+        binding.seekBarBountyWeight.onProgressChanged { progress ->
+            viewModel.setBountyWeight(progress.toFloat())
+        }
+
+        // Bounty Spacing
+        val spacingProgress = (viewModel.bountySpacing.value * 500f).toInt()
+        binding.seekBarBountySpacing.progress = spacingProgress
+        binding.seekBarBountySpacing.onProgressChanged { progress ->
+            val spacing = progress / 500f
+            tvBounty?.letterSpacing = spacing
+            viewModel.setBountySpacing(spacing)
+        }
+
+        // Bounty Position X
+        val posXProgress = ((viewModel.bountyPositionX.value / 2f) + 50f).toInt()
+        binding.seekBarBountyPositionX.progress = posXProgress
+        binding.seekBarBountyPositionX.onProgressChanged { progress ->
+            val offsetX = (progress - 50) * 2f
+            tvBounty?.translationX = offsetX
+            viewModel.setBountyPositionX(offsetX)
+        }
+
+        // Bounty Position Y
+        val posYProgress = ((viewModel.bountyPositionY.value / 2f) + 50f).toInt()
+        binding.seekBarBountyPositionY.progress = posYProgress
+        binding.seekBarBountyPositionY.onProgressChanged { progress ->
+            val offsetY = (progress - 50) * 2f
+            tvBounty?.translationY = offsetY
+            viewModel.setBountyPositionY(offsetY)
+        }
+    }
+
+    /**
+     * Setup EditText listener
+     */
+    private fun setupEditText() {
+        binding.edtBounty.addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val text = s?.toString() ?: ""
+                if (text.isNotEmpty()) {
+                    tvBounty?.visibility = View.VISIBLE
+                }
+                tvBounty?.text = text
+                viewModel.setBountyText(text)
+            }
+            override fun afterTextChanged(s: android.text.Editable?) {}
+        })
+    }
+
+    /**
+     * Map font name to resource ID
+     */
+    private fun mapFontNameToResource(fontName: String): Int? {
+        return when (fontName) {
+            "Roboto Bold" -> R.font.roboto_bold
+            "Roboto Medium" -> R.font.roboto_medium
+            "Roboto Regular" -> R.font.roboto_regular
+            "Londrina Solid" -> R.font.londrina_solid_regular
+            "Montserrat Bold" -> R.font.montserrat_bold
+            "Montserrat Medium" -> R.font.montserrat_medium
+            "Script Elegant 1" -> R.font.script_elegant_01
+            "Script Elegant 2" -> R.font.script_elegant_02
+            "Handwriting 1" -> R.font.script_handwriting_01
+            "Script Casual" -> R.font.script_casual
+            "Brush Style" -> R.font.brush_01
+            "Horror Style 1" -> R.font.display_horror_02
+            "Horror Style 2" -> R.font.display_horror_04
+            "Halloween" -> R.font.display_halloween
+            "Gothic" -> R.font.display_gothic_01
+            "Horror Style 5" -> R.font.display_horror_11
+            "Creative 1" -> R.font.display_creative_01
+            "Rounded" -> R.font.display_rounded
+            "Serif Classic" -> R.font.serif_02
+            "Signature" -> R.font.serif_signature
+            "Display Cultural Style" -> R.font.display_cultural
+            "Display Festive Style" -> R.font.display_festive
+            "Tream Style" -> R.font.treamd
+            "Ocean Style" -> R.font.ocen
+            else -> null
+        }
+    }
+
+    /**
+     * Handle cancel - Restore original values
+     */
+    private fun handleCancel() {
+        viewModel.setBountyText(originalBountyText)
+        viewModel.setBountyFont(originalBountyFont)
+        viewModel.setBountySize(originalBountySize)
+        viewModel.setBountyWeight(originalBountyWeight)
+        viewModel.setBountySpacing(originalBountySpacing)
+        viewModel.setBountyPositionX(originalBountyPositionX)
+        viewModel.setBountyPositionY(originalBountyPositionY)
+        finish()
+    }
+
+    /**
+     * Handle confirm - Keep changes and finish
+     */
+    private fun handleConfirm() {
+        setResult(RESULT_OK)
+        finish()
+    }
+
+    override fun dispatchTouchEvent(ev: android.view.MotionEvent): Boolean {
+        if (ev.action == android.view.MotionEvent.ACTION_DOWN) {
+            currentFocus?.let { view ->
+                if (view is android.widget.EditText && !isTouchInsideView(view, ev)) {
+                    view.clearFocus()
+                    hideKeyboard(view)
+                    binding.root.requestFocus()
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    private fun isTouchInsideView(view: View, event: android.view.MotionEvent): Boolean {
+        val location = IntArray(2)
+        view.getLocationOnScreen(location)
+        val touchX = event.rawX.toInt()
+        val touchY = event.rawY.toInt()
+        return touchX in location[0]..(location[0] + view.width) &&
+                touchY in location[1]..(location[1] + view.height)
+    }
+
+    private fun hideKeyboard(view: View) {
+        val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    companion object {
+        const val EXTRA_NAME_TEXT = "extra_name_text"
+        const val EXTRA_NAME_FONT = "extra_name_font"
+        const val EXTRA_NAME_SPACING = "extra_name_spacing"
+    }
+}

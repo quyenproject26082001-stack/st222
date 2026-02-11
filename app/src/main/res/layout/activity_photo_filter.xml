@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- Background -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_bg_language" />
+
+    <!-- Action Bar -->
+    <FrameLayout
+        android:id="@+id/layoutActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/actionBar"
+            layout="@layout/layout_actionbar" />
+    </FrameLayout>
+
+    <!-- ScrollView -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="8dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/layoutActionBar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Poster Preview Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPosterPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp">
+
+                <FrameLayout
+                    android:id="@+id/containerPoster"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:clipChildren="false"
+                    android:clipToPadding="false" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Photo Filter Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardPhotoFilterSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="#FFF4E6">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Photo Filter Header -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kurale_regular"
+                        android:text="@string/photo_filter"
+                        android:textColor="#C4561B"
+                        android:textSize="20sp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Photo Filter Content -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layoutPhotoFilterContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- Shadow -->
+                        <TextView
+                            android:id="@+id/tvFilterShadowLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/kurale_regular"
+                            android:text="@string/shadow"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarFilterShadow"
+                            style="@style/CustomSeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:progress="0"
+                            android:splitTrack="false"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilterShadowLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/guidline"
+                            app:layout_constraintTop_toTopOf="@id/tvFilterShadowLabel" />
+
+                        <!-- Blur -->
+                        <TextView
+                            android:id="@+id/tvFilterBlurLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/kurale_regular"
+                            android:text="@string/blur"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/seekBarFilterShadow" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarFilterBlur"
+                            style="@style/CustomSeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:progress="0"
+                            android:splitTrack="false"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilterBlurLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guidline"
+                            app:layout_constraintTop_toTopOf="@id/tvFilterBlurLabel" />
+
+                        <!-- Brightness -->
+                        <TextView
+                            android:id="@+id/tvFilterBrightnessLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/kurale_regular"
+                            android:text="@string/brightness"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/seekBarFilterBlur" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarFilterBrightness"
+                            style="@style/CustomSeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:max="200"
+                            android:progress="100"
+                            android:splitTrack="false"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilterBrightnessLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guidline"
+                            app:layout_constraintTop_toTopOf="@id/tvFilterBrightnessLabel" />
+
+                        <!-- Contrast -->
+                        <TextView
+                            android:id="@+id/tvFilterContrastLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/kurale_regular"
+                            android:text="@string/contrast"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/seekBarFilterBrightness" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarFilterContrast"
+                            style="@style/CustomSeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:max="200"
+                            android:progress="100"
+                            android:splitTrack="false"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilterContrastLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guidline"
+                            app:layout_constraintTop_toTopOf="@id/tvFilterContrastLabel" />
+
+                        <!-- Grayscale -->
+                        <TextView
+                            android:id="@+id/tvFilterGrayscaleLabel"
+                            style="@style/single_marquee"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/kurale_regular"
+                            android:text="@string/grayscale"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toStartOf="@id/guidline"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/seekBarFilterContrast" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarFilterGrayscale"
+                            style="@style/CustomSeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:progress="0"
+                            android:splitTrack="false"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilterGrayscaleLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guidline"
+                            app:layout_constraintTop_toTopOf="@id/tvFilterGrayscaleLabel" />
+
+                        <!-- Hue Rotate -->
+                        <TextView
+                            android:id="@+id/tvFilterHueRotateLabel"
+                            style="@style/single_marquee"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/kurale_regular"
+                            android:paddingEnd="10dp"
+                            android:text="@string/hue_rotate"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toStartOf="@id/guidline"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/seekBarFilterGrayscale" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarFilterHueRotate"
+                            style="@style/CustomSeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:max="360"
+                            android:progress="0"
+                            android:splitTrack="false"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilterHueRotateLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guidline"
+                            app:layout_constraintTop_toTopOf="@id/tvFilterHueRotateLabel" />
+
+                        <!-- Saturate -->
+                        <TextView
+                            android:id="@+id/tvFilterSaturateLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/kurale_regular"
+                            android:text="@string/saturate"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/seekBarFilterHueRotate" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarFilterSaturate"
+                            style="@style/CustomSeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:max="200"
+                            android:progress="100"
+                            android:splitTrack="false"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilterSaturateLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guidline"
+                            app:layout_constraintTop_toTopOf="@id/tvFilterSaturateLabel" />
+
+                        <!-- Sepia -->
+                        <TextView
+                            android:id="@+id/tvFilterSepiaLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/kurale_regular"
+                            android:text="@string/sepia"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/seekBarFilterSaturate" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarFilterSepia"
+                            style="@style/CustomSeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:progress="0"
+                            android:splitTrack="false"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilterSepiaLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guidline"
+                            app:layout_constraintTop_toTopOf="@id/tvFilterSepiaLabel" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guidline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_begin="101dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

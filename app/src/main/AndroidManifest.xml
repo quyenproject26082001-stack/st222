@@ -82,6 +82,24 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity_app.nameedit.NameEditActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity_app.bountyedit.BountyEditActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity_app.photofilter.PhotoFilterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity_app.postershadow.PosterShadowActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity_app.template.TemplateListActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

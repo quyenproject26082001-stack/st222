@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- Background -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_bg_language" />
+
+    <!-- Action Bar -->
+    <FrameLayout
+        android:id="@+id/layoutActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/actionBar"
+            layout="@layout/layout_actionbar" />
+    </FrameLayout>
+
+    <!-- ScrollView -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="8dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/layoutActionBar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Poster Preview Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPosterPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp">
+
+                <FrameLayout
+                    android:id="@+id/containerPoster"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:clipChildren="false"
+                    android:clipToPadding="false" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Name Editing Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardNameSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="#FFF4E6">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Name Header -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kurale_regular"
+                        android:text="@string/name"
+                        android:textColor="#C4561B"
+                        android:textSize="20sp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Name Content -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layoutNameContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- Input Label -->
+                        <TextView
+                            android:id="@+id/tvInputLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/kurale_regular"
+                            android:text="Input"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- Input Name -->
+                        <EditText
+                            android:id="@+id/edtName"
+                            android:layout_width="0dp"
+                            android:layout_height="24dp"
+                            android:background="@drawable/bg_16_stroke_white"
+                            android:fontFamily="@font/roboto_regular"
+                            android:hint="@string/enter_name"
+                            android:maxLines="1"
+                            android:paddingHorizontal="12dp"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@id/tvInputLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guideline2"
+                            app:layout_constraintTop_toTopOf="@id/tvInputLabel" />
+
+                        <!-- Fonts Label -->
+                        <TextView
+                            android:id="@+id/tvFontLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/kurale_regular"
+                            android:text="Fonts"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/edtName" />
+
+                        <!-- Font Selector -->
+                        <FrameLayout
+                            android:id="@+id/layoutFontSelector"
+                            android:layout_width="0dp"
+                            android:layout_height="24dp"
+                            android:background="@drawable/bg_16_stroke_white"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFontLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guideline2"
+                            app:layout_constraintTop_toTopOf="@id/tvFontLabel">
+
+                            <TextView
+                                android:id="@+id/tvCurrentNameFont"
+                                style="@style/single_marquee"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="28dp"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:gravity="center_vertical"
+                                android:paddingStart="12dp"
+                                android:paddingEnd="4dp"
+                                android:text="Old Town"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:id="@+id/imgFontArrow"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_marginEnd="4dp"
+                                android:src="@drawable/ic_down"
+                                app:tint="@color/app" />
+                        </FrameLayout>
+
+                        <!-- Font List -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvFontList"
+                            android:layout_width="0dp"
+                            android:layout_height="200dp"
+                            android:background="@drawable/bg_rcvfont"
+                            android:nestedScrollingEnabled="true"
+                            android:overScrollMode="never"
+                            android:paddingVertical="4dp"
+                            android:scrollbars="vertical"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/layoutFontSelector"
+                            app:layout_constraintTop_toBottomOf="@id/layoutFontSelector"
+                            tools:listitem="@layout/item_font_selector" />
+
+                        <!-- Spacing Label -->
+                        <TextView
+                            android:id="@+id/tvSpacingLabel"
+                            style="@style/single_marquee"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/kurale_regular"
+                            android:gravity="start"
+                            android:text="@string/spacing"
+                            android:textColor="@color/app"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toStartOf="@id/guideline2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rvFontList" />
+
+                        <!-- Spacing SeekBar -->
+                        <SeekBar
+                            android:id="@+id/seekBarNameSpacing"
+                            style="@style/CustomSeekBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:maxHeight="18dp"
+                            android:minHeight="18dp"
+                            android:progress="0"
+                            android:splitTrack="false"
+                            android:thumbOffset="0dp"
+                            app:layout_constraintBottom_toBottomOf="@id/tvSpacingLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/guideline2"
+                            app:layout_constraintTop_toTopOf="@id/tvSpacingLabel" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.29" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
