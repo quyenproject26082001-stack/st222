@@ -17,7 +17,6 @@ import jp.wasabeef.glide.transformations.BlurTransformation
 import poster.maker.R
 import poster.maker.activity_app.success.SuccessActivity
 import poster.maker.activity_app.template.TemplateListActivity
-import poster.maker.activity_app.wanted.WantedEditorActivity
 import poster.maker.core.base.BaseActivity
 import poster.maker.core.extensions.*
 import poster.maker.core.helper.AssetHelper
@@ -26,6 +25,7 @@ import poster.maker.core.helper.ShadowTransformation
 import poster.maker.core.utils.state.SaveState
 import poster.maker.core.viewmodel.PosterEditorSharedViewModel
 import poster.maker.data.local.entity.FontItem
+import poster.maker.data.local.entity.FontSelectorAdapter
 import poster.maker.databinding.ActivityMakeScreenBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -68,26 +68,46 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
             }
         }
 
-    // Request code for Edit button (data is shared via ViewModel)
-    private val editActivityLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                android.util.Log.d("SaveDebug", "═══════════════════════════════════════")
-                android.util.Log.d("SaveDebug", "MAKE SCREEN - editActivityLauncher")
-                android.util.Log.d("SaveDebug", "viewModel.nameText: '${viewModel.nameText.value}'")
-                android.util.Log.d(
-                    "SaveDebug",
-                    "viewModel.bountyText: '${viewModel.bountyText.value}'"
-                )
-                android.util.Log.d(
-                    "SaveDebug",
-                    "viewModel.isEditingStarted: ${viewModel.isEditingStarted.value}"
-                )
-                android.util.Log.d("SaveDebug", "═══════════════════════════════════════")
-                // Data is already updated in shared ViewModel, just refresh UI
-                updatePreviewWithCurrentState()
-            }
-        }
+    // Font adapters for editing sections
+    private var fontAdapter: FontSelectorAdapter? = null
+    private var bountyFontAdapter: FontSelectorAdapter? = null
+
+    // Font list for font selector
+    private val fontList = listOf(
+        // Basic fonts
+        FontItem("Roboto Bold", R.font.roboto_bold),
+        FontItem("Roboto Medium", R.font.roboto_medium),
+        FontItem("Roboto Regular", R.font.roboto_regular),
+        FontItem("Londrina Solid", R.font.londrina_solid_regular),
+        FontItem("Montserrat Bold", R.font.montserrat_bold),
+        FontItem("Montserrat Medium", R.font.montserrat_medium),
+
+        // Script/Handwriting
+        FontItem("Script Elegant 1", R.font.script_elegant_01),
+        FontItem("Script Elegant 2", R.font.script_elegant_02),
+        FontItem("Handwriting 1", R.font.script_handwriting_01),
+        FontItem("Script Casual", R.font.script_casual),
+        FontItem("Brush Style", R.font.brush_01),
+
+        // Horror/Gothic/Halloween
+        FontItem("Horror Style 1", R.font.display_horror_02),
+        FontItem("Horror Style 2", R.font.display_horror_04),
+        FontItem("Halloween", R.font.display_halloween),
+        FontItem("Gothic", R.font.display_gothic_01),
+        FontItem("Horror Style 5", R.font.display_horror_11),
+
+        // Display/Decorative
+        FontItem("Creative 1", R.font.display_creative_01),
+        FontItem("Rounded", R.font.display_rounded),
+        // Serif Elegant
+        FontItem("Serif Classic", R.font.serif_02),
+        FontItem("Signature", R.font.serif_signature),
+
+        FontItem("Display Cultural Style", R.font.display_cultural),
+        FontItem("Display Festive Style", R.font.display_festive),
+        FontItem("Tream Style", R.font.treamd),
+        FontItem("Ocean Style", R.font.ocen),
+    )
 
     // Request code for Template selection
     private val templateSelectionLauncher =
@@ -141,6 +161,13 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
 
         // Initialize with default template and preview
         updatePreviewWithCurrentState()
+
+        // Setup editing controls (initially hidden)
+        applyGraphemeClusterFilter()
+        setupFontSelector()
+        setupBountyFontSelector()
+        setupEditTexts()
+        setupSeekBars()
     }
 
     /**
@@ -239,9 +266,32 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
                 pickImageLauncher.launch("image/*")
             }
 
-            // Edit button - Navigate to WantedEditorActivity
-            cvEdit.setOnSingleClick {
-                navigateToEditor()
+            // Action buttons for editing sections
+            cvName.setOnSingleClick {
+                showEditingSection(R.id.cardNameSection)
+            }
+
+            cvBounty.setOnSingleClick {
+                showEditingSection(R.id.cardBountySection)
+            }
+
+            cvPhotoFilter.setOnSingleClick {
+                showEditingSection(R.id.cardPhotoFilterSection)
+            }
+
+            cvPosterShadow.setOnSingleClick {
+                showEditingSection(R.id.cardPosterShadowSection)
+            }
+
+            // Close button in action bar (when editing section is open)
+            actionBar.btnActionBarRight.setOnSingleClick {
+                if (isEditingSectionVisible()) {
+                    // Close editing section
+                    hideEditingSections()
+                } else {
+                    // This is the save button (handled elsewhere)
+                    handleSave()
+                }
             }
         }
     }
@@ -344,6 +394,13 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
      * Handle back button with "Discard changes?" dialog if edited
      */
     private fun handleBack() {
+        // Check if any editing section is visible
+        if (isEditingSectionVisible()) {
+            // Close editing section and show action buttons
+            hideEditingSections()
+            return
+        }
+
         //quyen
                 //quyen
                 // Check isEditingStarted instead of hasChanges to avoid showing dialog
@@ -428,15 +485,6 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
     }
 
     /**
-     * Navigate to WantedEditorActivity
-     * Data is shared via PosterEditorSharedViewModel - no Intent extras needed
-     */
-    private fun navigateToEditor() {
-        val intent = Intent(this, WantedEditorActivity::class.java)
-        editActivityLauncher.launch(intent)
-    }
-
-    /**
      * Load template background from assets
      * Uses avatar.png when no edits, item.png after user edits
      */
@@ -476,6 +524,64 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
                     .load(uri)
                     .centerCrop()
                     .into(imageView)
+            }
+        }
+    }
+
+    /**
+     * Apply shadow effect to imgAvatarShadow layer
+     */
+    private fun applyShadowEffect(shadowValue: Float) {
+        val shadowView = imgAvatarShadow ?: return
+
+        if (shadowValue <= 0) {
+            shadowView.visibility = View.GONE
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                shadowView.setRenderEffect(null)
+            }
+            return
+        }
+
+        shadowView.visibility = View.VISIBLE
+
+        // Remap: seekbar 0-100 → effective shadow 35-100
+        val effectiveShadowValue = 35f + (shadowValue / 100f * 65f)
+
+        // Reload shadow with new transformation
+        val currentUri = viewModel.selectedImageUri.value
+        if (currentUri != null) {
+            val shadowRadius = effectiveShadowValue / 100f * 15f  // 35-100 → 5.25-15px
+            val shadowAlpha = effectiveShadowValue / 100f * 0.9f  // 35-100 → 0.315-0.9
+
+            Glide.with(this)
+                .load(currentUri)
+                .transform(CenterCrop(), ShadowTransformation(shadowRadius, shadowAlpha))
+                .into(shadowView)
+        }
+
+        // View properties
+        val viewAlpha = (effectiveShadowValue / 100f).coerceIn(0f, 1f)  // 35-100 → 0.35-1.0
+        shadowView.alpha = viewAlpha
+
+        val offsetX = effectiveShadowValue / 100f * 5f  // 35-100 → 1.75-5dp
+        val offsetY = effectiveShadowValue / 100f * 5f  // 35-100 → 1.75-5dp
+        shadowView.translationX = offsetX
+        shadowView.translationY = offsetY
+
+        val scale = 1f + (effectiveShadowValue / 100f * 0.15f)  // 35-100 → 1.0525-1.15
+        shadowView.scaleX = scale
+        shadowView.scaleY = scale
+
+        // Additional blur (API 31+)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            val additionalBlur = effectiveShadowValue / 100f * 10f  // 35-100 → 3.5-10px
+            if (additionalBlur > 0) {
+                val blurEffect = android.graphics.RenderEffect.createBlurEffect(
+                    additionalBlur, additionalBlur, android.graphics.Shader.TileMode.CLAMP
+                )
+                shadowView.setRenderEffect(blurEffect)
+            } else {
+                shadowView.setRenderEffect(null)
             }
         }
     }
@@ -1099,6 +1205,582 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
             "Ocean Style" -> R.font.ocen
             else -> null  // Return null for unknown fonts
         }
+    }
+
+    // ====== EDITING UTILITY METHODS (from WantedEditorActivity) ======
+
+    /**
+     * Setup font selector for Name field
+     */
+    private fun setupFontSelector() {
+        val savedFontName = viewModel.nameFont.value
+        val selectedIndex = fontList.indexOfFirst { it.name == savedFontName }.takeIf { it >= 0 } ?: 0
+        val initialFont = fontList[selectedIndex]
+
+        binding.tvCurrentNameFont.text = initialFont.name
+        binding.tvCurrentNameFont.isSelected = true
+        val initialTypeface = androidx.core.content.res.ResourcesCompat.getFont(this, initialFont.fontResId)
+        tvName?.typeface = initialTypeface
+        binding.tvCurrentNameFont.typeface = initialTypeface
+
+        fontAdapter = FontSelectorAdapter(fontList, selectedIndex) { fontItem, _ ->
+            binding.tvCurrentNameFont.text = fontItem.name
+            val typeface = androidx.core.content.res.ResourcesCompat.getFont(this, fontItem.fontResId)
+            tvName?.typeface = typeface
+            binding.tvCurrentNameFont.typeface = typeface
+            viewModel.setNameFont(fontItem.name)
+
+            tvName?.apply {
+                val config = viewModel.getConfig()
+                alpha = 0f
+                androidx.core.widget.TextViewCompat.setAutoSizeTextTypeWithDefaults(
+                    this, androidx.core.widget.TextViewCompat.AUTO_SIZE_TEXT_TYPE_NONE
+                )
+                textSize = config.nameSize
+                post {
+                    androidx.core.widget.TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
+                        this, 6, config.nameSize.toInt(), 1, android.util.TypedValue.COMPLEX_UNIT_SP
+                    )
+                    alpha = 1f
+                }
+            }
+
+            binding.rvFontList.visibility = View.GONE
+            binding.imgFontArrow.rotation = 0f
+        }
+
+        binding.rvFontList.apply {
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@MakeScreenActivity)
+            adapter = fontAdapter
+            isNestedScrollingEnabled = false
+        }
+
+        binding.layoutFontSelector.setOnClickListener {
+            if (binding.rvFontList.visibility == View.GONE) {
+                binding.rvFontList.visibility = View.VISIBLE
+                binding.imgFontArrow.rotation = 180f
+            } else {
+                binding.rvFontList.visibility = View.GONE
+                binding.imgFontArrow.rotation = 0f
+            }
+        }
+    }
+
+    /**
+     * Setup font selector for Bounty field
+     */
+    private fun setupBountyFontSelector() {
+        val savedFontName = viewModel.bountyFont.value
+        val selectedIndex = fontList.indexOfFirst { it.name == savedFontName }.takeIf { it >= 0 } ?: 0
+        val initialFont = fontList[selectedIndex]
+
+        binding.tvCurrentNameFontBounty.text = initialFont.name
+        binding.tvCurrentNameFontBounty.isSelected = true
+        val initialTypeface = androidx.core.content.res.ResourcesCompat.getFont(this, initialFont.fontResId)
+        tvBounty?.typeface = initialTypeface
+        binding.tvCurrentNameFontBounty.typeface = initialTypeface
+
+        bountyFontAdapter = FontSelectorAdapter(fontList, selectedIndex) { fontItem, _ ->
+            binding.tvCurrentNameFontBounty.text = fontItem.name
+            val typeface = androidx.core.content.res.ResourcesCompat.getFont(this, fontItem.fontResId)
+            tvBounty?.typeface = typeface
+            binding.tvCurrentNameFontBounty.typeface = typeface
+            viewModel.setBountyFont(fontItem.name)
+
+            binding.rvFontBountyList.visibility = View.GONE
+            binding.imgFontBountyArrow.rotation = 0f
+        }
+
+        binding.rvFontBountyList.apply {
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@MakeScreenActivity)
+            adapter = bountyFontAdapter
+            isNestedScrollingEnabled = false
+        }
+
+        binding.layoutFontBountySelector.setOnClickListener {
+            if (binding.rvFontBountyList.visibility == View.GONE) {
+                binding.rvFontBountyList.visibility = View.VISIBLE
+                binding.imgFontBountyArrow.rotation = 180f
+            } else {
+                binding.rvFontBountyList.visibility = View.GONE
+                binding.imgFontBountyArrow.rotation = 0f
+            }
+        }
+    }
+
+    /**
+     * Apply grapheme cluster filter to name input (max 25 visible characters)
+     */
+    private fun applyGraphemeClusterFilter() {
+        val maxGraphemeClusters = 25
+        val graphemeFilter = android.text.InputFilter { source, start, end, dest, dstart, dend ->
+            val existingText = dest.toString()
+            val sourceText = source.subSequence(start, end).toString()
+            val resultText = existingText.substring(0, dstart) + sourceText + existingText.substring(dend)
+            val resultCount = countGraphemeClusters(resultText)
+
+            if (resultCount <= maxGraphemeClusters) {
+                null
+            } else {
+                val currentCount = countGraphemeClusters(existingText)
+                if (dstart == dend) {
+                    val availableSpace = maxGraphemeClusters - currentCount
+                    if (availableSpace > 0) {
+                        truncateToGraphemeClusters(sourceText, availableSpace)
+                    } else {
+                        binding.edtName.post {
+                            val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+                            imm.restartInput(binding.edtName)
+                        }
+                        ""
+                    }
+                } else {
+                    val textBeforeReplacement = existingText.substring(0, dstart) + existingText.substring(dend)
+                    val availableSpace = maxGraphemeClusters - countGraphemeClusters(textBeforeReplacement)
+                    if (availableSpace > 0) {
+                        truncateToGraphemeClusters(sourceText, availableSpace)
+                    } else {
+                        existingText.substring(dstart, dend)
+                    }
+                }
+            }
+        }
+        binding.edtName.filters = arrayOf(graphemeFilter)
+    }
+
+    private fun truncateToGraphemeClusters(text: String, maxClusters: Int): String {
+        if (text.isEmpty() || maxClusters <= 0) return ""
+        val breakIterator = java.text.BreakIterator.getCharacterInstance()
+        breakIterator.setText(text)
+        var count = 0
+        var boundary = breakIterator.first()
+        while (count < maxClusters && boundary != java.text.BreakIterator.DONE) {
+            boundary = breakIterator.next()
+            count++
+        }
+        return if (boundary != java.text.BreakIterator.DONE) text.substring(0, boundary) else text
+    }
+
+    private fun countGraphemeClusters(text: String): Int {
+        if (text.isEmpty()) return 0
+        val breakIterator = java.text.BreakIterator.getCharacterInstance()
+        breakIterator.setText(text)
+        var count = 0
+        breakIterator.first()
+        while (breakIterator.next() != java.text.BreakIterator.DONE) {
+            count++
+        }
+        return count
+    }
+
+    /**
+     * Setup EditText listeners for Name and Bounty
+     */
+    private fun setupEditTexts() {
+        binding.edtName.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE ||
+                (event?.action == android.view.KeyEvent.ACTION_DOWN && event.keyCode == android.view.KeyEvent.KEYCODE_ENTER)) {
+                view.clearFocus()
+                hideKeyboard(view)
+                binding.root.requestFocus()
+                true
+            } else false
+        }
+
+        binding.edtBounty.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE ||
+                (event?.action == android.view.KeyEvent.ACTION_DOWN && event.keyCode == android.view.KeyEvent.KEYCODE_ENTER)) {
+                view.clearFocus()
+                hideKeyboard(view)
+                binding.root.requestFocus()
+                true
+            } else false
+        }
+
+        binding.edtName.addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val text = s?.toString() ?: ""
+                val config = viewModel.getConfig()
+                if (text.isNotEmpty() && config.hasName) {
+                    tvName?.visibility = View.VISIBLE
+                }
+                tvName?.text = text
+                tvName?.apply {
+                    alpha = 0f
+                    androidx.core.widget.TextViewCompat.setAutoSizeTextTypeWithDefaults(
+                        this, androidx.core.widget.TextViewCompat.AUTO_SIZE_TEXT_TYPE_NONE
+                    )
+                    textSize = config.nameSize
+                    post {
+                        androidx.core.widget.TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
+                            this, 6, config.nameSize.toInt(), 1, android.util.TypedValue.COMPLEX_UNIT_SP
+                        )
+                        alpha = 1f
+                    }
+                }
+                viewModel.setNameText(text)
+            }
+            override fun afterTextChanged(s: android.text.Editable?) {}
+        })
+
+        binding.edtBounty.addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val text = s?.toString() ?: ""
+                if (text.isNotEmpty()) {
+                    tvBounty?.visibility = View.VISIBLE
+                }
+                tvBounty?.text = text
+                viewModel.setBountyText(text)
+            }
+            override fun afterTextChanged(s: android.text.Editable?) {}
+        })
+    }
+
+    override fun dispatchTouchEvent(ev: android.view.MotionEvent): Boolean {
+        if (ev.action == android.view.MotionEvent.ACTION_DOWN) {
+            currentFocus?.let { view ->
+                if (view is android.widget.EditText && !isTouchInsideView(view, ev)) {
+                    view.clearFocus()
+                    hideKeyboard(view)
+                    binding.root.requestFocus()
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    private fun isTouchInsideView(view: View, event: android.view.MotionEvent): Boolean {
+        val location = IntArray(2)
+        view.getLocationOnScreen(location)
+        val touchX = event.rawX.toInt()
+        val touchY = event.rawY.toInt()
+        return touchX in location[0]..(location[0] + view.width) &&
+                touchY in location[1]..(location[1] + view.height)
+    }
+
+    private fun hideKeyboard(view: View) {
+        val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    /**
+     * Setup all seekbars for editing controls
+     */
+    private fun setupSeekBars() {
+        // Name Spacing
+        binding.seekBarNameSpacing.onProgressChanged { progress ->
+            val spacing = progress / 500f
+            tvName?.apply {
+                letterSpacing = spacing
+                alpha = 0f
+                val config = viewModel.getConfig()
+                androidx.core.widget.TextViewCompat.setAutoSizeTextTypeWithDefaults(
+                    this, androidx.core.widget.TextViewCompat.AUTO_SIZE_TEXT_TYPE_NONE
+                )
+                textSize = config.nameSize
+                post {
+                    androidx.core.widget.TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
+                        this, 6, config.nameSize.toInt(), 1, android.util.TypedValue.COMPLEX_UNIT_SP
+                    )
+                    alpha = 1f
+                }
+            }
+            viewModel.setNameSpacing(spacing)
+        }
+
+        // Bounty Size
+        binding.seekBarBountySize.onProgressChanged { progress ->
+            val size = 12f + (progress / 100f) * 48f
+            tvBounty?.textSize = size
+            viewModel.setBountySize(size)
+        }
+
+        // Bounty Weight
+        binding.seekBarBountyWeight.onProgressChanged { progress ->
+            viewModel.setBountyWeight(progress.toFloat())
+        }
+
+        // Bounty Spacing
+        binding.seekBarBountySpacing.onProgressChanged { progress ->
+            val spacing = progress / 500f
+            tvBounty?.letterSpacing = spacing
+            viewModel.setBountySpacing(spacing)
+        }
+
+        // Bounty Position X
+        binding.seekBarBountyPositionX.onProgressChanged { progress ->
+            val offsetX = (progress - 50) * 2f
+            tvBounty?.translationX = offsetX
+            viewModel.setBountyPositionX(offsetX)
+        }
+
+        // Bounty Position Y
+        binding.seekBarBountyPositionY.onProgressChanged { progress ->
+            val offsetY = (progress - 50) * 2f
+            tvBounty?.translationY = offsetY
+            viewModel.setBountyPositionY(offsetY)
+        }
+
+        setupPhotoFilterSeekBars()
+        setupPosterShadowSeekBar()
+    }
+
+    private fun setupPhotoFilterSeekBars() {
+        // Shadow
+        binding.seekBarFilterShadow.onProgressChanged { progress ->
+            viewModel.setFilterShadow(progress.toFloat())
+            applyShadowEffect(progress.toFloat())
+        }
+
+        // Blur
+        binding.seekBarFilterBlur.onProgressChanged { progress ->
+            viewModel.setFilterBlur(progress.toFloat())
+            viewModel.selectedImageUri.value?.let { uri ->
+                reloadImageWithBlur(uri, progress.toFloat())
+            }
+            applyFilters()
+        }
+
+        // Brightness
+        binding.seekBarFilterBrightness.onProgressChanged { progress ->
+            val brightness = progress / 100f
+            viewModel.setFilterBrightness(brightness)
+            applyFilters()
+        }
+
+        // Contrast
+        binding.seekBarFilterContrast.onProgressChanged { progress ->
+            val contrast = progress / 100f
+            viewModel.setFilterContrast(contrast)
+            applyFilters()
+        }
+
+        // Grayscale
+        binding.seekBarFilterGrayscale.onProgressChanged { progress ->
+            val grayscale = progress / 100f
+            viewModel.setFilterGrayscale(grayscale)
+            applyFilters()
+        }
+
+        // Hue Rotate
+        binding.seekBarFilterHueRotate.onProgressChanged { progress ->
+            val hueRotate = progress.toFloat()
+            viewModel.setFilterHueRotate(hueRotate)
+            applyFilters()
+        }
+
+        // Saturate
+        binding.seekBarFilterSaturate.onProgressChanged { progress ->
+            val saturate = progress / 100f
+            viewModel.setFilterSaturate(saturate)
+            applyFilters()
+        }
+
+        // Sepia
+        binding.seekBarFilterSepia.onProgressChanged { progress ->
+            val sepia = progress / 100f
+            viewModel.setFilterSepia(sepia)
+            applyFilters()
+        }
+    }
+
+    private fun setupPosterShadowSeekBar() {
+        binding.seekBarPosterShadow.onProgressChanged { progress ->
+            applyTemplateShadow(progress.toFloat())
+            viewModel.setPosterShadow(progress.toFloat())
+        }
+    }
+
+    private fun applyFilters() {
+        lifecycleScope.launch {
+            val brightness = viewModel.filterBrightness.value
+            val contrast = viewModel.filterContrast.value
+            val saturation = viewModel.filterSaturate.value
+            val grayscale = viewModel.filterGrayscale.value
+            val hueRotate = viewModel.filterHueRotate.value
+            val sepia = viewModel.filterSepia.value
+
+            val colorMatrix = android.graphics.ColorMatrix()
+
+            val brightnessMatrix = android.graphics.ColorMatrix(floatArrayOf(
+                brightness, 0f, 0f, 0f, 0f,
+                0f, brightness, 0f, 0f, 0f,
+                0f, 0f, brightness, 0f, 0f,
+                0f, 0f, 0f, 1f, 0f
+            ))
+            colorMatrix.postConcat(brightnessMatrix)
+
+            val scale = contrast
+            val translate = (1f - contrast) / 2f * 255f
+            val contrastMatrix = android.graphics.ColorMatrix(floatArrayOf(
+                scale, 0f, 0f, 0f, translate,
+                0f, scale, 0f, 0f, translate,
+                0f, 0f, scale, 0f, translate,
+                0f, 0f, 0f, 1f, 0f
+            ))
+            colorMatrix.postConcat(contrastMatrix)
+
+            val saturationMatrix = android.graphics.ColorMatrix()
+            saturationMatrix.setSaturation(saturation)
+            colorMatrix.postConcat(saturationMatrix)
+
+            if (grayscale > 0) {
+                val invGrayscale = 1 - grayscale
+                val grayscaleMatrix = android.graphics.ColorMatrix(floatArrayOf(
+                    invGrayscale + grayscale * 0.299f, grayscale * 0.587f, grayscale * 0.114f, 0f, 0f,
+                    grayscale * 0.299f, invGrayscale + grayscale * 0.587f, grayscale * 0.114f, 0f, 0f,
+                    grayscale * 0.299f, grayscale * 0.587f, invGrayscale + grayscale * 0.114f, 0f, 0f,
+                    0f, 0f, 0f, 1f, 0f
+                ))
+                colorMatrix.postConcat(grayscaleMatrix)
+            }
+
+            if (hueRotate != 0f) {
+                val angle = hueRotate * Math.PI.toFloat() / 180f
+                val cosA = kotlin.math.cos(angle.toDouble()).toFloat()
+                val sinA = kotlin.math.sin(angle.toDouble()).toFloat()
+                val hueRotateMatrix = android.graphics.ColorMatrix(floatArrayOf(
+                    0.213f + cosA * 0.787f - sinA * 0.213f, 0.715f - cosA * 0.715f - sinA * 0.715f, 0.072f - cosA * 0.072f + sinA * 0.928f, 0f, 0f,
+                    0.213f - cosA * 0.213f + sinA * 0.143f, 0.715f + cosA * 0.285f + sinA * 0.140f, 0.072f - cosA * 0.072f - sinA * 0.283f, 0f, 0f,
+                    0.213f - cosA * 0.213f - sinA * 0.787f, 0.715f - cosA * 0.715f + sinA * 0.715f, 0.072f + cosA * 0.928f + sinA * 0.072f, 0f, 0f,
+                    0f, 0f, 0f, 1f, 0f
+                ))
+                colorMatrix.postConcat(hueRotateMatrix)
+            }
+
+            if (sepia > 0) {
+                val invSepia = 1 - sepia
+                val sepiaMatrix = android.graphics.ColorMatrix(floatArrayOf(
+                    invSepia + sepia * 0.393f, sepia * 0.769f, sepia * 0.189f, 0f, 0f,
+                    sepia * 0.349f, invSepia + sepia * 0.686f, sepia * 0.168f, 0f, 0f,
+                    sepia * 0.272f, sepia * 0.534f, invSepia + sepia * 0.131f, 0f, 0f,
+                    0f, 0f, 0f, 1f, 0f
+                ))
+                colorMatrix.postConcat(sepiaMatrix)
+            }
+
+            imgAvatar?.colorFilter = android.graphics.ColorMatrixColorFilter(colorMatrix)
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                imgAvatar?.setRenderEffect(null)
+            }
+        }
+    }
+
+    private fun applyTemplateShadow(shadowValue: Float) {
+        val shadowView = imgTemplateShadow ?: return
+
+        if (shadowValue <= 0) {
+            shadowView.visibility = View.GONE
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                shadowView.setRenderEffect(null)
+            }
+            return
+        }
+
+        shadowView.visibility = View.VISIBLE
+
+        val shadowRadius = shadowValue / 100f * 15f
+        val shadowAlpha = shadowValue / 100f * 0.9f
+
+        val templateId = viewModel.selectedTemplate.value
+        val templatePath = AssetHelper.getTemplateItemPath(templateId)
+
+        Glide.with(this)
+            .load(templatePath)
+            .transform(ShadowTransformation(shadowRadius, shadowAlpha))
+            .into(shadowView)
+
+        val viewAlpha = (shadowValue / 100f).coerceIn(0f, 1f)
+        shadowView.alpha = viewAlpha
+
+        val offsetX = shadowValue / 100f * 5f
+        val offsetY = shadowValue / 100f * 5f
+        shadowView.translationX = offsetX
+        shadowView.translationY = offsetY
+
+        val scale = 1f + (shadowValue / 100f * 0.03f)
+        shadowView.scaleX = scale
+        shadowView.scaleY = scale
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            val additionalBlur = shadowValue / 100f * 10f
+            if (additionalBlur > 0) {
+                val blurEffect = android.graphics.RenderEffect.createBlurEffect(
+                    additionalBlur, additionalBlur, android.graphics.Shader.TileMode.CLAMP
+                )
+                shadowView.setRenderEffect(blurEffect)
+            } else {
+                shadowView.setRenderEffect(null)
+            }
+        }
+    }
+
+    // ====== END EDITING UTILITY METHODS ======
+
+    /**
+     * Show specific editing section and hide action buttons
+     */
+    private fun showEditingSection(sectionId: Int) {
+        // Hide all sections first
+        binding.cardNameSection.gone()
+        binding.cardBountySection.gone()
+        binding.cardPhotoFilterSection.gone()
+        binding.cardPosterShadowSection.gone()
+
+        // Hide action buttons container
+        binding.layoutActionButtons.gone()
+
+        // Show requested section
+        when (sectionId) {
+            R.id.cardNameSection -> binding.cardNameSection.visible()
+            R.id.cardBountySection -> binding.cardBountySection.visible()
+            R.id.cardPhotoFilterSection -> binding.cardPhotoFilterSection.visible()
+            R.id.cardPosterShadowSection -> binding.cardPosterShadowSection.visible()
+        }
+
+        // Show close button in action bar
+        showSectionCloseButton()
+    }
+
+    /**
+     * Hide editing sections and show action buttons
+     */
+    private fun hideEditingSections() {
+        binding.cardNameSection.gone()
+        binding.cardBountySection.gone()
+        binding.cardPhotoFilterSection.gone()
+        binding.cardPosterShadowSection.gone()
+
+        binding.layoutActionButtons.visible()
+        hideSectionCloseButton()
+    }
+
+    /**
+     * Show close button in action bar when editing section is open
+     */
+    private fun showSectionCloseButton() {
+        binding.actionBar.btnActionBarRight.visible()
+        binding.actionBar.btnActionBarRight.setImageResource(R.drawable.ic_back)
+    }
+
+    /**
+     * Hide close button in action bar
+     */
+    private fun hideSectionCloseButton() {
+        binding.actionBar.btnActionBarRight.gone()
+    }
+
+    /**
+     * Check if any editing section is currently visible
+     */
+    private fun isEditingSectionVisible(): Boolean {
+        return binding.cardNameSection.visibility == View.VISIBLE ||
+                binding.cardBountySection.visibility == View.VISIBLE ||
+                binding.cardPhotoFilterSection.visibility == View.VISIBLE ||
+                binding.cardPosterShadowSection.visibility == View.VISIBLE
     }
 }
 
