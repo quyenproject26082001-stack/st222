@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/img_bg_makescreen" />
+        android:src="@drawable/img_bg_language" />
 
     <!-- Simple ScrollView -->
     <ScrollView
@@ -59,33 +59,67 @@
 
             </androidx.cardview.widget.CardView>
 
+
+            <!-- Templates Button -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvImport"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                android:layout_marginTop="8dp"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/img_home_3"
+                    >
+
+                    <poster.maker.core.custom.text.DoubleStrokeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/joan_regular"
+                        android:text="@string/import_"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Templates Button -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvTemplates"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="48dp"
                 app:cardBackgroundColor="@android:color/transparent"
-            android:layout_marginTop="8dp"
+              android:layout_marginTop="14dp"
                >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/bg_template_makescreen"
-                    android:padding="12dp">
+                    android:background="@drawable/img_home_3"
+                    >
 
                     <poster.maker.core.custom.text.DoubleStrokeTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/kurale_regular"
+                        android:fontFamily="@font/joan_regular"
                         android:text="@string/templates"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         android:textColor="#FFFFFF"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:outerStrokeWidth="1dp"
-                        app:outerStrokeColor="#000000"
-                        android:textSize="30sp" />
+                      />
 
 
 
@@ -98,53 +132,99 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
-                android:paddingBottom="16dp"
                 android:weightSum="2">
 
                 <!-- Import Button -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvImport"
+                <FrameLayout
+                    android:id="@+id/cvName"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="42dp"
                     android:layout_weight="1"
-                    app:strokeColor="#C4561B"
-                    app:strokeWidth="2dp"
-                    android:layout_marginEnd="4dp"
-                    app:cardCornerRadius="8dp"
+                    android:background="@drawable/img_home_3"
+                    android:layout_marginEnd="8dp"
+
                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/kurale_regular"
-                        android:text="@string/import_"
-                        android:textColor="#C4561B"
-                        android:textSize="20sp" />
-                </com.google.android.material.card.MaterialCardView>
+                        android:fontFamily="@font/joan_regular"
+                        android:text="@string/name"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+                </FrameLayout>
 
                 <!-- Edit Button -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvEdit"
+                <FrameLayout
+                    android:id="@+id/cvBounty"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    app:strokeColor="#C4561B"
-                    app:strokeWidth="2dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/img_home_3"
                     android:layout_weight="1"
-                    android:layout_marginStart="4dp"
-                    app:cardCornerRadius="8dp"
+                    android:layout_marginStart="8dp"
                   >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/kurale_regular"
-                        android:text="@string/edit"
-                        android:textColor="#C4561B"
+                        android:fontFamily="@font/joan_regular"
+                        android:text="@string/bounty"
+                        android:textColor="#FFFFFF"
                         android:textSize="18sp" />
-                </com.google.android.material.card.MaterialCardView>
+                </FrameLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <!-- Import Button -->
+                <FrameLayout
+                    android:id="@+id/cvPhotoFilter"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/img_home_3"
+                    android:layout_marginEnd="8dp"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/joan_regular"
+                        android:text="@string/photo_filter"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+                </FrameLayout>
+
+                <!-- Edit Button -->
+                <FrameLayout
+                    android:id="@+id/cvEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/img_home_3"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/joan_regular"
+                        android:text="@string/poster_shadow"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+                </FrameLayout>
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
