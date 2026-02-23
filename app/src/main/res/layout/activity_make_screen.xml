@@ -495,60 +495,17 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/edtBounty" />
 
-                        <!-- Font Selector Box with White Background -->
-                        <FrameLayout
-                            android:id="@+id/layoutFontBountySelector"
+                        <!-- Font Selector -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvFont"
                             android:layout_width="0dp"
-                            android:layout_height="24dp"
-                            android:background="@drawable/bg_16_stroke_white"
-                            android:clickable="true"
-                            android:focusable="true"
-                            app:layout_constraintBottom_toBottomOf="@id/tvFontBountyLabel"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal"
+                            android:overScrollMode="never"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/guideline1"
-                            app:layout_constraintTop_toTopOf="@id/tvFontBountyLabel">
-
-                            <!-- Current Font Display -->
-                            <TextView
-                                android:id="@+id/tvCurrentNameFontBounty"
-                                style="@style/single_marquee"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginEnd="28dp"
-                                android:clickable="false"
-                                android:focusable="false"
-                                android:gravity="center_vertical"
-                                android:paddingStart="12dp"
-                                android:paddingEnd="4dp"
-                                android:text="Old Town"
-                                android:textColor="@android:color/black"
-                                android:textSize="14sp" />
-
-                            <!-- Dropdown Arrow -->
-                            <ImageView
-                                android:id="@+id/imgFontBountyArrow"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="center_vertical|end"
-                                android:layout_marginEnd="4dp"
-                                android:src="@drawable/ic_down"
-                                app:tint="@color/app" />
-                        </FrameLayout>
-
-                        <!-- Font List (Expandable) -->
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rvFontBountyList"
-                            android:layout_width="0dp"
-                            android:layout_height="200dp"
-                            android:background="@drawable/bg_rcvfont"
-                            android:nestedScrollingEnabled="true"
-                            android:overScrollMode="never"
-                            android:paddingVertical="4dp"
-                            android:scrollbars="vertical"
-                            android:visibility="gone"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/layoutFontBountySelector"
-                            app:layout_constraintTop_toBottomOf="@id/layoutFontBountySelector"
+                            app:layout_constraintTop_toBottomOf="@id/tvFontBountyLabel"
                             tools:listitem="@layout/item_font_selector" />
                         <!-- Size Label -->
                         <TextView
@@ -561,7 +518,7 @@
                             android:textColor="@color/app"
                             android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/rvFontBountyList" />
+                            app:layout_constraintTop_toBottomOf="@id/rcvFont" />
 
                         <SeekBar
                             android:id="@+id/seekBarBountySize"

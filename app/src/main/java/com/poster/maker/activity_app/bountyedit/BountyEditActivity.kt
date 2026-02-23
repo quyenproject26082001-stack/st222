@@ -318,37 +318,22 @@ class BountyEditActivity : BaseActivity<ActivityBountyEditBinding>() {
         val selectedIndex = fontList.indexOfFirst { it.name == savedFontName }.takeIf { it >= 0 } ?: 0
         val initialFont = fontList[selectedIndex]
 
-        binding.tvCurrentNameFontBounty.text = initialFont.name
-        binding.tvCurrentNameFontBounty.isSelected = true
         val initialTypeface = androidx.core.content.res.ResourcesCompat.getFont(this, initialFont.fontResId)
         tvBounty?.typeface = initialTypeface
-        binding.tvCurrentNameFontBounty.typeface = initialTypeface
 
         bountyFontAdapter = FontSelectorAdapter(fontList, selectedIndex) { fontItem, _ ->
-            binding.tvCurrentNameFontBounty.text = fontItem.name
             val typeface = androidx.core.content.res.ResourcesCompat.getFont(this, fontItem.fontResId)
             tvBounty?.typeface = typeface
-            binding.tvCurrentNameFontBounty.typeface = typeface
             viewModel.setBountyFont(fontItem.name)
-
-            binding.rvFontBountyList.visibility = View.GONE
-            binding.imgFontBountyArrow.rotation = 0f
         }
 
-        binding.rvFontBountyList.apply {
-            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@BountyEditActivity)
+        binding.rcvFont.apply {
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+                this@BountyEditActivity,
+                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                false
+            )
             adapter = bountyFontAdapter
-            isNestedScrollingEnabled = false
-        }
-
-        binding.layoutFontBountySelector.setOnClickListener {
-            if (binding.rvFontBountyList.visibility == View.GONE) {
-                binding.rvFontBountyList.visibility = View.VISIBLE
-                binding.imgFontBountyArrow.rotation = 180f
-            } else {
-                binding.rvFontBountyList.visibility = View.GONE
-                binding.imgFontBountyArrow.rotation = 0f
-            }
         }
     }
 

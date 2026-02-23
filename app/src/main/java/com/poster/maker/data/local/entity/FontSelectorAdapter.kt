@@ -22,14 +22,13 @@ class FontSelectorAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(fontItem: FontItem, position: Int) {
-            binding.tvFontName.text = fontItem.name
+            binding.tvFontName.text = "Aa"
 
-            // Set tick image based on selection
-            if (position == selectedPosition) {
-                binding.imgFontTick.setImageResource(R.drawable.tick_font)
-            } else {
-                binding.imgFontTick.setImageResource(R.drawable.not_tick_font)
-            }
+            // Set circle background based on selection
+            binding.tvFontName.setBackgroundResource(
+                if (position == selectedPosition) R.drawable.font_selected
+                else R.drawable.font_unselected
+            )
 
             // Apply the actual font to the text view
             val typeface = ResourcesCompat.getFont(binding.root.context, fontItem.fontResId)
