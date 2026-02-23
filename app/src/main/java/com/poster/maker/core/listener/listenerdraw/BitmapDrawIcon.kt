@@ -52,7 +52,7 @@ class BitmapDrawIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableDraw(
     fun draw(canvas: Canvas, paint: Paint) {
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = 5f
-        paint.color = "#C4561B".toColorInt()
+        paint.color = "#513323".toColorInt()
         super.draw(canvas)
     }
 
