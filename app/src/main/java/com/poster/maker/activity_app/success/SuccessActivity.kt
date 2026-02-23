@@ -157,7 +157,7 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
             // Share button
             btnShare.setOnSingleClick(2000) {
                 val intent = android.content.Intent(this@SuccessActivity, MyCreationActivity::class.java)
-
+                intent.putExtra("tab", poster.maker.activity_app.mycreation.MyCreationActivity.TabType.MY_WANTED.name)
                 startActivity(intent)
             }
 

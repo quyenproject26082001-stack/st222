@@ -51,6 +51,8 @@ class TemplateListActivity : BaseActivity<ActivityTemplateListBinding>() {
             // Hide others
             btnActionBarRightText.gone()
             tvRightText.gone()
+            tvCenter.setText(R.string.template)
+            tvCenter.visible()
         }
     }
 

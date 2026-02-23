@@ -131,11 +131,13 @@
                         android:maxLines="1"
                         android:paddingHorizontal="12dp"
                         android:singleLine="true"
+                        android:layout_marginEnd="71dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
+                        android:layout_marginStart="20dp"
                         app:layout_constraintBottom_toBottomOf="@id/tvBountyInputLabel"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/guideline1"
+                        app:layout_constraintStart_toEndOf="@id/tvBountyInputLabel"
                         app:layout_constraintTop_toTopOf="@id/tvBountyInputLabel" />
 
                     <!-- Fonts Label -->

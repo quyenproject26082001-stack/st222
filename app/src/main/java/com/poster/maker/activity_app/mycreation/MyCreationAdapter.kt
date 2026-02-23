@@ -27,7 +27,15 @@ class MyCreationAdapter(
             val layoutParams = binding.rootContainer.layoutParams as ViewGroup.MarginLayoutParams
             if (isMyWanted) {
                 // MY_WANTED tab: set margins to 0
-                layoutParams.setMargins(0, 0, 0, 0)
+                // MY_DESIGN tab: use default margins
+                val horizontalMargin = binding.root.context.resources.displayMetrics.density * 4
+                val bottomMargin = binding.root.context.resources.displayMetrics.density * 8
+                layoutParams.setMargins(
+                    horizontalMargin.toInt(),
+                    0,
+                    horizontalMargin.toInt(),
+                    bottomMargin.toInt()
+                )
             } else {
                 // MY_DESIGN tab: use default margins
                 val horizontalMargin = binding.root.context.resources.displayMetrics.density * 4

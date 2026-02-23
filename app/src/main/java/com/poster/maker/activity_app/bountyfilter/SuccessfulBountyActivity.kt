@@ -197,8 +197,10 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
             btnActionBarLeft.setImageResource(R.drawable.ic_home)
             btnActionBarLeft.visible()
             btnActionBarRight.visible()
+            btnActionBarRight.setImageResource(R.drawable.ic_save)
             tvRightText.select()
             updateActionBarIcons()
+
         }
     }
 

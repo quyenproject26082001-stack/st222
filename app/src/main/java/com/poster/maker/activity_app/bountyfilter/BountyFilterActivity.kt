@@ -366,15 +366,17 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
                         // Fix xoay + flip cho camera trước
                         val fixedFile = fixExifRotationAndFlipIfNeeded(photoFile, isFront = true)
 
+                        binding.imgCamera1.visible()
+                        Glide.with(this@BountyFilterActivity)
+                            .load(fixedFile.absolutePath)
+                            .into(binding.imgCamera1)
+
                         val intent = Intent(this@BountyFilterActivity, SuccessfulBountyActivity::class.java).apply {
                             putExtra("PHOTO_PATH", fixedFile.absolutePath)
                             putExtra("BOUNTY_VALUE", binding.tvBountyFilter.text.toString())
                         }
 
-                        binding.imgCamera1.visible()
-                        Glide.with(this@BountyFilterActivity)
-                            .load(fixedFile.absolutePath)
-                            .into(binding.imgCamera1)
+
 
                         showInterAll {
                             startActivity(intent)

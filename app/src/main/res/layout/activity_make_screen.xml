@@ -93,7 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/joan_regular"
-                            android:text="@string/import_"
+                            android:text="@string/avatar_"
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             android:textColor="#FFFFFF"

@@ -57,10 +57,13 @@ class MainActivity : BaseActivity<ActivityHomeBinding>() {
         // Enable hardware layer cho TextViews để giảm redraw
         binding.apply {
             tv0.setLayerType(android.view.View.LAYER_TYPE_HARDWARE, null)
+            tv0.select()
             tv1.setLayerType(android.view.View.LAYER_TYPE_HARDWARE, null)
             tv2.setLayerType(android.view.View.LAYER_TYPE_HARDWARE, null)
             tv3.setLayerType(android.view.View.LAYER_TYPE_HARDWARE, null)
+            tv3.select()
             tvOldWest.setLayerType(android.view.View.LAYER_TYPE_HARDWARE, null)
+            tvOldWest.select()
         }
 
     }

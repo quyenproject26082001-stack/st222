@@ -28,6 +28,10 @@ class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
     }
 
     override fun initView() {
+        val startTab = intent.getStringExtra("tab")
+        if (startTab == TabType.MY_WANTED.name) {
+            currentTab = TabType.MY_WANTED
+        }
         setupTabs()
         loadDesigns()
     }
@@ -42,7 +46,7 @@ class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
 
     private fun setupTabs() {
         // Set initial tab selection
-        updateTabSelection(TabType.MY_DESIGN)
+        updateTabSelection(currentTab)
 
         binding.apply {
             tabMyDesign.setOnSingleClick {

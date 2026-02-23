@@ -76,7 +76,7 @@
     <string name="change_your_whole_design_are_you_sure">Do you want to reset all?</string>
     <string name="character_maker">Poster Wanted \nMaker</string>
     <string name="no_item_here">No Item Here</string>
-    <string name="import_">Import</string>
+    <string name="avatar_">Avatar</string>
     <string name="templates">Templates</string>
     <string name="posterwantedtemplates">Poster Wanted\nTemplates</string>
     <string name="posterwantedmaker">Poster Wanted\nMaker</string>
@@ -92,7 +92,7 @@
     <string name="blur">Blur</string>
     <string name="shadow">Shadow</string>
 
-    <string name="wanted_poster_maker">Poster Maker</string>
+    <string name="wanted_poster_maker">Poster Wanted Maker</string>
     <string name="my_design">My Design</string>
     <string name="delete_design_confirmation">Are you sure want to delete this design?</string>
     <string name="design_deleted">Design deleted</string>
@@ -125,4 +125,5 @@
     <string name="camera_permission_is_required">Camera permission is required</string>
     <string name="my_wanted">My Wanted</string>
     <string name="saved_to_my_design">Saved to My Design!</string>
+    <string name="template">Template</string>
 </resources>

@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/joan_regular"
-                android:text="@string/my_design"
+                android:text="@string/my_wanted"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
         </FrameLayout>

@@ -54,7 +54,7 @@
                 android:id="@+id/btnBountyFilter"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginHorizontal="10dp"
 
                 app:layout_constraintDimensionRatio="300:182"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -77,8 +77,9 @@
 
                     <poster.maker.core.custom.text.DoubleStrokeTextView
                         android:id="@+id/tv0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginHorizontal="40dp"
                         android:fontFamily="@font/joan_regular"
                         android:gravity="center"
                         style="@style/single_marquee"
@@ -87,7 +88,7 @@
                         android:textColor="@color/white"
                         android:textSize="28sp"
                         app:outerStrokeColor="#000000"
-                        app:outerStrokeWidth="1.5dp" />
+                        app:outerStrokeWidth="2dp" />
 
 
 
@@ -102,7 +103,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginHorizontal="10dp"
 
                 app:layout_constraintDimensionRatio="300:182"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +137,7 @@
                         android:textColor="@color/white"
                         android:textSize="28sp"
                         app:outerStrokeColor="#000000"
-                        app:outerStrokeWidth="1.5dp" />
+                        app:outerStrokeWidth="2dp" />
 
                     <Space
                         android:layout_width="0dp"
@@ -151,7 +152,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginHorizontal="10dp"
                 app:layout_constraintDimensionRatio="300:182"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +186,7 @@
                         android:textColor="@color/white"
                         android:textSize="28sp"
                         app:outerStrokeColor="#000000"
-                        app:outerStrokeWidth="1.5dp" />
+                        app:outerStrokeWidth="2dp" />
 
                     <Space
                         android:layout_width="0dp"
@@ -229,6 +230,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
+                        style="@style/single_marquee"
                         android:fontFamily="@font/joan_regular"
                         android:gravity="center"
                         android:text="@string/my_creation"
@@ -281,10 +283,10 @@
                         style="@style/single_marquee"
                         android:fontFamily="@font/joan_regular"
                         android:gravity="center"
+                        android:layout_marginHorizontal="20dp"
                         android:text="@string/old_west"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:maxLines="2"
                         />
 
                     <Space
