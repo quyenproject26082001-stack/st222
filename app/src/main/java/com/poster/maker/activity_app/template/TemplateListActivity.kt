@@ -45,7 +45,7 @@ class TemplateListActivity : BaseActivity<ActivityTemplateListBinding>() {
             // Center text - Title
 
             // Right button - Done (Check icon)
-            btnActionBarRight.setImageResource(R.drawable.ic_done)
+            btnActionBarRight.setImageResource(R.drawable.ic_select)
             btnActionBarRight.visible()
 
             // Hide others
@@ -101,7 +101,6 @@ class TemplateListActivity : BaseActivity<ActivityTemplateListBinding>() {
             selectedTemplateId = templateId
         }
 
-        binding.rvTemplates.layoutManager = GridLayoutManager(this, 2)
         binding.rvTemplates.adapter = adapter
     }
 }

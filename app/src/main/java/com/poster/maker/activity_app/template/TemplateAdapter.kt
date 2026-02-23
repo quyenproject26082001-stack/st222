@@ -69,7 +69,7 @@ class TemplateAdapter(
             binding.imgTemplate.visibility = View.INVISIBLE
 
             // Update selection state
-            binding.cardTemplate.alpha = if (isSelected) 1.0f else 1f
+            binding.imgTemplateSelected.visibility = if (isSelected) View.VISIBLE else View.GONE
 
             // Handle click
             binding.cardTemplate.setOnClickListener {
