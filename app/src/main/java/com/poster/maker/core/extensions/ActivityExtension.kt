@@ -28,3 +28,5 @@ fun Activity.rateApp(
 ) {
     RateHelper.showRateDialog(this, sharePreference, onRateResult)
 }
+
+

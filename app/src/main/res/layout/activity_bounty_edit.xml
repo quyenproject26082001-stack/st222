@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    tools:context=".activity_app.bountyedit.BountyEditActivity">
 
     <!-- Background -->
     <ImageView
@@ -36,8 +37,8 @@
         android:paddingTop="8dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="1"
-        app:layout_constraintTop_toBottomOf="@id/layoutActionBar">
+        app:layout_constraintTop_toBottomOf="@id/layoutActionBar"
+        app:layout_constraintVertical_bias="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,19 +76,19 @@
         android:id="@+id/cardBountySection"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:layout_marginTop="16dp"
         android:layout_gravity="bottom"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_edit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/bg_edit">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:overScrollMode="never"
+            android:layout_height="wrap_content"
             android:clipToPadding="true"
-            android:paddingTop="50dp"
-            android:layout_height="wrap_content">
+            android:overScrollMode="never"
+            android:paddingTop="50dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,8 +103,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutBountyContent"
                     android:layout_width="match_parent"
-                    android:paddingBottom="20dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp">
 
                     <!-- Input Label -->
                     <TextView
@@ -155,13 +156,13 @@
                         android:id="@+id/layoutFontBountySelector"
                         android:layout_width="0dp"
                         android:layout_height="24dp"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/bg_16_stroke_white"
                         android:clickable="true"
                         android:focusable="true"
-                        app:layout_constraintBottom_toBottomOf="@id/tvFontBountyLabel"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/guideline1"
-                        app:layout_constraintTop_toTopOf="@id/tvFontBountyLabel">
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvFontBountyLabel">
 
                         <TextView
                             android:id="@+id/tvCurrentNameFontBounty"
@@ -222,13 +223,13 @@
                         style="@style/CustomSeekBar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:max="100"
                         android:progress="50"
                         android:splitTrack="false"
-                        app:layout_constraintBottom_toBottomOf="@id/tvBountySizeLabel"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/guideline1"
-                        app:layout_constraintTop_toTopOf="@id/tvBountySizeLabel" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvBountySizeLabel" />
 
                     <!-- Weight Label -->
                     <TextView
@@ -248,13 +249,15 @@
                         style="@style/CustomSeekBar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:max="100"
                         android:progress="50"
                         android:splitTrack="false"
-                        app:layout_constraintBottom_toBottomOf="@id/tvBountyWeightLabel"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/guideline1"
-                        app:layout_constraintTop_toTopOf="@id/tvBountyWeightLabel" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvBountyWeightLabel"
+
+                        />
 
                     <!-- Spacing Label -->
                     <TextView
@@ -277,13 +280,13 @@
                         style="@style/CustomSeekBar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:max="100"
                         android:progress="0"
                         android:splitTrack="false"
-                        app:layout_constraintBottom_toBottomOf="@id/tvBountySpacingLabel"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/guideline1"
-                        app:layout_constraintTop_toTopOf="@id/tvBountySpacingLabel" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvBountySpacingLabel" />
 
                     <!-- Position X Label -->
                     <TextView
@@ -303,13 +306,13 @@
                         style="@style/CustomSeekBar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:max="100"
                         android:progress="50"
                         android:splitTrack="false"
-                        app:layout_constraintBottom_toBottomOf="@id/tvBountyPositionXLabel"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/guideline1"
-                        app:layout_constraintTop_toTopOf="@id/tvBountyPositionXLabel" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvBountyPositionXLabel" />
 
                     <!-- Position Y Label -->
                     <TextView
@@ -329,13 +332,13 @@
                         style="@style/CustomSeekBar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:max="100"
                         android:progress="50"
                         android:splitTrack="false"
-                        app:layout_constraintBottom_toBottomOf="@id/tvBountyPositionYLabel"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/guideline1"
-                        app:layout_constraintTop_toTopOf="@id/tvBountyPositionYLabel" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvBountyPositionYLabel" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline1"

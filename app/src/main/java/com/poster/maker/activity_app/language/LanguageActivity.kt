@@ -84,7 +84,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
     override fun initActionBar() {
         binding.actionBar.apply {
             btnActionBarLeft.setImageResource(R.drawable.ic_back)
-            if(viewModel.isFirstLanguage.value) btnActionBarRight.setImageResource(R.drawable.ic_done_languge_onboard)
+            if(viewModel.isFirstLanguage.value) btnActionBarRight.setImageResource(R.drawable.ic_done)
             else btnActionBarRight.setImageResource(R.drawable.ic_done)
             val text = R.string.language
             tvCenter.text = strings(text)

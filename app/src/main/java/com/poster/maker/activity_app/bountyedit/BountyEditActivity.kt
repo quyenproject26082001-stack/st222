@@ -1,6 +1,10 @@
 package poster.maker.activity_app.bountyedit
 
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
+import androidx.core.view.doOnLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -81,6 +85,18 @@ class BountyEditActivity : BaseActivity<ActivityBountyEditBinding>() {
     }
 
     override fun initView() {
+        // Apply gradient text color to bounty input label
+        binding.tvBountyInputLabel.doOnLayout { view ->
+            val shader = LinearGradient(
+                0f, 0f, 0f, view.height.toFloat(),
+                intArrayOf(Color.parseColor("#754D37"), Color.parseColor("#513323"), Color.parseColor("#42291B")),
+                floatArrayOf(0f, 0.6f, 1f),
+                Shader.TileMode.CLAMP
+            )
+            binding.tvBountyInputLabel.paint.shader = shader
+            binding.tvBountyInputLabel.invalidate()
+        }
+
         // Sync latest name values from Intent (defensive against stale ViewModel)
         val intentData = intent
         if (intentData != null) {

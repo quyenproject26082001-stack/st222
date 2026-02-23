@@ -4,6 +4,9 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
+import androidx.core.view.doOnLayout
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -133,6 +136,7 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
         if (selectedTemplateFromIntent != -1) {
             viewModel.setSelectedTemplate(selectedTemplateFromIntent)
         }
+
 
         // Load template layout and background from assets
         inflateTemplateLayout(viewModel.selectedTemplate.value)
