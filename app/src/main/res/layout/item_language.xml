@@ -21,6 +21,8 @@
         <!--        imvFocus - Background when selected -->
         <ImageView
             android:id="@+id/imvFocus"
+            tools:visibility="visible"
+            android:background="@drawable/frame_language_slt"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

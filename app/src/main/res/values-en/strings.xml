@@ -6,10 +6,9 @@
     <string name="not_select_lang">Please select a language</string>
     <string name="next">Next</string>
     <string name="language">Language</string>
-
-    <string name="title_1">Become a real pirate</string>
-    <string name="title_2">Surreal pirate style</string>
-    <string name="title_3">Create a wanted poster with a huge bounty</string>
+    <string name="title_1">Make A Wanted Poster</string>
+    <string name="title_2">Bounty Filter</string>
+    <string name="title_3">Diverse Templates</string>
 
     <string name="permission">Permission</string>
     <string name="storage">Storage</string>

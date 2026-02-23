@@ -287,17 +287,12 @@ class NameEditActivity : BaseActivity<ActivityNameEditBinding>() {
         val selectedIndex = fontList.indexOfFirst { it.name == savedFontName }.takeIf { it >= 0 } ?: 0
         val initialFont = fontList[selectedIndex]
 
-        binding.tvCurrentNameFont.text = initialFont.name
-        binding.tvCurrentNameFont.isSelected = true
         val initialTypeface = androidx.core.content.res.ResourcesCompat.getFont(this, initialFont.fontResId)
         tvName?.typeface = initialTypeface
-        binding.tvCurrentNameFont.typeface = initialTypeface
 
         fontAdapter = FontSelectorAdapter(fontList, selectedIndex) { fontItem, _ ->
-            binding.tvCurrentNameFont.text = fontItem.name
             val typeface = androidx.core.content.res.ResourcesCompat.getFont(this, fontItem.fontResId)
             tvName?.typeface = typeface
-            binding.tvCurrentNameFont.typeface = typeface
             viewModel.setNameFont(fontItem.name)
 
             // Recalculate autoSize
@@ -315,25 +310,15 @@ class NameEditActivity : BaseActivity<ActivityNameEditBinding>() {
                     alpha = 1f
                 }
             }
-
-            binding.rvFontList.visibility = View.GONE
-            binding.imgFontArrow.rotation = 0f
         }
 
-        binding.rvFontList.apply {
-            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@NameEditActivity)
+        binding.rcvFont.apply {
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+                this@NameEditActivity,
+                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                false
+            )
             adapter = fontAdapter
-            isNestedScrollingEnabled = false
-        }
-
-        binding.layoutFontSelector.setOnClickListener {
-            if (binding.rvFontList.visibility == View.GONE) {
-                binding.rvFontList.visibility = View.VISIBLE
-                binding.imgFontArrow.rotation = 180f
-            } else {
-                binding.rvFontList.visibility = View.GONE
-                binding.imgFontArrow.rotation = 0f
-            }
         }
     }
 
