@@ -54,7 +54,7 @@
     <ImageView
         android:id="@+id/imgPermission"
         android:layout_width="211dp"
-        android:layout_height="211dp"
+        android:layout_height="198dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:src="@drawable/img_permission"
@@ -98,8 +98,8 @@
 
                 <ImageView
                     android:id="@+id/swPermission"
-                    android:layout_width="40dp"
-                    android:layout_height="24dp"
+                    android:layout_width="56dp"
+                    android:layout_height="32dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginVertical="10dp"
@@ -113,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/bg_permision"
                 android:layout_height="56dp"
-                android:layout_marginTop="7dp">
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -128,8 +128,8 @@
 
                 <ImageView
                     android:id="@+id/swNotification"
-                    android:layout_width="40dp"
-                    android:layout_height="24dp"
+                    android:layout_width="56dp"
+                    android:layout_height="32dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginVertical="10dp"

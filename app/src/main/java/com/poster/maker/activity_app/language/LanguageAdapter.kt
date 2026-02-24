@@ -24,10 +24,10 @@ class LanguageAdapter(val context: Context) : BaseAdapter<LanguageModel, ItemLan
 
             if (item.activate) {
                 loadImageGlide(root, R.drawable.ic_tick_lang, btnRadio, false)
-                imvFocus.visible()
+                imvFocus.setBackgroundResource(R.drawable.frame_language_slt)
             } else {
                 loadImageGlide(root, R.drawable.ic_not_tick_lang, btnRadio, false)
-                imvFocus.gone()
+                imvFocus.setBackgroundResource(R.drawable.bg_100_stroke_white)
             }
 
             root.setOnSingleClick {
