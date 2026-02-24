@@ -804,8 +804,7 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
                     when (state) {
                         is SaveState.Success -> {
                             viewModel.setSavedImagePath(state.path)
-                            val intent = Intent(this@MakeScreenActivity, SuccessActivity::class.java)
-                            startActivity(intent)
+                            startIntentRightToLeft(SuccessActivity::class.java)
                         }
 
                         is SaveState.Error -> {

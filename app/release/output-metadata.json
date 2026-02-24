@@ -13,7 +13,7 @@
       "attributes": [],
       "versionCode": 1,
       "versionName": "1.0.0",
-      "outputFile": "ST184_Pirate_Poster_Maker_v1.0.0_11.28.2025-release.apk"
+      "outputFile": "ST222_v1.0.0_02.24.2026-release.apk"
     }
   ],
   "elementType": "File",
@@ -22,14 +22,14 @@
       "minApi": 28,
       "maxApi": 30,
       "baselineProfiles": [
-        "baselineProfiles/1/ST184_Pirate_Poster_Maker_v1.0.0_11.28.2025-release.dm"
+        "baselineProfiles/1/ST222_v1.0.0_02.24.2026-release.dm"
       ]
     },
     {
       "minApi": 31,
       "maxApi": 2147483647,
       "baselineProfiles": [
-        "baselineProfiles/0/ST184_Pirate_Poster_Maker_v1.0.0_11.28.2025-release.dm"
+        "baselineProfiles/0/ST222_v1.0.0_02.24.2026-release.dm"
       ]
     }
   ],

@@ -90,7 +90,7 @@ class EditStickerActivity : BaseActivity<ActivityEditStickerBinding>() {
 
             btnActionBarRight.setImageResource(R.drawable.ic_save)
             btnActionBarRight.visible()
-            btnActionBarReset.visible()
+            btnActionBarReset.gone()
             btnActionBarRightText.gone()
             tvRightText.gone()
         }
@@ -329,10 +329,20 @@ class EditStickerActivity : BaseActivity<ActivityEditStickerBinding>() {
 
     fun addDrawView(draw: Draw) {
         drawViewList.add(draw)
+        updateResetVisibility()
     }
 
     fun deleteDrawView(draw: Draw) {
         drawViewList.removeIf { it == draw }
+        updateResetVisibility()
+    }
+
+    private fun updateResetVisibility() {
+        if (drawViewList.isEmpty()) {
+            binding.actionBar.btnActionBarReset.gone()
+        } else {
+            binding.actionBar.btnActionBarReset.visible()
+        }
     }
 
     fun loadDrawableEmoji(context: Context, bitmap: Bitmap): DrawableDraw {
@@ -370,7 +380,8 @@ class EditStickerActivity : BaseActivity<ActivityEditStickerBinding>() {
     private fun resetToInitialState(){
         binding.drawView.removeAllDraw()
         drawViewList.clear()
-        currentDraw =null
+        currentDraw = null
+        updateResetVisibility()
         if(currentImagePath.isNotEmpty()){
             Glide.with(this)
                 .load(File(currentImagePath))

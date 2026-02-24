@@ -62,7 +62,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
         lifecycleScope.launch {
             viewModel.codeLang.collect { code ->
                 if (code.isNotEmpty()) {
-                    binding.actionBar.btnActionBarRight.visible()
+                    binding.actionBar.btnActionBarRightLanguage.visible()
                 }
             }
         }
@@ -71,7 +71,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
     override fun viewListener() {
         binding.apply {
             actionBar.btnActionBarLeft.setOnSingleClick { handleBackLeftToRight() }
-            actionBar.btnActionBarRight.setOnSingleClick { handleDone() }
+            actionBar.btnActionBarRightLanguage.setOnSingleClick { handleDone() }
         }
         handleRcv()
     }
@@ -84,8 +84,8 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
     override fun initActionBar() {
         binding.actionBar.apply {
             btnActionBarLeft.setImageResource(R.drawable.ic_back)
-            if(viewModel.isFirstLanguage.value) btnActionBarRight.setImageResource(R.drawable.ic_done)
-            else btnActionBarRight.setImageResource(R.drawable.ic_done)
+            if(viewModel.isFirstLanguage.value) btnActionBarRightLanguage.setImageResource(R.drawable.ic_done)
+            else btnActionBarRightLanguage.setImageResource(R.drawable.ic_done)
             val text = R.string.language
             tvCenter.text = strings(text)
             tvStart.text = strings(text)
@@ -102,7 +102,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
     private fun handleRcv() {
         binding.apply {
             languageAdapter.onItemClick = { code ->
-                binding.actionBar.btnActionBarRight.visible()
+                binding.actionBar.btnActionBarRightLanguage.visible()
                 viewModel.selectLanguage(code)
             }
         }

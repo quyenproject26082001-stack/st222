@@ -151,7 +151,6 @@ class PosterWantedTemplateActivity : BaseActivity<ActivityPosterWantedTemplateBi
        showInterAll {
                 val intent = Intent(this@PosterWantedTemplateActivity, MakeScreenActivity::class.java)
                 startActivity(intent)
-                finish()
             }
 
         //quyen

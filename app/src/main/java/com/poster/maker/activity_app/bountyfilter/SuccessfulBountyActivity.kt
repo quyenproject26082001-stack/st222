@@ -52,6 +52,7 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
     private var bountyValue: String? = null
     private var downloadPermissionDeniedCount = 0
     private var compositeImagePath: String? = null
+    private var savedFilterPath: String? = null
     private var hasStickers = false
 
     private val viewModel = PosterEditorSharedViewModel.getInstance()
@@ -165,7 +166,10 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
         binding.apply {
             actionBar.btnActionBarLeft.setOnSingleClick {
                 showInterAll {
-finish()
+                    val intent = Intent(this@SuccessfulBountyActivity, BountyFilterActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    startActivity(intent)
+                    finish()
                 }
             }
 
@@ -181,8 +185,8 @@ finish()
                 downloadImage()
             }
 
-            btnShare.setOnSingleClick(2000) {
-                saveToMyDesign()
+            btnMyFilter.setOnSingleClick(2000) {
+                goToMyFilter()
             }
 
             actionBar.btnActionBarRight.setOnSingleClick {
@@ -224,26 +228,26 @@ finish()
 
             val fileName = "bounty_composite_${System.currentTimeMillis()}.jpg"
 
-            // Save to cache for immediate sharing/downloading
+            // Save to cache for sharing/downloading
             val cacheFile = File(cacheDir, fileName)
             FileOutputStream(cacheFile).use { out ->
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 95, out)
             }
             compositeImagePath = cacheFile.absolutePath
 
-            // ✅ REMOVED: Auto-save to My Design
-            // User must click Save button to save to My Design
-            // val bountyDesignsDir = File(filesDir, "bounty_designs")
-            // if (!bountyDesignsDir.exists()) {
-            //     bountyDesignsDir.mkdirs()
-            // }
-            // val savedFile = File(bountyDesignsDir, fileName)
-            // FileOutputStream(savedFile).use { out ->
-            //     bitmap.compress(Bitmap.CompressFormat.JPEG, 95, out)
-            // }
+            // Auto-save to My Filter (bounty_designs) immediately
+            val bountyDesignsDir = File(filesDir, "bounty_designs")
+            if (!bountyDesignsDir.exists()) {
+                bountyDesignsDir.mkdirs()
+            }
+            val savedFile = File(bountyDesignsDir, fileName)
+            FileOutputStream(savedFile).use { out ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 95, out)
+            }
+            savedFilterPath = savedFile.absolutePath
 
             android.util.Log.d("SuccessfulBounty", "Composite image created: $compositeImagePath")
-            android.util.Log.d("SuccessfulBounty", "Saved to CACHE only (not My Design yet)")
+            android.util.Log.d("SuccessfulBounty", "Auto-saved to My Filter: $savedFilterPath")
         } catch (e: Exception) {
             e.printStackTrace()
             android.util.Log.e("SuccessfulBounty", "Failed to create composite image", e)
@@ -340,6 +344,15 @@ finish()
                     compositeImagePath = editedPath
                     hasStickers = hasStickersAdded
 
+                    // Overwrite saved filter path with edited image
+                    savedFilterPath?.let { saved ->
+                        try {
+                            File(editedPath).copyTo(File(saved), overwrite = true)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+
                     // Hide original views
                     binding.imgCamera.visibility = android.view.View.GONE
                     binding.imgPlaySuccess.visibility = android.view.View.GONE
@@ -373,46 +386,11 @@ finish()
         }
     }
 
-    private fun saveToMyDesign() {
-        val pathToSave = compositeImagePath ?: photoPath
-        pathToSave?.let { path ->
-            lifecycleScope.launch(Dispatchers.IO) {
-                try {
-                    val sourceFile = File(path)
-                    val myDesignDir = File(filesDir, "bounty_designs")
-                    if (!myDesignDir.exists()) {
-                        myDesignDir.mkdirs()
-                    }
-
-                    val fileName = "poster_${System.currentTimeMillis()}.png"
-                    val destFile = File(myDesignDir, fileName)
-                    sourceFile.copyTo(destFile, overwrite = true)
-
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            this@SuccessfulBountyActivity,
-                            getString(R.string.saved_to_my_design),
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        // Navigate to My Design
-                        val intent = Intent(this@SuccessfulBountyActivity, poster.maker.activity_app.mycreation.MyCreationActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                         startActivity(intent)
-                        finish()
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            this@SuccessfulBountyActivity,
-                            "Save failed!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-        }
+    private fun goToMyFilter() {
+        val intent = Intent(this, poster.maker.activity_app.mycreation.MyCreationActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+        finish()
     }
 
     private fun proceedDownload() {

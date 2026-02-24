@@ -27,22 +27,22 @@
     <string name="privacy_policy"><![CDATA[Privacy & Policy]]></string>
 
     <string name="zero_star_title">Do you like the app?</string>
-    <string name="zero_star">I need your love</string>
+    <string name="zero_star">Let us know your experience</string>
 
-    <string name="one_star_title">Little buddy made me cry</string>
-    <string name="one_star">I will cry all day</string>
+    <string name="one_star_title">Oh, no!</string>
+    <string name="one_star">Please give us some feedback</string>
 
-    <string name="two_star_title">I’m a little sad</string>
-    <string name="two_star">I will not eat rice today</string>
+    <string name="two_star_title">Oh, no!</string>
+    <string name="two_star">Please give us some feedback</string>
 
-    <string name="three_star_title">Great job little buddy</string>
-    <string name="three_star">I know you won\'t let me be sad</string>
+    <string name="three_star_title">Oh, no!</string>
+    <string name="three_star">Please give us some feedback</string>
 
-    <string name="four_star_title">You are so handsome</string>
-    <string name="four_star">The prince is so handsome</string>
+    <string name="four_star_title">We love you too!</string>
+    <string name="four_star">Thanks for your feedback</string>
 
-    <string name="five_star_title">I love you so much</string>
-    <string name="five_star">let\'s get married</string>
+    <string name="five_star_title">We love you too!</string>
+    <string name="five_star">Thanks for your feedback</string>
 
     <string name="rate_us_0">You have not rated it yet!</string>
     <string name="rate">Rate</string>

@@ -25,6 +25,7 @@ import poster.maker.core.extensions.strings
 //quyen
 import com.lvt.ads.util.Admob
 import poster.maker.core.extensions.showInterAll
+import poster.maker.core.viewmodel.PosterEditorSharedViewModel
 //quyen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -79,6 +80,7 @@ class MainActivity : BaseActivity<ActivityHomeBinding>() {
             }
             btnCreate.setOnSingleClick {
                 showInterAll {
+                    PosterEditorSharedViewModel.getInstance().clearAll()
                     startIntentRightToLeft(poster.maker.activity_app.makescreen.MakeScreenActivity::class.java)
                 }
 
