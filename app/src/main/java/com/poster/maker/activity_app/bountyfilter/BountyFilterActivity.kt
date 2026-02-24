@@ -50,6 +50,7 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
     private lateinit var cameraExecutor: ExecutorService
     private val handler = Handler(Looper.getMainLooper())
     private var randomRunnable: Runnable? = null
+    private var countdownRunnable: Runnable? = null
     private var isCountingDown = false
 
     companion object {
@@ -172,7 +173,7 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
             visible()
         }
 
-        val countdownRunnable = object : Runnable {
+        countdownRunnable = object : Runnable {
             override fun run() {
                 if (currentIndex < countdownNumbers.size) {
                     binding.tvBountyFilter.animate().cancel()
@@ -204,7 +205,7 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
         }
 
         // ✅ chạy ngay số 3 luôn, không đợi 1 nhịp handler
-        countdownRunnable.run()
+        countdownRunnable!!.run()
     }
 
     private fun onCountdownFinished() {
@@ -511,6 +512,7 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
+        countdownRunnable?.let { handler.removeCallbacks(it) }
         randomRunnable?.let { handler.removeCallbacks(it) }
     }
 
@@ -550,6 +552,7 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
     }
 
     override fun onBackPressed() {
+        countdownRunnable?.let { handler.removeCallbacks(it) }
         randomRunnable?.let { handler.removeCallbacks(it) }
         super.onBackPressed()
     }

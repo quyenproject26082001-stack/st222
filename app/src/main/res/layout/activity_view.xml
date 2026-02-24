@@ -95,7 +95,7 @@
                 android:fontFamily="@font/joan_regular"
                 android:text="@string/share"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </FrameLayout>
 
         <!-- Edit Button -->
@@ -115,7 +115,7 @@
                 android:fontFamily="@font/joan_regular"
                 android:text="@string/download"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </FrameLayout>
     </LinearLayout>
 
