@@ -81,6 +81,6 @@
 -keep class com.yalantis.ucrop** { *; }
 -keep interface com.yalantis.ucrop** { *; }
 
--keep class poster.maker.activity_app.splash.SplashActivity.** {*; }
--keep class poster.maker.data.** {*; }
+-keep class com.wanted.poster.maker.activity_app.splash.SplashActivity.** {*; }
+-keep class com.wanted.poster.maker.data.** {*; }
 -keep public class com.google.android.gms.** { public protected *; }

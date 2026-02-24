@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:fontFamily="@font/kurale_regular"
+        android:fontFamily="@font/joan_regular"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="16sp"

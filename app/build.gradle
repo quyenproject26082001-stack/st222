@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'poster.maker'
+    namespace 'com.wanted.poster.maker'
     compileSdk 36
 
     defaultConfig {
-        applicationId "poster.maker"
+        applicationId "com.wanted.poster.maker"
         minSdk 24
         targetSdk 36
         versionCode 1

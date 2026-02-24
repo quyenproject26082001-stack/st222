@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "588082904418",
-    "project_id": "st184-pirate-poster-maker",
-    "storage_bucket": "st184-pirate-poster-maker.firebasestorage.app"
+    "project_number": "322044773227",
+    "project_id": "st222-pirate-poster-maker",
+    "storage_bucket": "st222-pirate-poster-maker.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:588082904418:android:312389f1613b9f46e9003b",
+        "mobilesdk_app_id": "1:322044773227:android:7ef8444ad7c0ca00e8422e",
         "android_client_info": {
-          "package_name": "poster.maker"
+          "package_name": "com.wanted.poster.maker"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyALhh_faX8_LdOwkM4xkutReckxLTdEAHg"
+          "current_key": "AIzaSyAJmxSRjJrR3N-NJxJ4f7X0pIAxZc7yNZk"
         }
       ],
       "services": {

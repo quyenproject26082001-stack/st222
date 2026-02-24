@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Wanted Poster Creator: Filter</string>
     <string name="go_to_setting_message">La app necesita este permiso</string>
     <string name="settings">Configuración</string>
     <string name="this_action_can_contain_ads">Esta acción puede contener anuncios</string>
@@ -46,7 +45,7 @@
     <string name="no">No</string>
     <string name="wait_a_minute">Espere unos segundos...</string>
     <string name="reset">Restablecer</string>
-    <string name="download_success">Descargado al álbum Wanted Poster Creator: Filter</string>
+    <string name="download_success">Descargado al álbum Wanted Poster Maker &amp; Filter</string>
     <string name="please_check_your_internet">Compruebe su internet</string>
     <string name="please_select_an_image">Seleccione una imagen</string>
     <string name="error">Error</string>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/transparent">
 
     <!--    btnActionBarLeft-->
@@ -50,7 +51,7 @@
         android:id="@+id/tvStart"
         style="@style/single_marquee"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/joan_regular"
         android:gravity="start|bottom"
@@ -69,14 +70,14 @@
         style="@style/single_marquee"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="90dp"
         android:fontFamily="@font/joan_regular"
         android:gravity="center"
         android:text="@string/language"
         android:textColor="@color/white"
         android:textSize="24sp"
-
-        android:visibility="visible"
+        tools:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/btnActionBarLeft"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +110,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="0dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvStart"

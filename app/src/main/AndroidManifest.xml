@@ -73,11 +73,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity_app.wanted.WantedEditorActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing" />
-        <activity
             android:name=".activity_app.makescreen.MakeScreenActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

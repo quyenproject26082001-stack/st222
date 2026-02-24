@@ -89,7 +89,7 @@
                         android:background="@drawable/img_home_3"
                         >
 
-                        <poster.maker.core.custom.text.DoubleStrokeTextView
+                        <com.wanted.poster.maker.core.custom.text.DoubleStrokeTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/joan_regular"
@@ -124,7 +124,7 @@
                         android:background="@drawable/img_home_3"
                         >
 
-                        <poster.maker.core.custom.text.DoubleStrokeTextView
+                        <com.wanted.poster.maker.core.custom.text.DoubleStrokeTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/joan_regular"

@@ -77,7 +77,7 @@
 
 
 
-                    <poster.maker.core.custom.text.DoubleStrokeTextView
+                    <com.wanted.poster.maker.core.custom.text.DoubleStrokeTextView
                         android:id="@+id/tv0"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
-                    <poster.maker.core.custom.text.DoubleStrokeTextView
+                    <com.wanted.poster.maker.core.custom.text.DoubleStrokeTextView
                         android:id="@+id/tv1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -177,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
-                    <poster.maker.core.custom.text.DoubleStrokeTextView
+                    <com.wanted.poster.maker.core.custom.text.DoubleStrokeTextView
                         android:id="@+id/tv2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -227,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
-                    <poster.maker.core.custom.text.DoubleStrokeTextView
+                    <com.wanted.poster.maker.core.custom.text.DoubleStrokeTextView
                         android:id="@+id/tv3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -277,7 +277,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
-                    <poster.maker.core.custom.text.DoubleStrokeTextView
+                    <com.wanted.poster.maker.core.custom.text.DoubleStrokeTextView
                         android:id="@+id/tvOldWest"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

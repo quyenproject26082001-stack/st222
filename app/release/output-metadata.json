@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "poster.maker",
+  "applicationId": "com.wanted.poster.maker",
   "variantName": "release",
   "elements": [
     {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Wanted Poster Creator: Filter</string>
+    <string name="app_name" translatable="false">Wanted Poster Maker &amp; Filter</string>
     <string name="go_to_setting_message">The app needs this permission</string>
     <string name="settings">Settings</string>
     <string name="this_action_can_contain_ads">This action can contain ads</string>
@@ -55,7 +55,7 @@
     <string name="no">No</string>
     <string name="wait_a_minute">Wait a few second...</string>
     <string name="reset">Reset</string>
-    <string name="download_success">Download successful to the Wanted Poster Creator: Filter album</string>
+    <string name="download_success">Download successful to the Wanted Poster Maker &amp; Filter album</string>
     <string name="please_check_your_internet">Please check your internet</string>
     <string name="please_select_an_image">Please select an image</string>
     <string name="error">Error</string>
