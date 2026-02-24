@@ -1038,23 +1038,25 @@ open class DrawView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     }
 
     private fun setupDefaultIcons() {
+        val iconSizePx = (20 * context.resources.displayMetrics.density).toInt()
+
         val deleteIcon = BitmapDrawIcon(
-            ContextCompat.getDrawable(context, R.drawable.ic_delete_sticker), DrawKey.RIGHT_TOP
+            ContextCompat.getDrawable(context, R.drawable.ic_delete_sticker), DrawKey.RIGHT_TOP, iconSizePx
         )
         deleteIcon.event = DeleteEvent()
 
         val zoomIcon = BitmapDrawIcon(
-            ContextCompat.getDrawable(context, R.drawable.ic_rotate_scale), DrawKey.LEFT_BOTTOM
+            ContextCompat.getDrawable(context, R.drawable.ic_rotate_scale), DrawKey.LEFT_BOTTOM, iconSizePx
         )
         zoomIcon.event = ZoomEvent()
 
         val flipIcon = BitmapDrawIcon(
-            ContextCompat.getDrawable(context, R.drawable.ic_flip_sticker), DrawKey.TOP_LEFT
+            ContextCompat.getDrawable(context, R.drawable.ic_flip_sticker), DrawKey.TOP_LEFT, iconSizePx
         )
         flipIcon.event = FlipEvent()
 
         val editIcon = BitmapDrawIcon(
-            ContextCompat.getDrawable(context, R.drawable.ic_flip_sticker), DrawKey.TOP_LEFT
+            ContextCompat.getDrawable(context, R.drawable.ic_flip_sticker), DrawKey.TOP_LEFT, iconSizePx
         )
         editIcon.event = FlipEvent()
 

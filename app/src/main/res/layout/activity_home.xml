@@ -30,14 +30,16 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:src="@drawable/img_app_name"
-        app:layout_constraintDimensionRatio="360:120"
+        android:layout_marginTop="-50dp"
+        android:layout_marginHorizontal="53dp"
+        app:layout_constraintDimensionRatio="254:96"
         app:layout_constraintTop_toBottomOf="@id/layoutActionBar" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="0dp"
         android:scrollbars="none"
         android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"

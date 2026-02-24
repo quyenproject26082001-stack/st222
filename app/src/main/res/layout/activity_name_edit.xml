@@ -121,6 +121,8 @@
                         android:background="@drawable/bg_16_stroke_white"
                         android:fontFamily="@font/roboto_regular"
                         android:hint="@string/enter_name"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:paddingHorizontal="12dp"
                         android:scrollHorizontally="true"

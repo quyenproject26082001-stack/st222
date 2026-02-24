@@ -511,7 +511,7 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
-        handler.removeCallbacks(randomRunnable ?: return)
+        randomRunnable?.let { handler.removeCallbacks(it) }
     }
 
     override fun onStart() {
@@ -549,10 +549,8 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
 
     }
 
-    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
-        // Clean up and go back
-        handler.removeCallbacks(randomRunnable ?: return)
+        randomRunnable?.let { handler.removeCallbacks(it) }
         super.onBackPressed()
     }
 }

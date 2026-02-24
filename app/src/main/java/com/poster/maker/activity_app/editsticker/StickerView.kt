@@ -59,10 +59,13 @@ class StickerView(
     }
 
     private fun setupIcons() {
+        val iconSizePx = (20 * context.resources.displayMetrics.density).toInt()
+
         // Delete icon (bottom-left)
         val deleteIcon = BitmapStickerIcon(
             ContextCompat.getDrawable(context, R.drawable.ic_delete_sticker)!!,
-            BitmapStickerIcon.IconPosition.BOTTOM_LEFT
+            BitmapStickerIcon.IconPosition.BOTTOM_LEFT,
+            iconSizePx
         ).apply {
             iconEvent = DeleteIconEvent()
         }
@@ -70,7 +73,8 @@ class StickerView(
         // Flip icon (bottom-right)
         val flipIcon = BitmapStickerIcon(
             ContextCompat.getDrawable(context, R.drawable.ic_flip_sticker)!!,
-            BitmapStickerIcon.IconPosition.BOTTOM_RIGHT
+            BitmapStickerIcon.IconPosition.BOTTOM_RIGHT,
+            iconSizePx
         ).apply {
             iconEvent = FlipIconEvent()
         }
@@ -78,7 +82,8 @@ class StickerView(
         // Zoom/Rotate icon (top-right)
         val zoomIcon = BitmapStickerIcon(
             ContextCompat.getDrawable(context, R.drawable.ic_rotate_scale)!!,
-            BitmapStickerIcon.IconPosition.TOP_RIGHT
+            BitmapStickerIcon.IconPosition.TOP_RIGHT,
+            iconSizePx
         ).apply {
             iconEvent = ZoomIconEvent()
         }

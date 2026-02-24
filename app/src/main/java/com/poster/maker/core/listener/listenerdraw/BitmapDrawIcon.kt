@@ -11,7 +11,7 @@ import com.ocmaker.pixcel.maker.data.model.draw.DrawableDraw
 import com.piratemaker.postermaker.listener.listenerdraw.DrawEvent
 import poster.maker.core.utils.key.DrawKey
 
-class BitmapDrawIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableDraw(drawable!!, "nbhieu"),
+class BitmapDrawIcon(drawable: Drawable?, @Gravity gravity: Int, private val sizePx: Int = -1) : DrawableDraw(drawable!!, "nbhieu"),
     DrawEvent {
     @IntDef(*[DrawKey.TOP_LEFT, DrawKey.RIGHT_TOP, DrawKey.LEFT_BOTTOM, DrawKey.RIGHT_BOTTOM])
     @Retention(AnnotationRetention.SOURCE)
@@ -25,6 +25,11 @@ class BitmapDrawIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableDraw(
     @Gravity
     var positionDefault = DrawKey.TOP_LEFT
     var event: DrawEvent? = null
+
+    override val width: Int
+        get() = if (sizePx > 0) sizePx else super.width
+    override val height: Int
+        get() = if (sizePx > 0) sizePx else super.height
 
     init {
         positionDefault = gravity
@@ -53,7 +58,11 @@ class BitmapDrawIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableDraw(
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = 5f
         paint.color = "#513323".toColorInt()
-        super.draw(canvas)
+        canvas.save()
+        canvas.concat(getMatrix())
+        drawable.setBounds(0, 0, width, height)
+        drawable.draw(canvas)
+        canvas.restore()
     }
 
 }

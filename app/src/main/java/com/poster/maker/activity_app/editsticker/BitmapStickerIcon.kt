@@ -7,12 +7,13 @@ import android.graphics.drawable.Drawable
 
 class BitmapStickerIcon(
     val drawable: Drawable,
-    val position: IconPosition
+    val position: IconPosition,
+    iconSizePx: Int = -1
 ) {
     var x: Float = 0f
     var y: Float = 0f
-    val width: Float = drawable.intrinsicWidth.toFloat()
-    val height: Float = drawable.intrinsicHeight.toFloat()
+    val width: Float = if (iconSizePx > 0) iconSizePx.toFloat() else drawable.intrinsicWidth.toFloat()
+    val height: Float = if (iconSizePx > 0) iconSizePx.toFloat() else drawable.intrinsicHeight.toFloat()
     val radius: Float = (width + height) / 4f
 
     private val matrix = Matrix()

@@ -165,7 +165,7 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
         binding.apply {
             actionBar.btnActionBarLeft.setOnSingleClick {
                 showInterAll {
-                goToHome()
+finish()
                 }
             }
 
@@ -182,11 +182,11 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
             }
 
             btnShare.setOnSingleClick(2000) {
-                shareImage()
+                saveToMyDesign()
             }
 
             actionBar.btnActionBarRight.setOnSingleClick {
-               showInterAll { saveToMyDesign() }
+               showInterAll { shareImage() }
             }
         }
     }
@@ -194,10 +194,10 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
     override fun initActionBar() {
         binding.actionBar.apply {
             tvCenter.text = getString(R.string.bountyFilter)
-            btnActionBarLeft.setImageResource(R.drawable.ic_home)
+            btnActionBarLeft.setImageResource(R.drawable.ic_back)
             btnActionBarLeft.visible()
             btnActionBarRight.visible()
-            btnActionBarRight.setImageResource(R.drawable.ic_save)
+            btnActionBarRight.setImageResource(R.drawable.ic_share)
             tvRightText.select()
             updateActionBarIcons()
 
