@@ -121,9 +121,10 @@
     <string name="vui_l_ng_nh_p_t_n_tr_c_khi_l_u">Please enter a name before save</string>
     <string name="bountyFilter">Bounty \nFilter</string>    <string name="play">Play</string>
     <string name="old_west">Old West \nOutlaws</string>
-    <string name="old_west_outlwaw">Old West OutLwaw</string>
+    <string name="old_west_outlwaw">Old West OutLaw</string>
     <string name="camera_permission_is_required">Camera permission is required</string>
     <string name="my_wanted">My Wanted</string>
     <string name="saved_to_my_design">Saved to My Design!</string>
     <string name="template">Templates</string>
+    <string name="my_filter">My Filter</string>
 </resources>

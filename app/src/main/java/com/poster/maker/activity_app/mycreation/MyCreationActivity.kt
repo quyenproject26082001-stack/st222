@@ -144,11 +144,12 @@ class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
         binding.actionBar.apply {
             btnActionBarLeft.setImageResource(R.drawable.ic_back)
             btnActionBarLeft.visible()
-            tvCenter.text = strings(R.string.my_design)
-            tvCenter.gone()
+            tvCenter.text = strings(R.string.my_creation)
+            tvCenter.visible()
             btnActionBarRight.gone()
             btnActionBarRightText.gone()
             btnActionBarReset.gone()
+
         }
     }
 

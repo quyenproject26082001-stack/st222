@@ -138,7 +138,7 @@ class MainActivity : BaseActivity<ActivityHomeBinding>() {
 
     @SuppressLint("MissingSuperCall", "GestureBackNavigation")
     override fun onBackPressed() {
-        if (!sharePreference.getIsRate(this) && sharePreference.getCountBack() % 2 == 0) {
+        if (!sharePreference.getIsRate(this) && sharePreference.getCountBack() % 2 != 0) {
             rateApp(sharePreference) { state ->
                 when (state) {
                     RateState.LESS3 -> {

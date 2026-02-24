@@ -56,7 +56,7 @@ fun Context.handleBackFragmentFromRight() {
         supportFragmentManager.popBackStack()
     }
 }
-fun Activity.hideNavigation(isBlack: Boolean = true) {
+fun Activity.hideNavigation(isBlack: Boolean = false) {
     window?.setFlags(
         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS

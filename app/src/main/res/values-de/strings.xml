@@ -111,9 +111,10 @@
     <string name="bountyFilter">Kopfgeld-\nFilter</string>
     <string name="play">Abspielen</string>
     <string name="old_west">Gesetzlose des\nAlten Westens</string>
-    <string name="old_west_outlwaw">Gesetzlose des Alten Westens</string>
+    <string name="old_west_outlwaw">Gesetzlose des Alten Westen</string>
     <string name="camera_permission_is_required">Kameraberechtigung erforderlich</string>
     <string name="my_wanted">Mein Steckbrief</string>
     <string name="saved_to_my_design">In Mein Design gespeichert!</string>
     <string name="template">Vorlages</string>
+    <string name="my_filter">Mein Filter</string>
 </resources>

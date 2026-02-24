@@ -131,6 +131,9 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
     }
 
     override fun initView() {
+        // Reset all data when entering MakeScreen
+        viewModel.clearAll()
+
         // Check if template was selected from Intent
         val selectedTemplateFromIntent = intent.getIntExtra("selectedTemplateId", -1)
         if (selectedTemplateFromIntent != -1) {

@@ -34,7 +34,7 @@
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:text="@string/this_action_can_contain_ads"
-        android:textColor="#FFFFFF"
+        android:textColor="#80FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +51,8 @@
 
        <ImageView
            android:id="@+id/imvLoading"
-           android:layout_width="68dp"
-           android:layout_height="68dp"
+           android:layout_width="50dp"
+           android:layout_height="50dp"
            android:src="@drawable/ic_loading"
            android:layout_gravity="center"
            />

@@ -46,7 +46,7 @@
         android:id="@+id/rcv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
         android:overScrollMode="never"
         android:paddingHorizontal="16dp"
