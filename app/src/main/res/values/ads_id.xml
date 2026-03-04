@@ -1,57 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_id" translatable="false"></string>
+    <string name="app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
 
     <!-- Splash -->
-    <string name="inter_splash" translatable="false"></string>
+    <string name="inter_splash" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
 
     <!-- Language -->
-    <string name="native_language" translatable="false"></string>
+    <string name="native_language" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
     <!-- Intro -->
-    <string name="native_intro" translatable="false"></string>
+    <string name="native_intro" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
     <!-- Permission -->
-    <string name="native_per" translatable="false"></string>
-    <string name="inter_per" translatable="false"></string>
+    <string name="native_per" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="inter_per" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
 
     <!-- Home -->
-    <string name="native_cl_home" translatable="false"></string>
-    <string name="native_collap_fillter" translatable="false"></string>
-    <string name="native_cl_fillter_success" translatable="false"></string>
+    <string name="native_cl_home" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="native_collap_poster" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
 
     <!-- oldwest -->
-    <string name="native_cl_Old_West_detail" translatable="false"></string>
-    <string name="native_cl_Old_West" translatable="false"></string>
+    <string name="native_cl_poster_success" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="native_collap_template" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
     <!-- poster maker -->
-    <string name="native_collap_poster" translatable="false"></string>
 
     <!-- poster maker/template -->
-    <string name="native_template" translatable="false"></string>
+    <string name="native_collap_fillter" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
     <!-- edit -->
-    <string name="native_collap_edit" translatable="false"></string>
+    <string name="native_cl_fillter_success" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
     <!-- Successful -->
-    <string name="native_collap_creation" translatable="false"></string>
+    <string name="native_collap_editFilter" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
     <!-- Poster Templates -->
-    <string name="native_collap_listTemplate" translatable="false"></string>
+    <string name="native_cl_Old_West" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
 
-    <string name="native_detail" translatable="false"></string>
+    <string name="native_cl_Old_West_detail" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
-    <string name="native_collap_editFilter" translatable="false"></string>
 
 
     <!-- My desgin -->
-    <string name="native_collap_myDesgin" translatable="false"></string>
-    <string name="native_myDesgin" translatable="false"></string>
+    <string name="native_cl_listTemplate" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="native_collap_myDesgin" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="native_myDesgin" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="native_cl_detail" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
 
     <!-- Common -->
-    <string name="inter_all" translatable="false"></string>
-    <string name="native_all" translatable="false"></string>
-    <string name="open_resume" translatable="false"></string>
+    <string name="inter_all" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="native_all" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="open_resume" translatable="false">ca-app-pub-3940256099942544/9257395921</string>
 </resources>

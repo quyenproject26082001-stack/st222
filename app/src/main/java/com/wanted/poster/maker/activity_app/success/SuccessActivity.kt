@@ -141,12 +141,12 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
             //quyen
             actionBar.apply {
                 btnActionBarLeft.setOnSingleClick {
-                    showInterAll {
                         finish()
-                    }
                 }
                 btnActionBarRight.setOnSingleClick {
+                    showInterAll{
                     goToHome()
+                    }
                 }
                 btnActionBarNextToRight.setOnSingleClick(2000) {
                     shareImage()
@@ -158,7 +158,7 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
             btnShare.setOnSingleClick(2000) {
                 val intent = android.content.Intent(this@SuccessActivity, MyCreationActivity::class.java)
                 intent.putExtra("tab", com.wanted.poster.maker.activity_app.mycreation.MyCreationActivity.TabType.MY_WANTED.name)
-                startActivity(intent)
+                showInterAll {  startActivity(intent) }
             }
 
             // Download button
@@ -173,12 +173,12 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
     }
 
     //quyen
-//    override fun initAds() {
-//
-//        // Load native collapsible ad
-//        Admob.getInstance().loadNativeCollap(this, getString(R.string.native_collap_creation), binding.nativeClCreation)
-//
-//    }
+    override fun initAds() {
+
+        // Load native collapsible ad
+        Admob.getInstance().loadNativeCollap(this, getString(R.string.native_cl_poster_success), binding.nativeClCreation)
+
+    }
     //quyen
 
     private fun goToHome() {

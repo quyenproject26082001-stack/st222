@@ -2,7 +2,9 @@ package com.wanted.poster.maker.activity_app.intro
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.wanted.poster.maker.core.base.BaseActivity
 import com.wanted.poster.maker.core.utils.DataLocal
 import com.wanted.poster.maker.databinding.ActivityIntroBinding
@@ -18,6 +20,7 @@ import com.wanted.poster.maker.core.extensions.gone
 import androidx.viewpager2.widget.ViewPager2
 //quyen
 import kotlin.system.exitProcess
+import kotlin.text.toInt
 
 class IntroActivity : BaseActivity<ActivityIntroBinding>() {
     private val introAdapter by lazy { IntroAdapter(this) }
@@ -66,10 +69,29 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>() {
             vpgTutorial.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    if (position == 0 || position == 2) {
-                        //nativeIntro.visible()
+                    val params = binding.btnNext.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
+
+                    if (position == 0) {
+                        binding.nativeIntro.gone()
+                        // Set lại width về 100dp
+                        params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                        params.height = (48 * resources.displayMetrics.density).toInt()
+                        params.bottomMargin = (5 * resources.displayMetrics.density).toInt()
+                        params.marginEnd = (5 * resources.displayMetrics.density).toInt()
+
+                        // Chiều cao
+                        binding.btnNext.layoutParams = params
+                        binding.btnNext.setTextColor(resources.getColor(R.color.white, null))
+                        binding.btnNext.setBackgroundResource(R.drawable.bg_next_button)
                     } else {
-                       // nativeIntro.gone()
+                        binding.nativeIntro.visible()
+                        // Đổi sang wrap_content
+                        params.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                        params.marginEnd = (16 * resources.displayMetrics.density).toInt()
+                        params.bottomMargin = (0 * resources.displayMetrics.density).toInt()
+                        binding.btnNext.layoutParams = params
+                        binding.btnNext.setTextColor(Color.parseColor("#6DDDD4"))
+                        binding.btnNext.background = null
                     }
                 }
             })

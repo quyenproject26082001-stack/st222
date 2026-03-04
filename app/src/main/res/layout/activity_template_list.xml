@@ -38,18 +38,13 @@
 
 <!--    &lt;!&ndash;quyen&ndash;&gt;-->
 <!--    &lt;!&ndash; nativeTemplate &ndash;&gt;-->
-<!--    <FrameLayout-->
-<!--        android:id="@+id/nativeTemplate"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent">-->
-
-<!--        <include layout="@layout/ads_shimmer_big" />-->
-<!--    </FrameLayout>-->
+    <FrameLayout
+        android:id="@+id/nativeClListTemplate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 <!--    &lt;!&ndash;quyen&ndash;&gt;-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -256,8 +256,10 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
                     val displayText = when {
                         random < 10 -> "Infinity ∞"  // 10% - Infinity symbol
                         random < 15 -> "0"  // 10% - Zero
-                        random < 30 -> NumberFormat.getNumberInstance(Locale.US).format(999999999)  // 10% - 999,999,999
-                        random < 40 -> NumberFormat.getNumberInstance(Locale.US).format(666666)     // 10% - 666,666
+                        random < 30 -> NumberFormat.getNumberInstance(Locale.US)
+                            .format(999999999)  // 10% - 999,999,999
+                        random < 40 -> NumberFormat.getNumberInstance(Locale.US)
+                            .format(666666)     // 10% - 666,666
                         else -> {
                             // 60% - Random bounty value between 100,000 and 10,000,000
                             val randomValue = Random.nextInt(100000, 10000001)
@@ -323,12 +325,12 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
                 // imgCamera will be made visible in onCountdownFinished()
 
             } catch (exc: Exception) {
-                Toast.makeText(this, "Failed to start camera: ${exc.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to start camera: ${exc.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
 
         }, ContextCompat.getMainExecutor(this))
     }
-
 
 
     private fun takePhoto() {
@@ -372,7 +374,10 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
                             .load(fixedFile.absolutePath)
                             .into(binding.imgCamera1)
 
-                        val intent = Intent(this@BountyFilterActivity, SuccessfulBountyActivity::class.java).apply {
+                        val intent = Intent(
+                            this@BountyFilterActivity,
+                            SuccessfulBountyActivity::class.java
+                        ).apply {
                             putExtra("PHOTO_PATH", fixedFile.absolutePath)
                             putExtra("BOUNTY_VALUE", binding.tvBountyFilter.text.toString())
                         }
@@ -383,12 +388,16 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
                             startActivity(intent)
                             finish()
                         }
-                                                    binding.imgCamera.gone()
+                        binding.imgCamera.gone()
 
 
                     } catch (e: Exception) {
                         e.printStackTrace()
-                        Toast.makeText(this@BountyFilterActivity, "Failed to process photo", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@BountyFilterActivity,
+                            "Failed to process photo",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -415,9 +424,17 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
         val matrix = android.graphics.Matrix()
 
         when (orientation) {
-            androidx.exifinterface.media.ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
-            androidx.exifinterface.media.ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180f)
-            androidx.exifinterface.media.ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270f)
+            androidx.exifinterface.media.ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(
+                90f
+            )
+
+            androidx.exifinterface.media.ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(
+                180f
+            )
+
+            androidx.exifinterface.media.ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(
+                270f
+            )
         }
 
         // Flip cho camera trước (giữ đúng behavior bạn đang làm)
@@ -425,7 +442,8 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
             matrix.postScale(-1f, 1f)
         }
 
-        val fixedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+        val fixedBitmap =
+            Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
 
         val outFile = File(cacheDir, "bounty_fixed_${System.currentTimeMillis()}.jpg")
         FileOutputStream(outFile).use { out ->
@@ -487,7 +505,10 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
                 val currentCount = sharePreference.getCameraPermission()
                 val newCount = currentCount + 1
                 sharePreference.setCameraPermission(newCount)
-                android.util.Log.d("BountyFilter", "Permission denied, counter: $currentCount -> $newCount")
+                android.util.Log.d(
+                    "BountyFilter",
+                    "Permission denied, counter: $currentCount -> $newCount"
+                )
 
                 // Just show toast, don't go to settings yet
                 Toast.makeText(
@@ -499,16 +520,20 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
         }
     }
 
-//    override fun initAds() {
-//        // Load interstitial ad
-//        // Load native collapsible ad
-//        initNativeCollab()
-//    }
-//    fun initNativeCollab() {
-//        Admob.getInstance().loadNativeCollap(this,
-//            getString(R.string.native_collap_fillter),
-//            binding.nativeClBounty)
-//    }
+    override fun initAds() {
+        // Load interstitial ad
+        // Load native collapsible ad
+        initNativeCollab()
+    }
+
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollap(
+            this,
+            getString(R.string.native_collap_fillter),
+            binding.nativeClBounty
+        )
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
@@ -527,7 +552,7 @@ class BountyFilterActivity : BaseActivity<ActivityBountyFilterBinding>() {
     override fun onRestart() {
         super.onRestart()
         recreate()
-      //  initNativeCollab()
+        initNativeCollab()
     }
 
     override fun onResume() {

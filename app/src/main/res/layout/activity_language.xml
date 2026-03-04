@@ -28,17 +28,19 @@
 
     <!--quyen-->
     <!-- nativeLanguage -->
-<!--    <FrameLayout-->
-<!--        android:id="@+id/nativeLanguage"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="0dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/layoutActionBar">-->
+    <FrameLayout
+        android:id="@+id/nativeLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
 
-<!--        <include layout="@layout/ads_shimmer_big" />-->
-<!--    </FrameLayout>-->
+        >
+
+        <include layout="@layout/ads_shimmer_big" />
+    </FrameLayout>
     <!--quyen-->
 
     <!-- rcv -->
@@ -51,9 +53,11 @@
         android:overScrollMode="never"
         android:paddingHorizontal="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nativeLanguage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutActionBar"
         tools:listitem="@layout/item_language" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

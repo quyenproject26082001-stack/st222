@@ -128,14 +128,14 @@ class MainActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
     //quyen
-//    override fun initAds() {
-//        // Load interstitial ad
-//        Admob.getInstance().loadInterAll(this, getString(R.string.inter_all))
-//        Admob.getInstance().loadNativeAll(this, getString(R.string.native_all))
-//
-//        // Load native collapsible ad
-//        initNativeCollab()
-//    }
+    override fun initAds() {
+        // Load interstitial ad
+        Admob.getInstance().loadInterAll(this, getString(R.string.inter_all))
+        Admob.getInstance().loadNativeAll(this, getString(R.string.native_all))
+
+        // Load native collapsible ad
+        initNativeCollab()
+    }
     //quyen
 
     @SuppressLint("MissingSuperCall", "GestureBackNavigation")
@@ -215,13 +215,13 @@ class MainActivity : BaseActivity<ActivityHomeBinding>() {
         }
     }
 
-//    fun initNativeCollab() {
-//        Admob.getInstance().loadNativeCollapNotBanner(
-//            this,
-//            getString(R.string.native_cl_home),
-//            binding.nativeClHome
-//        )
-//    }
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollapNotBanner(
+            this,
+            getString(R.string.native_cl_home),
+            binding.nativeClHome
+        )
+    }
 
     override fun onRestart() {
         super.onRestart()
@@ -235,7 +235,7 @@ class MainActivity : BaseActivity<ActivityHomeBinding>() {
         }
         //quyen
         // Reload native collapsible ad
-       // initNativeCollab()
+       initNativeCollab()
         //quyen
     }
 }

@@ -162,9 +162,9 @@ class ViewOldWestActivity : BaseActivity<ActivityViewOldwestBinding>() {
     }
 
 //    //quyen
-//    override fun initAds() {
-//        Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_cl_Old_West_detail), binding.nativeClOldWest)
-//    }
+    override fun initAds() {
+        Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_cl_Old_West_detail), binding.nativeClOldWest)
+    }
     //quyen
 
 

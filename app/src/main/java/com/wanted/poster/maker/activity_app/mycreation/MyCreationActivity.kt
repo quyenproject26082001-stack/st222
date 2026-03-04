@@ -123,7 +123,7 @@ class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
     override fun viewListener() {
         binding.actionBar.apply {
             btnActionBarLeft.setOnSingleClick {
-                goToHome()
+                showInterAll {  goToHome()}
             }
         }
     }
@@ -155,17 +155,17 @@ class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
 
     override fun onRestart() {
         super.onRestart()
-        //  Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_collap_myDesgin), binding.nativeCollapMyDesgin)
+         Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_collap_myDesgin), binding.nativeCollapMyDesgin)
 
     }
     //quyen
-//    override fun initAds() {
-//        // Load native regular ad above back button and list
-//        Admob.getInstance().loadNativeAd(this, getString(R.string.native_myDesgin), binding.nativeMyDesgin, R.layout.ads_native_collap_banner_1)
-//
-//        // Load native collapsible ad at bottom
-//        Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_collap_myDesgin), binding.nativeCollapMyDesgin)
-//    }
+    override fun initAds() {
+        // Load native regular ad above back button and list
+        Admob.getInstance().loadNativeAd(this, getString(R.string.native_myDesgin), binding.nativeMyDesgin, R.layout.ads_native_collap_banner_1)
+
+        // Load native collapsible ad at bottom
+        Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_collap_myDesgin), binding.nativeCollapMyDesgin)
+    }
     //quyen
 
     private fun onDesignClicked(file: File) {
@@ -174,6 +174,6 @@ class MyCreationActivity : BaseActivity<ActivityMyCreationBinding>() {
 
             putExtra("isMyDesign", currentTab == TabType.MY_DESIGN)
         }
-        startActivity(intent)
+        showInterAll {  startActivity(intent) }
     }
 }

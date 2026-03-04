@@ -165,18 +165,17 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
     override fun viewListener() {
         binding.apply {
             actionBar.btnActionBarLeft.setOnSingleClick {
-                showInterAll {
                     val intent = Intent(this@SuccessfulBountyActivity, BountyFilterActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
                     startActivity(intent)
                     finish()
-                }
+
             }
 
             actionBar.btnActionBarNextToRight.visible()
 
             actionBar.btnActionBarNextToRight.setOnSingleClick {
-                showInterAll {openEditSticker() }
+               openEditSticker()
             }
 
 
@@ -190,7 +189,7 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
             }
 
             actionBar.btnActionBarRight.setOnSingleClick {
-               showInterAll { shareImage() }
+                shareImage()
             }
         }
     }
@@ -285,16 +284,16 @@ class SuccessfulBountyActivity : BaseActivity<SuccessfullBountyBinding>() {
         super.onRestart()
     }
 
-//    override fun initAds() {
-//        super.initAds()
-//        initNativeCollab()
-//    }
+    override fun initAds() {
+        super.initAds()
+        initNativeCollab()
+    }
 
-//    fun initNativeCollab() {
-//        Admob.getInstance().loadNativeCollap(this,
-//            getString(R.string.native_cl_fillter_success),
-//            binding.nativeCollapSSBounty)
-//    }
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollap(this,
+            getString(R.string.native_cl_fillter_success),
+            binding.nativeCollapSSBounty)
+    }
     private fun openEditSticker() {
         // Show loading immediately for better UX
         // (Optional: Add a progress indicator here)

@@ -94,16 +94,16 @@ class OldWestActivity : BaseActivity<ActivityOldWestBinding>() {
     }
 
     //quyen
-//    override fun initAds() {
-//        // Load native regular ad above back button and list
-//        // Load native collapsible ad at bottom
-//        Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_cl_Old_West), binding.nativeCollapOldWestActivity)
-//    }
+    override fun initAds() {
+        // Load native regular ad above back button and list
+        // Load native collapsible ad at bottom
+        Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_cl_Old_West), binding.nativeCollapOldWestActivity)
+    }
     //quyen
 
     override fun onRestart() {
         super.onRestart()
-       // initAds()
+        initAds()
     }
     private fun onDesignClicked(fileName: String) {
         val intent = Intent(this, ViewOldWestActivity::class.java).apply {

@@ -61,16 +61,16 @@
 
     <!--quyen-->
 <!--    &lt;!&ndash; nativeIntro &ndash;&gt;-->
-<!--    <FrameLayout-->
-<!--        android:id="@+id/nativeIntro"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:visibility="gone"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent">-->
+    <FrameLayout
+        android:id="@+id/nativeIntro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-<!--        <include layout="@layout/ads_shimmer_avg2" />-->
-<!--    </FrameLayout>-->
+        <include layout="@layout/ads_shimmer_avg2" />
+    </FrameLayout>
     <!--quyen-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -80,18 +80,22 @@ class TemplateListActivity : BaseActivity<ActivityTemplateListBinding>() {
     }
 
     //quyen
-//    override fun initAds() {
-//
-//
-//        // Load native ad with button on top
-//        Admob.getInstance().loadNativeAd(
-//            this,
-//            getString(R.string.native_template),
-//            binding.nativeTemplate,
-//            R.layout.ads_native_big_btn_top
-//        )
-//    }
+    override fun initAds() {
+        // Load interstitial ad
+        // Load native collapsible ad
+        initNativeCollab()
+    }
+
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_collap_template), binding.nativeClListTemplate)
+
+    }
     //quyen
+
+    override fun onRestart() {
+        super.onRestart()
+        initAds()
+    }
 
     private fun setupRecyclerView() {
         // Create 16 templates (matching assets/template/1 to assets/template/16)

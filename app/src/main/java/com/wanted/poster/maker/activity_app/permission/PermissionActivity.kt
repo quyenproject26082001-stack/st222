@@ -155,23 +155,23 @@
 
 
         //quyen
-//        override fun initAds() {
-//            // Load interstitial ad
-//            Admob.getInstance().loadInterAds(this, getString(R.string.inter_per), object : InterCallback() {
-//                override fun onAdLoadSuccess(interstitialAd: InterstitialAd?) {
-//                    super.onAdLoadSuccess(interstitialAd)
-//                    interPer = interstitialAd
-//                }
-//            })
-//
-//            // Load native ad with button on top
-//            Admob.getInstance().loadNativeAd(
-//                this,
-//                getString(R.string.native_per),
-//                binding.nativePer,
-//                R.layout.ads_native_big
-//            )
-//        }
+        override fun initAds() {
+            // Load interstitial ad
+            Admob.getInstance().loadInterAds(this, getString(R.string.inter_per), object : InterCallback() {
+                override fun onAdLoadSuccess(interstitialAd: InterstitialAd?) {
+                    super.onAdLoadSuccess(interstitialAd)
+                    interPer = interstitialAd
+                }
+            })
+
+            // Load native ad with button on top
+            Admob.getInstance().loadNativeAd(
+                this,
+                getString(R.string.native_per),
+                binding.nativePer,
+                R.layout.ads_native_big
+            )
+        }
         //quyen
 
         override fun initActionBar() {

@@ -98,10 +98,10 @@ class PosterWantedTemplateActivity : BaseActivity<ActivityPosterWantedTemplateBi
     }
 
     //quyen
-//    override fun initAds() {
-//        // Load native collapsible ad
-//        Admob.getInstance().loadNativeCollap(this, getString(R.string.native_collap_listTemplate), binding.nativeClListTemplate)
-//    }
+    override fun initAds() {
+        // Load native collapsible ad
+        Admob.getInstance().loadNativeCollap(this, getString(R.string.native_cl_listTemplate), binding.nativeClListTemplate)
+    }
     //quyen
 
     override fun onDestroy() {
@@ -115,7 +115,7 @@ class PosterWantedTemplateActivity : BaseActivity<ActivityPosterWantedTemplateBi
     override fun onRestart() {
         super.onRestart()
         // Reload native collapsible ad
-        Admob.getInstance().loadNativeCollap(this, getString(R.string.native_collap_listTemplate), binding.nativeClListTemplate)
+        Admob.getInstance().loadNativeCollap(this, getString(R.string.native_cl_listTemplate), binding.nativeClListTemplate)
     }
     //quyen
 

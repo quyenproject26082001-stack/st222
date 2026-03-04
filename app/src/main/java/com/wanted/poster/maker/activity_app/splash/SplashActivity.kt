@@ -46,7 +46,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         binding.imvLoading.startAnimation(rotateAnimation)
 
         initNetworkMonitor()
-        Admob.getInstance().setOpenShowAllAds(false)
+        Admob.getInstance().setOpenShowAllAds(true)
         Admob.getInstance().setTimeLimitShowAds(20000)
         Admob.getInstance().setTimeCountdownNativeCollab(15000)
 
@@ -88,13 +88,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
             }
         }
 
-//        Admob.getInstance().loadSplashInterAds(
-//            this,
-//            getString(com.wanted.poster.maker.R.string.inter_splash),
-//            30000,
-//            3000,
-//            interCallBack
-//        )
+        Admob.getInstance().loadSplashInterAds(
+            this,
+            getString(com.wanted.poster.maker.R.string.inter_splash),
+            30000,
+            3000,
+            interCallBack
+        )
 
         // Since ads are disabled, call the callback directly
         interCallBack?.onNextAction()
@@ -138,7 +138,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     //quyen
     override fun onResume() {
         super.onResume()
-     //   Admob.getInstance().onCheckShowSplashWhenFail(this, interCallBack, 1000)
+        Admob.getInstance().onCheckShowSplashWhenFail(this, interCallBack, 1000)
     }
     //quyen
 }

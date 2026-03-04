@@ -47,7 +47,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+        <include layout="@layout/ads_shimmer_collap_native" />
+
+    </FrameLayout>
     <!--quyen-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

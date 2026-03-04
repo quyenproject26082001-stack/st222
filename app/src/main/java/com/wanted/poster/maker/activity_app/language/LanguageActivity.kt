@@ -126,15 +126,15 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
     }
 
     //quyen
-//    override fun initAds() {
-//        // Load native ad
-//        Admob.getInstance().loadNativeAd(
-//            this,
-//            getString(R.string.native_language),
-//            binding.nativeLanguage,
-//            R.layout.ads_native_big
-//        )
-//    }
+    override fun initAds() {
+        // Load native ad
+        Admob.getInstance().loadNativeAd(
+            this,
+            getString(R.string.native_language),
+            binding.nativeLanguage,
+            R.layout.ads_native_big_btn_top
+        )
+    }
     //quyen
 
     @SuppressLint("MissingSuperCall", "GestureBackNavigation")

@@ -96,17 +96,17 @@
         </FrameLayout>
     </LinearLayout>
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/nativeClCreation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:elevation="3dp"-->
-<!--        >-->
-<!--        <include layout="@layout/ads_shimmer_collap_native" />-->
-<!--    </FrameLayout>-->
+    <FrameLayout
+        android:id="@+id/nativeClCreation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="3dp"
+        >
+        <include layout="@layout/ads_shimmer_collap_native" />
+    </FrameLayout>
     <!--quyen-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

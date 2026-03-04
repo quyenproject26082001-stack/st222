@@ -122,18 +122,18 @@
 
 
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/nativeDetail"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="7dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        >-->
+    <FrameLayout
+        android:id="@+id/nativeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
-<!--        <include layout="@layout/ads_shimmer_big" />-->
-<!--    </FrameLayout>-->
+        <include layout="@layout/ads_shimmer_collap_native" />
+    </FrameLayout>
 
 <!--    &lt;!&ndash; Native Ad Bottom &ndash;&gt;-->
 <!--    <FrameLayout-->

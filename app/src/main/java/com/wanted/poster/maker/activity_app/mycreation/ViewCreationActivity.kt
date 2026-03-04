@@ -144,12 +144,10 @@ class ViewCreationActivity : BaseActivity<ActivityViewBinding>() {
 
             // Download button
             btnDownload.setOnSingleClick {
-                if (!isMyDesign) {
+
                     showInterAll { downloadImage() }
-                }
-                else{
-                    downloadImage()
-                }
+
+
             }
             actionBar.btnActionBarNextToRight.setOnSingleClick {
                 openEditSticker()
@@ -241,26 +239,13 @@ class ViewCreationActivity : BaseActivity<ActivityViewBinding>() {
 //        }
     }
 
-//    override fun initAds() {
-//
-//        if (isMyDesign) {
-//           binding.nativeDetail.gone()
-//            Admob.getInstance().loadNativeCollapNotBanner(
-//                this,
-//                getString(R.string.native_cl_Old_West_detail),
-//                binding.nativeCollapDetailDesgin
-//            )
-//        } else {
-//            binding.nativeDetail.visible()
-//
-//            Admob.getInstance().loadNativeAd(
-//                this,
-//                getString(R.string.native_detail),
-//                binding.nativeDetail,
-//                R.layout.ads_native_big_btn_top
-//            )
-//        }
-//    }
+    override fun initAds() {
+        Admob.getInstance().loadNativeCollap(
+            this,
+            getString(R.string.native_cl_detail),
+            binding.nativeDetail
+        )
+    }
 
 
     /**

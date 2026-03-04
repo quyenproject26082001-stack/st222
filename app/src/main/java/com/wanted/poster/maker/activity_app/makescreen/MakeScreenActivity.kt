@@ -132,7 +132,7 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
 
     override fun initView() {
         // Reset all data when entering MakeScreen
-       // viewModel.clearAll()
+        // viewModel.clearAll()
 
         // Check if template was selected from Intent
         val selectedTemplateFromIntent = intent.getIntExtra("selectedTemplateId", -1)
@@ -172,9 +172,10 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
 
             // Templates button
             cvTemplates.setOnSingleClick {
-                val intent = Intent(this@MakeScreenActivity, TemplateListActivity::class.java).apply {
-                    putExtra("currentTemplateId", viewModel.selectedTemplate.value)
-                }
+                val intent =
+                    Intent(this@MakeScreenActivity, TemplateListActivity::class.java).apply {
+                        putExtra("currentTemplateId", viewModel.selectedTemplate.value)
+                    }
                 templateSelectionLauncher.launch(intent)
             }
 
@@ -437,7 +438,8 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
         val bountyFontName = viewModel.bountyFont.value
         val bountyFontResId = mapFontNameToResource(bountyFontName)
         if (bountyFontResId != null) {
-            val bountyTypeface = androidx.core.content.res.ResourcesCompat.getFont(this, bountyFontResId)
+            val bountyTypeface =
+                androidx.core.content.res.ResourcesCompat.getFont(this, bountyFontResId)
             tvBounty?.typeface = bountyTypeface
         }
 
@@ -551,10 +553,26 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
             val invGrayscale = 1 - grayscale
             val grayscaleMatrix = android.graphics.ColorMatrix(
                 floatArrayOf(
-                    invGrayscale + grayscale * 0.299f, grayscale * 0.587f, grayscale * 0.114f, 0f, 0f,
-                    grayscale * 0.299f, invGrayscale + grayscale * 0.587f, grayscale * 0.114f, 0f, 0f,
-                    grayscale * 0.299f, grayscale * 0.587f, invGrayscale + grayscale * 0.114f, 0f, 0f,
-                    0f, 0f, 0f, 1f, 0f
+                    invGrayscale + grayscale * 0.299f,
+                    grayscale * 0.587f,
+                    grayscale * 0.114f,
+                    0f,
+                    0f,
+                    grayscale * 0.299f,
+                    invGrayscale + grayscale * 0.587f,
+                    grayscale * 0.114f,
+                    0f,
+                    0f,
+                    grayscale * 0.299f,
+                    grayscale * 0.587f,
+                    invGrayscale + grayscale * 0.114f,
+                    0f,
+                    0f,
+                    0f,
+                    0f,
+                    0f,
+                    1f,
+                    0f
                 )
             )
             colorMatrix.postConcat(grayscaleMatrix)
@@ -568,10 +586,26 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
 
             val hueRotateMatrix = android.graphics.ColorMatrix(
                 floatArrayOf(
-                    0.213f + cosA * 0.787f - sinA * 0.213f, 0.715f - cosA * 0.715f - sinA * 0.715f, 0.072f - cosA * 0.072f + sinA * 0.928f, 0f, 0f,
-                    0.213f - cosA * 0.213f + sinA * 0.143f, 0.715f + cosA * 0.285f + sinA * 0.140f, 0.072f - cosA * 0.072f - sinA * 0.283f, 0f, 0f,
-                    0.213f - cosA * 0.213f - sinA * 0.787f, 0.715f - cosA * 0.715f + sinA * 0.715f, 0.072f + cosA * 0.928f + sinA * 0.072f, 0f, 0f,
-                    0f, 0f, 0f, 1f, 0f
+                    0.213f + cosA * 0.787f - sinA * 0.213f,
+                    0.715f - cosA * 0.715f - sinA * 0.715f,
+                    0.072f - cosA * 0.072f + sinA * 0.928f,
+                    0f,
+                    0f,
+                    0.213f - cosA * 0.213f + sinA * 0.143f,
+                    0.715f + cosA * 0.285f + sinA * 0.140f,
+                    0.072f - cosA * 0.072f - sinA * 0.283f,
+                    0f,
+                    0f,
+                    0.213f - cosA * 0.213f - sinA * 0.787f,
+                    0.715f - cosA * 0.715f + sinA * 0.715f,
+                    0.072f + cosA * 0.928f + sinA * 0.072f,
+                    0f,
+                    0f,
+                    0f,
+                    0f,
+                    0f,
+                    1f,
+                    0f
                 )
             )
             colorMatrix.postConcat(hueRotateMatrix)
@@ -793,7 +827,8 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
             return
         }
 
-        val bitmap = Bitmap.createBitmap(posterView.width, posterView.height, Bitmap.Config.ARGB_8888)
+        val bitmap =
+            Bitmap.createBitmap(posterView.width, posterView.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         posterView.draw(canvas)
 
@@ -817,6 +852,27 @@ class MakeScreenActivity : BaseActivity<ActivityMakeScreenBinding>() {
                     }
                 }
         }
+    }
+
+    override fun initAds() {
+        // Load interstitial ad
+
+        // Load native collapsible ad
+        initNativeCollab()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        initNativeCollab()
+
+    }
+
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollapNotBanner(
+            this,
+            getString(R.string.native_collap_poster),
+            binding.nativeClPoster
+        )
     }
 
     private fun showToast(message: String) {

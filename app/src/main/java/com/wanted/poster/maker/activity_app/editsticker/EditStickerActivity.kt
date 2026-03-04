@@ -99,7 +99,7 @@ class EditStickerActivity : BaseActivity<ActivityEditStickerBinding>() {
     override fun viewListener() {
         binding.actionBar.apply {
             btnActionBarLeft.setOnSingleClick {
-                finish()
+               showInterAll {   finish() }
             }
 
             btnActionBarRight.setOnSingleClick {
@@ -396,6 +396,6 @@ class EditStickerActivity : BaseActivity<ActivityEditStickerBinding>() {
     override fun initAds() {
         // Load native regular ad above back button and list
         // Load native collapsible ad at bottom
-      //  Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_collap_editFilter), binding.nativeCollapEditSticker)
+       Admob.getInstance().loadNativeCollapNotBanner(this, getString(R.string.native_collap_editFilter), binding.nativeCollapEditSticker)
     }
 }
